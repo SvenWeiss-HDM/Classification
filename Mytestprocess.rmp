@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?><process version="10.0.000">
+<?xml version="1.0" encoding="UTF-8"?><process version="10.1.001">
   <context>
     <input/>
     <output/>
     <macros/>
   </context>
-  <operator activated="true" class="process" compatibility="10.0.000" expanded="true" name="Process">
+  <operator activated="true" class="process" compatibility="10.1.001" expanded="true" name="Process">
     <parameter key="logverbosity" value="init"/>
     <parameter key="random_seed" value="2001"/>
     <parameter key="send_mail" value="never"/>
@@ -12,10 +12,10 @@
     <parameter key="process_duration_for_mail" value="30"/>
     <parameter key="encoding" value="SYSTEM"/>
     <process expanded="true">
-      <operator activated="true" class="retrieve" compatibility="10.0.000" expanded="true" height="68" name="Retrieve tracks_features" width="90" x="179" y="136">
+      <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve tracks_features" width="90" x="179" y="136">
         <parameter key="repository_entry" value="tracks_features"/>
       </operator>
-      <operator activated="true" class="remove_duplicates" compatibility="10.0.000" expanded="true" height="103" name="Remove Duplicates" width="90" x="313" y="136">
+      <operator activated="true" class="remove_duplicates" compatibility="10.1.001" expanded="true" height="103" name="Remove Duplicates" width="90" x="313" y="136">
         <parameter key="attribute_filter_type" value="all"/>
         <parameter key="attribute" value=""/>
         <parameter key="attributes" value=""/>
@@ -30,11 +30,13 @@
         <parameter key="include_special_attributes" value="false"/>
         <parameter key="treat_missing_values_as_duplicates" value="false"/>
       </operator>
-      <operator activated="true" class="store" compatibility="10.0.000" expanded="true" height="68" name="Store" width="90" x="447" y="136">
+      <operator activated="true" class="multiply" compatibility="10.1.001" expanded="true" height="82" name="Multiply" width="90" x="447" y="136"/>
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store" width="90" x="581" y="136">
         <parameter key="repository_entry" value="Mytest"/>
       </operator>
       <connect from_op="Retrieve tracks_features" from_port="output" to_op="Remove Duplicates" to_port="example set input"/>
-      <connect from_op="Remove Duplicates" from_port="example set output" to_op="Store" to_port="input"/>
+      <connect from_op="Remove Duplicates" from_port="example set output" to_op="Multiply" to_port="input"/>
+      <connect from_op="Multiply" from_port="output 1" to_op="Store" to_port="input"/>
       <portSpacing port="source_input 1" spacing="0"/>
       <portSpacing port="sink_result 1" spacing="0"/>
     </process>
