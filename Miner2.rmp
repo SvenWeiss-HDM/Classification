@@ -27,8 +27,8 @@
       <operator activated="true" class="concurrency:optimize_parameters_grid" compatibility="10.1.001" expanded="true" height="187" name="Optimize Parameters (Grid)" width="90" x="447" y="85">
         <list key="parameters">
           <parameter key="XGBoost.rounds" value="[0.0;10;1;linear]"/>
-          <parameter key="XGBoost.tree_method" value="auto,exact,approximate,histogram"/>
-          <parameter key="XGBoost.alpha" value="[0;1;20;linear]"/>
+          <parameter key="XGBoost.alpha" value="[0;1;1;linear]"/>
+          <parameter key="XGBoost.learning_rate" value="[0.0;1.0;1;linear]"/>
         </list>
         <parameter key="error_handling" value="fail on error"/>
         <parameter key="log_performance" value="true"/>
@@ -47,10 +47,10 @@
             <process expanded="true">
               <operator activated="true" class="xgboost:xgboost" compatibility="0.1.003" expanded="true" height="103" name="XGBoost" width="90" x="179" y="85">
                 <parameter key="booster" value="tree booster"/>
-                <parameter key="rounds" value="25"/>
+                <parameter key="rounds" value="10"/>
                 <parameter key="early_stopping" value="none"/>
                 <parameter key="early_stopping_rounds" value="10"/>
-                <parameter key="learning_rate" value="0.1"/>
+                <parameter key="learning_rate" value="0.0"/>
                 <parameter key="min_split_loss" value="0.0"/>
                 <parameter key="max_depth" value="6"/>
                 <parameter key="min_child_weight" value="1.0"/>
@@ -141,7 +141,7 @@
       <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (2)" width="90" x="715" y="238">
         <list key="application_parameters"/>
       </operator>
-      <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance XGBOOST" width="90" x="916" y="187">
+      <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance XGBOOST" width="90" x="916" y="238">
         <parameter key="manually_set_positive_class" value="false"/>
         <parameter key="main_criterion" value="first"/>
         <parameter key="accuracy" value="true"/>
@@ -446,7 +446,7 @@
       <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (6)" width="90" x="715" y="799">
         <list key="application_parameters"/>
       </operator>
-      <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance Gradient Boosted Tree" width="90" x="916" y="748">
+      <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance Gradient Boosted Tree" width="90" x="916" y="799">
         <parameter key="manually_set_positive_class" value="false"/>
         <parameter key="main_criterion" value="first"/>
         <parameter key="accuracy" value="true"/>
@@ -473,10 +473,10 @@
         <parameter key="skip_undefined_labels" value="true"/>
         <parameter key="use_example_weights" value="true"/>
       </operator>
-      <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Cleanset (4)" width="90" x="112" y="1105">
+      <operator activated="false" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Cleanset (4)" width="90" x="112" y="1105">
         <parameter key="repository_entry" value="//GitRepoGrp2/Data/Datasets Rapidminer/Cleanset"/>
       </operator>
-      <operator activated="true" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data (4)" width="90" x="246" y="1105">
+      <operator activated="false" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data (4)" width="90" x="246" y="1105">
         <enumeration key="partitions">
           <parameter key="ratio" value="0.8"/>
           <parameter key="ratio" value="0.2"/>
@@ -485,7 +485,7 @@
         <parameter key="use_local_random_seed" value="false"/>
         <parameter key="local_random_seed" value="1992"/>
       </operator>
-      <operator activated="true" class="concurrency:optimize_parameters_grid" compatibility="10.1.001" expanded="true" height="187" name="Optimize Parameters (Grid) (4)" width="90" x="447" y="952">
+      <operator activated="false" class="concurrency:optimize_parameters_grid" compatibility="10.1.001" expanded="true" height="187" name="Optimize Parameters (Grid) (4)" width="90" x="447" y="952">
         <list key="parameters">
           <parameter key="Logistic Regression.lambda" value="[0.0;100.0;10;linear]"/>
           <parameter key="Logistic Regression.number_of_lambdas" value="[0.0;100.0;10;linear]"/>
@@ -598,10 +598,10 @@
           <portSpacing port="sink_output 4" spacing="0"/>
         </process>
       </operator>
-      <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (8)" width="90" x="715" y="1105">
+      <operator activated="false" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (8)" width="90" x="715" y="1105">
         <list key="application_parameters"/>
       </operator>
-      <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Logistic Regression (2)" width="90" x="916" y="1054">
+      <operator activated="false" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Logistic Regression (2)" width="90" x="916" y="1105">
         <parameter key="manually_set_positive_class" value="false"/>
         <parameter key="main_criterion" value="first"/>
         <parameter key="accuracy" value="true"/>
@@ -633,30 +633,37 @@
       <connect from_op="Split Data" from_port="partition 2" to_op="Apply Model (2)" to_port="unlabelled data"/>
       <connect from_op="Optimize Parameters (Grid)" from_port="performance" to_port="result 1"/>
       <connect from_op="Optimize Parameters (Grid)" from_port="model" to_op="Apply Model (2)" to_port="model"/>
+      <connect from_op="Optimize Parameters (Grid)" from_port="parameter set" to_port="result 8"/>
+      <connect from_op="Optimize Parameters (Grid)" from_port="output 1" to_port="result 9"/>
+      <connect from_op="Optimize Parameters (Grid)" from_port="output 2" to_port="result 10"/>
       <connect from_op="Optimize Parameters (Grid)" from_port="output 3" to_port="result 3"/>
       <connect from_op="Apply Model (2)" from_port="labelled data" to_op="Performance XGBOOST" to_port="labelled data"/>
       <connect from_op="Performance XGBOOST" from_port="performance" to_port="result 2"/>
       <connect from_op="Retrieve Cleanset (2)" from_port="output" to_op="Split Data (2)" to_port="example set"/>
       <connect from_op="Split Data (2)" from_port="partition 1" to_op="Optimize Parameters (Grid) (2)" to_port="input 1"/>
       <connect from_op="Split Data (2)" from_port="partition 2" to_op="Apply Model (4)" to_port="unlabelled data"/>
-      <connect from_op="Optimize Parameters (Grid) (2)" from_port="performance" to_port="result 6"/>
+      <connect from_op="Optimize Parameters (Grid) (2)" from_port="performance" to_port="result 5"/>
       <connect from_op="Optimize Parameters (Grid) (2)" from_port="model" to_op="Apply Model (4)" to_port="model"/>
+      <connect from_op="Optimize Parameters (Grid) (2)" from_port="parameter set" to_port="result 11"/>
+      <connect from_op="Optimize Parameters (Grid) (2)" from_port="output 1" to_port="result 12"/>
+      <connect from_op="Optimize Parameters (Grid) (2)" from_port="output 2" to_port="result 13"/>
       <connect from_op="Apply Model (4)" from_port="labelled data" to_op="Performance Random Forest" to_port="labelled data"/>
-      <connect from_op="Performance Random Forest" from_port="performance" to_port="result 9"/>
+      <connect from_op="Performance Random Forest" from_port="performance" to_port="result 7"/>
       <connect from_op="Retrieve Cleanset (3)" from_port="output" to_op="Split Data (3)" to_port="example set"/>
       <connect from_op="Split Data (3)" from_port="partition 1" to_op="Optimize Parameters (Grid) (3)" to_port="input 1"/>
       <connect from_op="Split Data (3)" from_port="partition 2" to_op="Apply Model (6)" to_port="unlabelled data"/>
-      <connect from_op="Optimize Parameters (Grid) (3)" from_port="performance" to_port="result 7"/>
+      <connect from_op="Optimize Parameters (Grid) (3)" from_port="performance" to_port="result 6"/>
       <connect from_op="Optimize Parameters (Grid) (3)" from_port="model" to_op="Apply Model (6)" to_port="model"/>
+      <connect from_op="Optimize Parameters (Grid) (3)" from_port="parameter set" to_port="result 14"/>
+      <connect from_op="Optimize Parameters (Grid) (3)" from_port="output 1" to_port="result 15"/>
+      <connect from_op="Optimize Parameters (Grid) (3)" from_port="output 2" to_port="result 16"/>
       <connect from_op="Apply Model (6)" from_port="labelled data" to_op="Performance Gradient Boosted Tree" to_port="labelled data"/>
       <connect from_op="Performance Gradient Boosted Tree" from_port="performance" to_port="result 4"/>
       <connect from_op="Retrieve Cleanset (4)" from_port="output" to_op="Split Data (4)" to_port="example set"/>
       <connect from_op="Split Data (4)" from_port="partition 1" to_op="Optimize Parameters (Grid) (4)" to_port="input 1"/>
       <connect from_op="Split Data (4)" from_port="partition 2" to_op="Apply Model (8)" to_port="unlabelled data"/>
-      <connect from_op="Optimize Parameters (Grid) (4)" from_port="performance" to_port="result 8"/>
       <connect from_op="Optimize Parameters (Grid) (4)" from_port="model" to_op="Apply Model (8)" to_port="model"/>
       <connect from_op="Apply Model (8)" from_port="labelled data" to_op="Logistic Regression (2)" to_port="labelled data"/>
-      <connect from_op="Logistic Regression (2)" from_port="performance" to_port="result 5"/>
       <portSpacing port="source_input 1" spacing="0"/>
       <portSpacing port="sink_result 1" spacing="0"/>
       <portSpacing port="sink_result 2" spacing="0"/>
@@ -668,6 +675,13 @@
       <portSpacing port="sink_result 8" spacing="0"/>
       <portSpacing port="sink_result 9" spacing="0"/>
       <portSpacing port="sink_result 10" spacing="0"/>
+      <portSpacing port="sink_result 11" spacing="0"/>
+      <portSpacing port="sink_result 12" spacing="0"/>
+      <portSpacing port="sink_result 13" spacing="0"/>
+      <portSpacing port="sink_result 14" spacing="0"/>
+      <portSpacing port="sink_result 15" spacing="0"/>
+      <portSpacing port="sink_result 16" spacing="0"/>
+      <portSpacing port="sink_result 17" spacing="0"/>
     </process>
   </operator>
 </process>

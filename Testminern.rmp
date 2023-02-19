@@ -67,10 +67,10 @@
         <parameter key="type" value="exclude attributes"/>
         <parameter key="attribute_filter_type" value="a subset"/>
         <parameter key="select_attribute" value=""/>
-        <parameter key="select_subset" value="artists␞average(ChartsMinPos)␞ChartsArtists␞ChartsArtistsGenres␞ChartsMinPos␞id␞id_artists␞name␞popularity␞release_date␞Top_Song␞Top_Song2"/>
+        <parameter key="select_subset" value="artists␞average(ChartsMinPos)␞ChartsArtists␞ChartsArtistsGenres␞ChartsMinPos␞id␞id_artists␞name␞popularity␞release_date␞Top_Song␞Top_Song2␞Artist_Popularity"/>
         <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
       </operator>
-      <operator activated="true" class="maratool:Sample (Balance)" compatibility="1.4.001" expanded="true" height="82" name="Sample (Balance)" width="90" x="849" y="136">
+      <operator activated="true" breakpoints="after" class="maratool:Sample (Balance)" compatibility="1.4.001" expanded="true" height="82" name="Sample (Balance)" width="90" x="849" y="136">
         <parameter key="number_of_examples_per_class" value="6000"/>
         <parameter key="allow_downsampling" value="true"/>
       </operator>
