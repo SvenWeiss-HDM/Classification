@@ -13,10 +13,10 @@
     <parameter key="encoding" value="SYSTEM"/>
     <process expanded="true">
       <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve loadreccomend with followers" width="90" x="179" y="136">
-        <parameter key="repository_entry" value="Data/Datasets Rapidminer/loadreccomend with followers"/>
+        <parameter key="repository_entry" value="Data/Datasets Rapidminer/Python/loadreccomend with followers"/>
       </operator>
       <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve artists" width="90" x="179" y="289">
-        <parameter key="repository_entry" value="Data/Datasets Rapidminer/artists"/>
+        <parameter key="repository_entry" value="Data/Datasets Rapidminer/SQL/artists"/>
       </operator>
       <operator activated="true" class="concurrency:join" compatibility="10.1.001" expanded="true" height="82" name="Join" width="90" x="380" y="136">
         <parameter key="remove_double_attributes" value="false"/>
