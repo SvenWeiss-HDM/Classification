@@ -15,7 +15,7 @@
       <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Fin Table" width="90" x="45" y="34">
         <parameter key="repository_entry" value="Data/Datasets Rapidminer/Cleanset"/>
       </operator>
-      <operator activated="true" class="filter_examples" compatibility="10.1.001" expanded="true" height="103" name="Filter Examples" width="90" x="179" y="34">
+      <operator activated="true" breakpoints="after" class="filter_examples" compatibility="10.1.001" expanded="true" height="103" name="Filter Examples" width="90" x="179" y="34">
         <parameter key="parameter_expression" value=""/>
         <parameter key="condition_class" value="custom_filters"/>
         <parameter key="invert_filter" value="false"/>

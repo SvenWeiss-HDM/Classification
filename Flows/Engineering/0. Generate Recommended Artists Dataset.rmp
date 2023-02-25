@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><process version="10.1.001">
+  <context>
+    <input/>
+    <output/>
+    <macros/>
+  </context>
+  <operator activated="true" class="process" compatibility="10.1.001" expanded="true" name="Process">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="2001"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notification_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <process expanded="true">
+      <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve loadreccomend with followers" width="90" x="179" y="136">
+        <parameter key="repository_entry" value="../../Data/Python/loadreccomend with followers.csv"/>
+      </operator>
+      <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve artists" width="90" x="179" y="289">
+        <parameter key="repository_entry" value="../../Data/Datasets Rapidminer/SQL/artists"/>
+      </operator>
+      <operator activated="true" class="concurrency:join" compatibility="10.1.001" expanded="true" height="82" name="Join" width="90" x="380" y="136">
+        <parameter key="remove_double_attributes" value="false"/>
+        <parameter key="join_type" value="left"/>
+        <parameter key="use_id_attribute_as_key" value="false"/>
+        <list key="key_attributes">
+          <parameter key="artistid" value="id"/>
+        </list>
+        <parameter key="keep_both_join_attributes" value="true"/>
+      </operator>
+      <operator activated="true" class="blending:rename" compatibility="10.1.001" expanded="true" height="82" name="Rename" width="90" x="581" y="136">
+        <list key="rename attributes">
+          <parameter key="followers_from_ES2" value="Follower_main_artist"/>
+          <parameter key="id_from_ES2" value="ID Main Artist"/>
+          <parameter key="name_from_ES2" value="Name Main Artist"/>
+          <parameter key="popularity_from_ES2" value="Popularity Main Artist"/>
+        </list>
+        <parameter key="from_attribute" value=""/>
+        <parameter key="to_attribute" value=""/>
+      </operator>
+      <operator activated="true" class="aggregate" compatibility="10.1.001" expanded="true" height="82" name="Aggregate" width="90" x="782" y="136">
+        <parameter key="use_default_aggregation" value="false"/>
+        <parameter key="attribute_filter_type" value="all"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value=""/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="attribute_value"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="time"/>
+        <parameter key="block_type" value="attribute_block"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_matrix_row_start"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+        <parameter key="default_aggregation_function" value="average"/>
+        <list key="aggregation_attributes">
+          <parameter key="ID Main Artist" value="count"/>
+          <parameter key="Popularity Main Artist" value="average"/>
+          <parameter key="Follower_main_artist" value="average"/>
+          <parameter key="Follower_main_artist" value="minimum"/>
+          <parameter key="Follower_main_artist" value="maximum"/>
+          <parameter key="Popularity Main Artist" value="minimum"/>
+          <parameter key="Popularity Main Artist" value="maximum"/>
+          <parameter key="Popularity Main Artist" value="median"/>
+          <parameter key="Follower_main_artist" value="median"/>
+          <parameter key="Follower_main_artist" value="variance"/>
+          <parameter key="Popularity Main Artist" value="variance"/>
+        </list>
+        <parameter key="group_by_attributes" value="RecommendedArtists"/>
+        <parameter key="count_all_combinations" value="false"/>
+        <parameter key="only_distinct" value="true"/>
+        <parameter key="ignore_missings" value="true"/>
+      </operator>
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store" width="90" x="983" y="136">
+        <parameter key="repository_entry" value="Data/Datasets Rapidminer/Artist Recommended By"/>
+      </operator>
+      <connect from_op="Retrieve loadreccomend with followers" from_port="output" to_op="Join" to_port="left"/>
+      <connect from_op="Retrieve artists" from_port="output" to_op="Join" to_port="right"/>
+      <connect from_op="Join" from_port="join" to_op="Rename" to_port="example set input"/>
+      <connect from_op="Rename" from_port="example set output" to_op="Aggregate" to_port="example set input"/>
+      <connect from_op="Aggregate" from_port="example set output" to_op="Store" to_port="input"/>
+      <portSpacing port="source_input 1" spacing="0"/>
+      <portSpacing port="sink_result 1" spacing="0"/>
+      <description align="center" color="yellow" colored="false" height="105" resized="false" width="180" x="287" y="473">Get Artists From SQL Set</description>
+      <description align="center" color="yellow" colored="false" height="105" resized="false" width="180" x="204" y="29">Get Recommended By From Python Script</description>
+    </process>
+  </operator>
+</process>
