@@ -13,7 +13,7 @@
     <parameter key="encoding" value="SYSTEM"/>
     <process expanded="true">
       <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Withartistpop" width="90" x="45" y="136">
-        <parameter key="repository_entry" value="Data/Datasets Rapidminer/Withartistpop"/>
+        <parameter key="repository_entry" value="Data/Datasets Rapidminer/Withartistpopandgenre"/>
       </operator>
       <operator activated="true" class="aggregate" compatibility="10.1.001" expanded="true" height="82" name="Aggregate" width="90" x="179" y="136">
         <parameter key="use_default_aggregation" value="true"/>
@@ -31,7 +31,7 @@
         <parameter key="include_special_attributes" value="false"/>
         <parameter key="default_aggregation_function" value="average"/>
         <list key="aggregation_attributes"/>
-        <parameter key="group_by_attributes" value="acousticness|Artist_Popularity|danceability|duration_ms|energy|explicit|id|instrumentalness|key|liveness|loudness|mode|name|popularity|release_date|speechiness|tempo|time_signature|valence|average(Follower_main_artist)|average(Popularity Main Artist)|Chartsduration|maximum(Popularity Main Artist)|maximum(Follower_main_artist)|median(Follower_main_artist)|median(Popularity Main Artist)|minimum(Popularity Main Artist)|minimum(Follower_main_artist)|variance(Follower_main_artist)|variance(Popularity Main Artist)"/>
+        <parameter key="group_by_attributes" value="acousticness|Artist_Popularity|average(Follower_main_artist)|average(Popularity Main Artist)|Chartsduration|danceability|duration_ms|energy|explicit|id|instrumentalness|key|liveness|loudness|maximum(Follower_main_artist)|maximum(Popularity Main Artist)|median(Follower_main_artist)|median(Popularity Main Artist)|minimum(Follower_main_artist)|minimum(Popularity Main Artist)|mode|name|popularity|speechiness|tempo|time_signature|valence|variance(Follower_main_artist)|variance(Popularity Main Artist)"/>
         <parameter key="count_all_combinations" value="false"/>
         <parameter key="only_distinct" value="false"/>
         <parameter key="ignore_missings" value="true"/>

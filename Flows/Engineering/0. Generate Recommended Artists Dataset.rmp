@@ -13,10 +13,10 @@
     <parameter key="encoding" value="SYSTEM"/>
     <process expanded="true">
       <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve loadreccomend with followers" width="90" x="179" y="136">
-        <parameter key="repository_entry" value="../../Data/Python/loadreccomend with followers.csv"/>
+        <parameter key="repository_entry" value="../../Data/Other/loadreccomend with followers"/>
       </operator>
       <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve artists" width="90" x="179" y="289">
-        <parameter key="repository_entry" value="../../Data/Datasets Rapidminer/SQL/artists"/>
+        <parameter key="repository_entry" value="../../Data/Other/artists"/>
       </operator>
       <operator activated="true" class="concurrency:join" compatibility="10.1.001" expanded="true" height="82" name="Join" width="90" x="380" y="136">
         <parameter key="remove_double_attributes" value="false"/>
@@ -71,7 +71,7 @@
         <parameter key="ignore_missings" value="true"/>
       </operator>
       <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store" width="90" x="983" y="136">
-        <parameter key="repository_entry" value="Data/Datasets Rapidminer/Artist Recommended By"/>
+        <parameter key="repository_entry" value="../../Data/Datasets Rapidminer/Artist Recommended By"/>
       </operator>
       <connect from_op="Retrieve loadreccomend with followers" from_port="output" to_op="Join" to_port="left"/>
       <connect from_op="Retrieve artists" from_port="output" to_op="Join" to_port="right"/>

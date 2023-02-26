@@ -12,163 +12,6 @@
     <parameter key="process_duration_for_mail" value="30"/>
     <parameter key="encoding" value="SYSTEM"/>
     <process expanded="true">
-      <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Fin Table" width="90" x="45" y="34">
-        <parameter key="repository_entry" value="Data/Datasets Rapidminer/Cleanset"/>
-      </operator>
-      <operator activated="true" breakpoints="after" class="filter_examples" compatibility="10.1.001" expanded="true" height="103" name="Filter Examples" width="90" x="179" y="34">
-        <parameter key="parameter_expression" value=""/>
-        <parameter key="condition_class" value="custom_filters"/>
-        <parameter key="invert_filter" value="false"/>
-        <list key="filters_list">
-          <parameter key="filters_entry_key" value="Top_Song2.equals.true"/>
-        </list>
-        <parameter key="filters_logic_and" value="true"/>
-        <parameter key="filters_check_metadata" value="true"/>
-      </operator>
-      <operator activated="true" class="blending:set_role" compatibility="10.1.001" expanded="true" height="82" name="Set Role" width="90" x="313" y="34">
-        <list key="set_roles">
-          <parameter key="Top_Song2" value="regular"/>
-        </list>
-      </operator>
-      <operator activated="true" class="blending:select_attributes" compatibility="10.1.001" expanded="true" height="82" name="Without TopSong" width="90" x="447" y="34">
-        <parameter key="type" value="exclude attributes"/>
-        <parameter key="attribute_filter_type" value="one attribute"/>
-        <parameter key="select_attribute" value="Top_Song2"/>
-        <parameter key="select_subset" value=""/>
-        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
-      </operator>
-      <operator activated="true" class="blending:select_attributes" compatibility="10.1.001" expanded="true" height="82" name="Select Attributes (Only Spotify API Data Left)" width="90" x="581" y="34">
-        <parameter key="type" value="exclude attributes"/>
-        <parameter key="attribute_filter_type" value="a subset"/>
-        <parameter key="select_attribute" value=""/>
-        <parameter key="select_subset" value="average(Follower_main_artist)␞average(Popularity Main Artist)␞Chartsduration␞maximum(Follower_main_artist)␞maximum(Popularity Main Artist)␞median(Follower_main_artist)␞median(Popularity Main Artist)␞minimum(Follower_main_artist)␞minimum(Popularity Main Artist)␞variance(Follower_main_artist)␞variance(Popularity Main Artist)␞time_signature"/>
-        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
-      </operator>
-      <operator activated="true" class="blending:select_attributes" compatibility="10.1.001" expanded="true" height="82" name="Select Attributes (Throw Out Irrelevant Attributes)" width="90" x="715" y="34">
-        <parameter key="type" value="exclude attributes"/>
-        <parameter key="attribute_filter_type" value="a subset"/>
-        <parameter key="select_attribute" value=""/>
-        <parameter key="select_subset" value="␞acousticness␞danceability␞energy␞instrumentalness␞liveness␞speechiness␞valence"/>
-        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
-      </operator>
-      <operator activated="true" class="discretize_by_user_specification" compatibility="10.1.001" expanded="true" height="103" name="Custom Bin DUR" width="90" x="45" y="187">
-        <parameter key="return_preprocessing_model" value="false"/>
-        <parameter key="attribute_filter_type" value="single"/>
-        <parameter key="attribute" value="duration_ms"/>
-        <parameter key="attributes" value=""/>
-        <parameter key="use_except_expression" value="false"/>
-        <parameter key="value_type" value="numeric"/>
-        <parameter key="use_value_type_exception" value="false"/>
-        <parameter key="except_value_type" value="real"/>
-        <parameter key="block_type" value="value_series"/>
-        <parameter key="use_block_type_exception" value="false"/>
-        <parameter key="except_block_type" value="value_series_end"/>
-        <parameter key="invert_selection" value="false"/>
-        <parameter key="include_special_attributes" value="false"/>
-        <list key="classes">
-          <parameter key="Low Duration" value="-43.0"/>
-          <parameter key="Mid Duration" value="42.0"/>
-          <parameter key="High Duration" value="Infinity"/>
-        </list>
-      </operator>
-      <operator activated="true" class="discretize_by_user_specification" compatibility="10.1.001" expanded="true" height="103" name="Custom Bin EXPL" width="90" x="179" y="187">
-        <parameter key="return_preprocessing_model" value="false"/>
-        <parameter key="attribute_filter_type" value="single"/>
-        <parameter key="attribute" value="explicit"/>
-        <parameter key="attributes" value=""/>
-        <parameter key="use_except_expression" value="false"/>
-        <parameter key="value_type" value="numeric"/>
-        <parameter key="use_value_type_exception" value="false"/>
-        <parameter key="except_value_type" value="real"/>
-        <parameter key="block_type" value="value_series"/>
-        <parameter key="use_block_type_exception" value="false"/>
-        <parameter key="except_block_type" value="value_series_end"/>
-        <parameter key="invert_selection" value="false"/>
-        <parameter key="include_special_attributes" value="false"/>
-        <list key="classes">
-          <parameter key="Low Eplicity" value="0.0"/>
-          <parameter key="High Eplicity" value="1.0"/>
-        </list>
-      </operator>
-      <operator activated="true" class="discretize_by_user_specification" compatibility="10.1.001" expanded="true" height="103" name="Custom Bin KEY" width="90" x="313" y="187">
-        <parameter key="return_preprocessing_model" value="false"/>
-        <parameter key="attribute_filter_type" value="single"/>
-        <parameter key="attribute" value="key"/>
-        <parameter key="attributes" value=""/>
-        <parameter key="use_except_expression" value="false"/>
-        <parameter key="value_type" value="numeric"/>
-        <parameter key="use_value_type_exception" value="false"/>
-        <parameter key="except_value_type" value="real"/>
-        <parameter key="block_type" value="value_series"/>
-        <parameter key="use_block_type_exception" value="false"/>
-        <parameter key="except_block_type" value="value_series_end"/>
-        <parameter key="invert_selection" value="false"/>
-        <parameter key="include_special_attributes" value="false"/>
-        <list key="classes">
-          <parameter key="Low Key" value="4.0"/>
-          <parameter key="Mid Key" value="8.0"/>
-          <parameter key="High Key" value="Infinity"/>
-        </list>
-      </operator>
-      <operator activated="true" class="discretize_by_user_specification" compatibility="10.1.001" expanded="true" height="103" name="Custom Bin LOUD" width="90" x="447" y="187">
-        <parameter key="return_preprocessing_model" value="false"/>
-        <parameter key="attribute_filter_type" value="single"/>
-        <parameter key="attribute" value="loudness"/>
-        <parameter key="attributes" value=""/>
-        <parameter key="use_except_expression" value="false"/>
-        <parameter key="value_type" value="numeric"/>
-        <parameter key="use_value_type_exception" value="false"/>
-        <parameter key="except_value_type" value="real"/>
-        <parameter key="block_type" value="value_series"/>
-        <parameter key="use_block_type_exception" value="false"/>
-        <parameter key="except_block_type" value="value_series_end"/>
-        <parameter key="invert_selection" value="false"/>
-        <parameter key="include_special_attributes" value="false"/>
-        <list key="classes">
-          <parameter key="Low Loud" value="-43.0"/>
-          <parameter key="Mid Loud" value="42.0"/>
-          <parameter key="High Loud" value="Infinity"/>
-        </list>
-      </operator>
-      <operator activated="true" class="discretize_by_user_specification" compatibility="10.1.001" expanded="true" height="103" name="Custom Bin MODE" width="90" x="581" y="187">
-        <parameter key="return_preprocessing_model" value="false"/>
-        <parameter key="attribute_filter_type" value="single"/>
-        <parameter key="attribute" value="mode"/>
-        <parameter key="attributes" value=""/>
-        <parameter key="use_except_expression" value="false"/>
-        <parameter key="value_type" value="numeric"/>
-        <parameter key="use_value_type_exception" value="false"/>
-        <parameter key="except_value_type" value="real"/>
-        <parameter key="block_type" value="value_series"/>
-        <parameter key="use_block_type_exception" value="false"/>
-        <parameter key="except_block_type" value="value_series_end"/>
-        <parameter key="invert_selection" value="false"/>
-        <parameter key="include_special_attributes" value="false"/>
-        <list key="classes">
-          <parameter key="Low Mode" value="0.0"/>
-          <parameter key="High Mode" value="1.0"/>
-        </list>
-      </operator>
-      <operator activated="true" class="discretize_by_user_specification" compatibility="10.1.001" expanded="true" height="103" name="Custom Bin TEMP" width="90" x="715" y="187">
-        <parameter key="return_preprocessing_model" value="false"/>
-        <parameter key="attribute_filter_type" value="single"/>
-        <parameter key="attribute" value="tempo"/>
-        <parameter key="attributes" value=""/>
-        <parameter key="use_except_expression" value="false"/>
-        <parameter key="value_type" value="numeric"/>
-        <parameter key="use_value_type_exception" value="false"/>
-        <parameter key="except_value_type" value="real"/>
-        <parameter key="block_type" value="value_series"/>
-        <parameter key="use_block_type_exception" value="false"/>
-        <parameter key="except_block_type" value="value_series_end"/>
-        <parameter key="invert_selection" value="false"/>
-        <parameter key="include_special_attributes" value="false"/>
-        <list key="classes">
-          <parameter key="Low Tempo" value="-43.0"/>
-          <parameter key="Mid Tempo" value="42.0"/>
-          <parameter key="High Tempo" value="Infinity"/>
-        </list>
-      </operator>
       <operator activated="false" class="discretize_by_entropy" compatibility="10.1.001" expanded="true" height="103" name="Entropy Binning 2" width="90" x="179" y="850">
         <parameter key="return_preprocessing_model" value="false"/>
         <parameter key="attribute_filter_type" value="subset"/>
@@ -644,6 +487,163 @@
           <portSpacing port="sink_out 2" spacing="0"/>
         </process>
       </operator>
+      <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Cleanset" width="90" x="45" y="34">
+        <parameter key="repository_entry" value="Data/Datasets Rapidminer/Cleanset"/>
+      </operator>
+      <operator activated="true" class="filter_examples" compatibility="10.1.001" expanded="true" height="103" name="Filter Examples" width="90" x="179" y="34">
+        <parameter key="parameter_expression" value=""/>
+        <parameter key="condition_class" value="custom_filters"/>
+        <parameter key="invert_filter" value="false"/>
+        <list key="filters_list">
+          <parameter key="filters_entry_key" value="Top_Song2.equals.false"/>
+        </list>
+        <parameter key="filters_logic_and" value="true"/>
+        <parameter key="filters_check_metadata" value="true"/>
+      </operator>
+      <operator activated="true" class="blending:set_role" compatibility="10.1.001" expanded="true" height="82" name="Set Role" width="90" x="313" y="34">
+        <list key="set_roles">
+          <parameter key="Top_Song2" value="regular"/>
+        </list>
+      </operator>
+      <operator activated="true" class="blending:select_attributes" compatibility="10.1.001" expanded="true" height="82" name="Without TopSong" width="90" x="447" y="34">
+        <parameter key="type" value="exclude attributes"/>
+        <parameter key="attribute_filter_type" value="one attribute"/>
+        <parameter key="select_attribute" value="Top_Song2"/>
+        <parameter key="select_subset" value=""/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
+      </operator>
+      <operator activated="true" class="blending:select_attributes" compatibility="10.1.001" expanded="true" height="82" name="Select Attributes (Only Spotify API Data Left)" width="90" x="581" y="34">
+        <parameter key="type" value="exclude attributes"/>
+        <parameter key="attribute_filter_type" value="a subset"/>
+        <parameter key="select_attribute" value=""/>
+        <parameter key="select_subset" value="Artist_Popularity␞average(Follower_main_artist)␞average(Popularity Main Artist)␞Chartsduration␞median(Follower_main_artist)␞median(Popularity Main Artist)␞minimum(Follower_main_artist)␞minimum(Popularity Main Artist)␞popularity␞release_date␞time_signature␞variance(Follower_main_artist)␞variance(Popularity Main Artist)␞maximum(Follower_main_artist)"/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
+      </operator>
+      <operator activated="true" class="blending:select_attributes" compatibility="10.1.001" expanded="true" height="82" name="Select Attributes (Throw Out Irrelevant Attributes)" width="90" x="715" y="34">
+        <parameter key="type" value="exclude attributes"/>
+        <parameter key="attribute_filter_type" value="a subset"/>
+        <parameter key="select_attribute" value=""/>
+        <parameter key="select_subset" value="␞acousticness␞danceability␞energy␞instrumentalness␞liveness␞speechiness␞valence"/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
+      </operator>
+      <operator activated="true" class="discretize_by_user_specification" compatibility="10.1.001" expanded="true" height="103" name="Custom Bin EXPL" width="90" x="45" y="187">
+        <parameter key="return_preprocessing_model" value="false"/>
+        <parameter key="attribute_filter_type" value="single"/>
+        <parameter key="attribute" value="explicit"/>
+        <parameter key="attributes" value=""/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="numeric"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="real"/>
+        <parameter key="block_type" value="value_series"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_series_end"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+        <list key="classes">
+          <parameter key="Low Eplicity" value="0.0"/>
+          <parameter key="High Eplicity" value="1.0"/>
+        </list>
+      </operator>
+      <operator activated="true" class="discretize_by_user_specification" compatibility="10.1.001" expanded="true" height="103" name="Custom Bin KEY" width="90" x="179" y="187">
+        <parameter key="return_preprocessing_model" value="false"/>
+        <parameter key="attribute_filter_type" value="single"/>
+        <parameter key="attribute" value="key"/>
+        <parameter key="attributes" value=""/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="numeric"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="real"/>
+        <parameter key="block_type" value="value_series"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_series_end"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+        <list key="classes">
+          <parameter key="Low Key" value="4.0"/>
+          <parameter key="Mid Key" value="8.0"/>
+          <parameter key="High Key" value="Infinity"/>
+        </list>
+      </operator>
+      <operator activated="true" class="discretize_by_user_specification" compatibility="10.1.001" expanded="true" height="103" name="Custom Bin LOUD" width="90" x="313" y="187">
+        <parameter key="return_preprocessing_model" value="false"/>
+        <parameter key="attribute_filter_type" value="single"/>
+        <parameter key="attribute" value="loudness"/>
+        <parameter key="attributes" value=""/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="numeric"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="real"/>
+        <parameter key="block_type" value="value_series"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_series_end"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+        <list key="classes">
+          <parameter key="Low Loud" value="-43.0"/>
+          <parameter key="Mid Loud" value="42.0"/>
+          <parameter key="High Loud" value="Infinity"/>
+        </list>
+      </operator>
+      <operator activated="true" class="discretize_by_user_specification" compatibility="10.1.001" expanded="true" height="103" name="Custom Bin MODE" width="90" x="447" y="187">
+        <parameter key="return_preprocessing_model" value="false"/>
+        <parameter key="attribute_filter_type" value="single"/>
+        <parameter key="attribute" value="mode"/>
+        <parameter key="attributes" value=""/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="numeric"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="real"/>
+        <parameter key="block_type" value="value_series"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_series_end"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+        <list key="classes">
+          <parameter key="Low Mode" value="0.0"/>
+          <parameter key="High Mode" value="1.0"/>
+        </list>
+      </operator>
+      <operator activated="true" class="discretize_by_user_specification" compatibility="10.1.001" expanded="true" height="103" name="Custom Bin TEMP" width="90" x="581" y="187">
+        <parameter key="return_preprocessing_model" value="false"/>
+        <parameter key="attribute_filter_type" value="single"/>
+        <parameter key="attribute" value="tempo"/>
+        <parameter key="attributes" value=""/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="numeric"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="real"/>
+        <parameter key="block_type" value="value_series"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_series_end"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+        <list key="classes">
+          <parameter key="Low Tempo" value="-43.0"/>
+          <parameter key="Mid Tempo" value="42.0"/>
+          <parameter key="High Tempo" value="Infinity"/>
+        </list>
+      </operator>
+      <operator activated="true" class="discretize_by_user_specification" compatibility="10.1.001" expanded="true" height="103" name="Discretize (3)" width="90" x="715" y="187">
+        <parameter key="return_preprocessing_model" value="false"/>
+        <parameter key="attribute_filter_type" value="single"/>
+        <parameter key="attribute" value="maximum(Popularity Main Artist)"/>
+        <parameter key="attributes" value=""/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="numeric"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="real"/>
+        <parameter key="block_type" value="value_series"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_series_end"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+        <list key="classes">
+          <parameter key="lowpopularity" value="50.0"/>
+          <parameter key="midpop" value="80.0"/>
+          <parameter key="highpop" value="99999.0"/>
+        </list>
+      </operator>
       <operator activated="true" class="concurrency:fp_growth" compatibility="10.1.001" expanded="true" height="82" name="FP-Growth" width="90" x="983" y="187">
         <parameter key="input_format" value="items in separate columns"/>
         <parameter key="item_separators" value="|"/>
@@ -670,22 +670,22 @@
         <parameter key="gain_theta" value="2.0"/>
         <parameter key="laplace_k" value="1.0"/>
       </operator>
-      <connect from_op="Retrieve Fin Table" from_port="output" to_op="Filter Examples" to_port="example set input"/>
-      <connect from_op="Filter Examples" from_port="example set output" to_op="Set Role" to_port="example set input"/>
-      <connect from_op="Set Role" from_port="example set output" to_op="Without TopSong" to_port="example set input"/>
-      <connect from_op="Without TopSong" from_port="example set output" to_op="Select Attributes (Only Spotify API Data Left)" to_port="example set input"/>
-      <connect from_op="Select Attributes (Only Spotify API Data Left)" from_port="example set output" to_op="Select Attributes (Throw Out Irrelevant Attributes)" to_port="example set input"/>
-      <connect from_op="Select Attributes (Throw Out Irrelevant Attributes)" from_port="example set output" to_op="Custom Bin DUR" to_port="example set input"/>
-      <connect from_op="Custom Bin DUR" from_port="example set output" to_op="Custom Bin EXPL" to_port="example set input"/>
-      <connect from_op="Custom Bin EXPL" from_port="example set output" to_op="Custom Bin KEY" to_port="example set input"/>
-      <connect from_op="Custom Bin KEY" from_port="example set output" to_op="Custom Bin LOUD" to_port="example set input"/>
-      <connect from_op="Custom Bin LOUD" from_port="example set output" to_op="Custom Bin MODE" to_port="example set input"/>
-      <connect from_op="Custom Bin MODE" from_port="example set output" to_op="Custom Bin TEMP" to_port="example set input"/>
-      <connect from_op="Custom Bin TEMP" from_port="example set output" to_op="FP-Growth" to_port="example set"/>
       <connect from_op="Entropy Binning 2" from_port="example set output" to_op="Entropy Binning x" to_port="example set input"/>
       <connect from_op="Size Binning 2" from_port="example set output" to_op="Size Binning x" to_port="example set input"/>
       <connect from_op="Frequence Binning 2" from_port="example set output" to_op="Frequence Binning x" to_port="example set input"/>
       <connect from_op="Standard Binning 2" from_port="example set output" to_op="Standard Binning X" to_port="example set input"/>
+      <connect from_op="Retrieve Cleanset" from_port="output" to_op="Filter Examples" to_port="example set input"/>
+      <connect from_op="Filter Examples" from_port="example set output" to_op="Set Role" to_port="example set input"/>
+      <connect from_op="Set Role" from_port="example set output" to_op="Without TopSong" to_port="example set input"/>
+      <connect from_op="Without TopSong" from_port="example set output" to_op="Select Attributes (Only Spotify API Data Left)" to_port="example set input"/>
+      <connect from_op="Select Attributes (Only Spotify API Data Left)" from_port="example set output" to_op="Select Attributes (Throw Out Irrelevant Attributes)" to_port="example set input"/>
+      <connect from_op="Select Attributes (Throw Out Irrelevant Attributes)" from_port="example set output" to_op="Custom Bin EXPL" to_port="example set input"/>
+      <connect from_op="Custom Bin EXPL" from_port="example set output" to_op="Custom Bin KEY" to_port="example set input"/>
+      <connect from_op="Custom Bin KEY" from_port="example set output" to_op="Custom Bin LOUD" to_port="example set input"/>
+      <connect from_op="Custom Bin LOUD" from_port="example set output" to_op="Custom Bin MODE" to_port="example set input"/>
+      <connect from_op="Custom Bin MODE" from_port="example set output" to_op="Custom Bin TEMP" to_port="example set input"/>
+      <connect from_op="Custom Bin TEMP" from_port="example set output" to_op="Discretize (3)" to_port="example set input"/>
+      <connect from_op="Discretize (3)" from_port="example set output" to_op="FP-Growth" to_port="example set"/>
       <connect from_op="FP-Growth" from_port="frequent sets" to_op="Create Association Rules" to_port="item sets"/>
       <connect from_op="Create Association Rules" from_port="rules" to_port="result 1"/>
       <connect from_op="Create Association Rules" from_port="item sets" to_port="result 2"/>
