@@ -63,19 +63,19 @@
         <parameter key="classification_error" value="false"/>
         <parameter key="kappa" value="false"/>
         <parameter key="AUC (optimistic)" value="false"/>
-        <parameter key="AUC" value="false"/>
+        <parameter key="AUC" value="true"/>
         <parameter key="AUC (pessimistic)" value="false"/>
-        <parameter key="precision" value="false"/>
-        <parameter key="recall" value="false"/>
+        <parameter key="precision" value="true"/>
+        <parameter key="recall" value="true"/>
         <parameter key="lift" value="false"/>
         <parameter key="fallout" value="false"/>
-        <parameter key="f_measure" value="false"/>
+        <parameter key="f_measure" value="true"/>
         <parameter key="false_positive" value="false"/>
         <parameter key="false_negative" value="false"/>
         <parameter key="true_positive" value="false"/>
         <parameter key="true_negative" value="false"/>
-        <parameter key="sensitivity" value="false"/>
-        <parameter key="specificity" value="false"/>
+        <parameter key="sensitivity" value="true"/>
+        <parameter key="specificity" value="true"/>
         <parameter key="youden" value="false"/>
         <parameter key="positive_predictive_value" value="false"/>
         <parameter key="negative_predictive_value" value="false"/>
@@ -141,9 +141,13 @@
                 <parameter key="local_random_seed" value="1992"/>
                 <parameter key="enable_parallel_execution" value="true"/>
               </operator>
+              <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (7)" width="90" x="514" y="238">
+                <parameter key="repository_entry" value="../Results/Charts_Random_Forest_NoFollowers_weights"/>
+              </operator>
               <connect from_port="training set" to_op="Random Forest" to_port="training set"/>
               <connect from_op="Random Forest" from_port="model" to_port="model"/>
-              <connect from_op="Random Forest" from_port="weights" to_port="through 1"/>
+              <connect from_op="Random Forest" from_port="weights" to_op="Store (7)" to_port="input"/>
+              <connect from_op="Store (7)" from_port="through" to_port="through 1"/>
               <portSpacing port="source_training set" spacing="0"/>
               <portSpacing port="sink_model" spacing="0"/>
               <portSpacing port="sink_through 1" spacing="0"/>
@@ -222,19 +226,19 @@
         <parameter key="classification_error" value="false"/>
         <parameter key="kappa" value="false"/>
         <parameter key="AUC (optimistic)" value="false"/>
-        <parameter key="AUC" value="false"/>
+        <parameter key="AUC" value="true"/>
         <parameter key="AUC (pessimistic)" value="false"/>
-        <parameter key="precision" value="false"/>
-        <parameter key="recall" value="false"/>
+        <parameter key="precision" value="true"/>
+        <parameter key="recall" value="true"/>
         <parameter key="lift" value="false"/>
         <parameter key="fallout" value="false"/>
-        <parameter key="f_measure" value="false"/>
+        <parameter key="f_measure" value="true"/>
         <parameter key="false_positive" value="false"/>
         <parameter key="false_negative" value="false"/>
         <parameter key="true_positive" value="false"/>
         <parameter key="true_negative" value="false"/>
-        <parameter key="sensitivity" value="false"/>
-        <parameter key="specificity" value="false"/>
+        <parameter key="sensitivity" value="true"/>
+        <parameter key="specificity" value="true"/>
         <parameter key="youden" value="false"/>
         <parameter key="positive_predictive_value" value="false"/>
         <parameter key="negative_predictive_value" value="false"/>
@@ -242,8 +246,8 @@
         <parameter key="skip_undefined_labels" value="true"/>
         <parameter key="use_example_weights" value="true"/>
       </operator>
-      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (3)" width="90" x="1184" y="697">
-        <parameter key="repository_entry" value="Charts_Random_Forest_NoFollowers"/>
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (3)" width="90" x="1117" y="697">
+        <parameter key="repository_entry" value="../Results/Charts_Random_Forest_NoFollowers"/>
       </operator>
       <operator activated="true" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data (5)" width="90" x="581" y="391">
         <enumeration key="partitions">
@@ -254,7 +258,7 @@
         <parameter key="use_local_random_seed" value="false"/>
         <parameter key="local_random_seed" value="1992"/>
       </operator>
-      <operator activated="true" class="xgboost:xgboost" compatibility="0.1.003" expanded="true" height="103" name="XGBoost with followers" width="90" x="715" y="238">
+      <operator activated="true" class="xgboost:xgboost" compatibility="0.1.003" expanded="true" height="103" name="XGBoost with followers" width="90" x="715" y="340">
         <parameter key="booster" value="DART"/>
         <parameter key="rounds" value="2454"/>
         <parameter key="early_stopping" value="none"/>
@@ -276,29 +280,32 @@
         <parameter key="top_k" value="0"/>
         <enumeration key="expert_parameters"/>
       </operator>
-      <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (7)" width="90" x="849" y="238">
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (6)" width="90" x="1184" y="442">
+        <parameter key="repository_entry" value="../Results/Charts_XGBOOST_Followers_Weights"/>
+      </operator>
+      <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (7)" width="90" x="849" y="340">
         <list key="application_parameters"/>
       </operator>
-      <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance XGBOOST Charrs with followers" width="90" x="1050" y="238">
+      <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance XGBOOST Charrs with followers" width="90" x="1050" y="340">
         <parameter key="manually_set_positive_class" value="false"/>
         <parameter key="main_criterion" value="first"/>
         <parameter key="accuracy" value="true"/>
         <parameter key="classification_error" value="false"/>
         <parameter key="kappa" value="false"/>
         <parameter key="AUC (optimistic)" value="false"/>
-        <parameter key="AUC" value="false"/>
+        <parameter key="AUC" value="true"/>
         <parameter key="AUC (pessimistic)" value="false"/>
-        <parameter key="precision" value="false"/>
-        <parameter key="recall" value="false"/>
+        <parameter key="precision" value="true"/>
+        <parameter key="recall" value="true"/>
         <parameter key="lift" value="false"/>
         <parameter key="fallout" value="false"/>
-        <parameter key="f_measure" value="false"/>
+        <parameter key="f_measure" value="true"/>
         <parameter key="false_positive" value="false"/>
         <parameter key="false_negative" value="false"/>
         <parameter key="true_positive" value="false"/>
         <parameter key="true_negative" value="false"/>
-        <parameter key="sensitivity" value="false"/>
-        <parameter key="specificity" value="false"/>
+        <parameter key="sensitivity" value="true"/>
+        <parameter key="specificity" value="true"/>
         <parameter key="youden" value="false"/>
         <parameter key="positive_predictive_value" value="false"/>
         <parameter key="negative_predictive_value" value="false"/>
@@ -306,8 +313,8 @@
         <parameter key="skip_undefined_labels" value="true"/>
         <parameter key="use_example_weights" value="true"/>
       </operator>
-      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (2)" width="90" x="1251" y="238">
-        <parameter key="repository_entry" value="Charts_XGBOOST_Followers"/>
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (2)" width="90" x="1184" y="340">
+        <parameter key="repository_entry" value="../Results/Charts_XGBOOST_Followers"/>
       </operator>
       <operator activated="true" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data (6)" width="90" x="514" y="901">
         <enumeration key="partitions">
@@ -357,9 +364,13 @@
                 <parameter key="local_random_seed" value="1992"/>
                 <parameter key="enable_parallel_execution" value="true"/>
               </operator>
+              <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (8)" width="90" x="447" y="238">
+                <parameter key="repository_entry" value="../Results/Charts_Random_Forest_Followers_Weights"/>
+              </operator>
               <connect from_port="training set" to_op="Random Forest (3)" to_port="training set"/>
               <connect from_op="Random Forest (3)" from_port="model" to_port="model"/>
-              <connect from_op="Random Forest (3)" from_port="weights" to_port="through 1"/>
+              <connect from_op="Random Forest (3)" from_port="weights" to_op="Store (8)" to_port="input"/>
+              <connect from_op="Store (8)" from_port="through" to_port="through 1"/>
               <portSpacing port="source_training set" spacing="0"/>
               <portSpacing port="sink_model" spacing="0"/>
               <portSpacing port="sink_through 1" spacing="0"/>
@@ -438,19 +449,19 @@
         <parameter key="classification_error" value="false"/>
         <parameter key="kappa" value="false"/>
         <parameter key="AUC (optimistic)" value="false"/>
-        <parameter key="AUC" value="false"/>
+        <parameter key="AUC" value="true"/>
         <parameter key="AUC (pessimistic)" value="false"/>
-        <parameter key="precision" value="false"/>
-        <parameter key="recall" value="false"/>
+        <parameter key="precision" value="true"/>
+        <parameter key="recall" value="true"/>
         <parameter key="lift" value="false"/>
         <parameter key="fallout" value="false"/>
-        <parameter key="f_measure" value="false"/>
+        <parameter key="f_measure" value="true"/>
         <parameter key="false_positive" value="false"/>
         <parameter key="false_negative" value="false"/>
         <parameter key="true_positive" value="false"/>
         <parameter key="true_negative" value="false"/>
-        <parameter key="sensitivity" value="false"/>
-        <parameter key="specificity" value="false"/>
+        <parameter key="sensitivity" value="true"/>
+        <parameter key="specificity" value="true"/>
         <parameter key="youden" value="false"/>
         <parameter key="positive_predictive_value" value="false"/>
         <parameter key="negative_predictive_value" value="false"/>
@@ -458,11 +469,14 @@
         <parameter key="skip_undefined_labels" value="true"/>
         <parameter key="use_example_weights" value="true"/>
       </operator>
-      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (4)" width="90" x="1184" y="901">
-        <parameter key="repository_entry" value="Charts_Random_Forest_Followers"/>
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (4)" width="90" x="1117" y="901">
+        <parameter key="repository_entry" value="../Results/Charts_Random_Forest_Followers"/>
       </operator>
-      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store" width="90" x="1251" y="34">
-        <parameter key="repository_entry" value="Charts_XGBOOST_NoFollowers"/>
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store" width="90" x="1184" y="34">
+        <parameter key="repository_entry" value="../Results/Charts_XGBOOST_NoFollowers"/>
+      </operator>
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (5)" width="90" x="1184" y="136">
+        <parameter key="repository_entry" value="../Results/Charts_XGBOOST_NoFollowers_Weights"/>
       </operator>
       <connect from_op="Retrieve Cleanset_Charts" from_port="output" to_op="Select Attributes (2)" to_port="example set input"/>
       <connect from_op="Select Attributes (2)" from_port="example set output" to_op="Split Data" to_port="example set"/>
@@ -470,6 +484,7 @@
       <connect from_op="Split Data" from_port="partition 1" to_op="XGBoost w/o Followers" to_port="training set"/>
       <connect from_op="Split Data" from_port="partition 2" to_op="Apply Model (2)" to_port="unlabelled data"/>
       <connect from_op="XGBoost w/o Followers" from_port="model" to_op="Apply Model (2)" to_port="model"/>
+      <connect from_op="XGBoost w/o Followers" from_port="weights" to_op="Store (5)" to_port="input"/>
       <connect from_op="Apply Model (2)" from_port="labelled data" to_op="Performance XGBOOST Charts w/o Followers" to_port="labelled data"/>
       <connect from_op="Performance XGBOOST Charts w/o Followers" from_port="performance" to_op="Store" to_port="input"/>
       <connect from_op="Retrieve Cleanset_Charts (2)" from_port="output" to_op="Select Attributes" to_port="example set input"/>
@@ -484,6 +499,8 @@
       <connect from_op="Split Data (5)" from_port="partition 1" to_op="XGBoost with followers" to_port="training set"/>
       <connect from_op="Split Data (5)" from_port="partition 2" to_op="Apply Model (7)" to_port="unlabelled data"/>
       <connect from_op="XGBoost with followers" from_port="model" to_op="Apply Model (7)" to_port="model"/>
+      <connect from_op="XGBoost with followers" from_port="weights" to_op="Store (6)" to_port="input"/>
+      <connect from_op="Store (6)" from_port="through" to_port="result 6"/>
       <connect from_op="Apply Model (7)" from_port="labelled data" to_op="Performance XGBOOST Charrs with followers" to_port="labelled data"/>
       <connect from_op="Performance XGBOOST Charrs with followers" from_port="performance" to_op="Store (2)" to_port="input"/>
       <connect from_op="Store (2)" from_port="through" to_port="result 4"/>
@@ -494,12 +511,15 @@
       <connect from_op="Performance Random Forest with Followers" from_port="performance" to_op="Store (4)" to_port="input"/>
       <connect from_op="Store (4)" from_port="through" to_port="result 3"/>
       <connect from_op="Store" from_port="through" to_port="result 1"/>
+      <connect from_op="Store (5)" from_port="through" to_port="result 5"/>
       <portSpacing port="source_input 1" spacing="0"/>
       <portSpacing port="sink_result 1" spacing="0"/>
       <portSpacing port="sink_result 2" spacing="0"/>
       <portSpacing port="sink_result 3" spacing="0"/>
       <portSpacing port="sink_result 4" spacing="0"/>
       <portSpacing port="sink_result 5" spacing="0"/>
+      <portSpacing port="sink_result 6" spacing="0"/>
+      <portSpacing port="sink_result 7" spacing="0"/>
     </process>
   </operator>
 </process>
