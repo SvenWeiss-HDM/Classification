@@ -40,8 +40,9 @@
         <list key="parameters">
           <parameter key="Logistic Regression.solver" value="AUTO,IRLSM,L_BFGS,COORDINATE_DESCENT_NAIVE (experimental),COORDINATE_DESCENT (experimental)"/>
           <parameter key="Logistic Regression.use_regularization" value="true,false"/>
-          <parameter key="Logistic Regression.maximum_number_of_threads" value="[1.0;100.0;10;linear]"/>
-          <parameter key="Logistic Regression.reproducible" value="true,false"/>
+          <parameter key="Logistic Regression.maximum_number_of_threads" value="[0.0;100.0;10;linear]"/>
+          <parameter key="Logistic Regression.missing_values_handling" value="MeanImputation,Skip"/>
+          <parameter key="Logistic Regression.lambda" value="[0.0;1.7976931348623157E308;10;linear]"/>
         </list>
         <parameter key="error_handling" value="fail on error"/>
         <parameter key="log_performance" value="true"/>
