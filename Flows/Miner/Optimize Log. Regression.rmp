@@ -38,10 +38,10 @@
       </operator>
       <operator activated="true" class="concurrency:optimize_parameters_grid" compatibility="10.0.000" expanded="true" height="145" name="Optimize Parameters (Grid)" width="90" x="581" y="85">
         <list key="parameters">
-          <parameter key="Logistic Regression.max_iterations" value="[0.0;100.0;10;linear]"/>
-          <parameter key="Logistic Regression.maximum_number_of_threads" value="[1.0;100.0;10;linear]"/>
+          <parameter key="Logistic Regression.solver" value="AUTO,IRLSM,L_BFGS,COORDINATE_DESCENT_NAIVE (experimental),COORDINATE_DESCENT (experimental)"/>
           <parameter key="Logistic Regression.use_regularization" value="true,false"/>
-          <parameter key="Logistic Regression.reproducible" value="true,false"/>
+          <parameter key="Logistic Regression.maximum_number_of_threads" value="[1.0;100.0;10;linear]"/>
+          <parameter key="Logistic Regression.max_iterations" value="[0.0;100.0;10;linear]"/>
         </list>
         <parameter key="error_handling" value="fail on error"/>
         <parameter key="log_performance" value="true"/>
