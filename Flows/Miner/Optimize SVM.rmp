@@ -36,9 +36,22 @@
         <parameter key="use_local_random_seed" value="false"/>
         <parameter key="local_random_seed" value="1992"/>
       </operator>
-      <operator activated="true" class="concurrency:optimize_parameters_grid" compatibility="10.1.001" expanded="true" height="124" name="Optimize Parameters (Grid)" width="90" x="581" y="187">
+      <operator activated="true" class="filter_examples" compatibility="10.1.001" expanded="true" height="103" name="Filter Examples" width="90" x="648" y="187">
+        <parameter key="parameter_expression" value=""/>
+        <parameter key="condition_class" value="no_missing_attributes"/>
+        <parameter key="invert_filter" value="false"/>
+        <list key="filters_list"/>
+        <parameter key="filters_logic_and" value="true"/>
+        <parameter key="filters_check_metadata" value="true"/>
+      </operator>
+      <operator activated="true" class="concurrency:optimize_parameters_grid" compatibility="10.1.001" expanded="true" height="124" name="Optimize Parameters (Grid)" width="90" x="782" y="187">
         <list key="parameters">
           <parameter key="SVM.kernel_type" value="dot,radial,polynomial,neural,anova,epachnenikov,gaussian_combination,multiquadric"/>
+          <parameter key="SVM.quadratic_loss_pos" value="true,false"/>
+          <parameter key="SVM.quadratic_loss_neg" value="true,false"/>
+          <parameter key="SVM.balance_cost" value="true,false"/>
+          <parameter key="SVM.max_iterations" value="[100;10000;10;linear]"/>
+          <parameter key="SVM.C" value="[0;1000;10;linear]"/>
         </list>
         <parameter key="error_handling" value="fail on error"/>
         <parameter key="log_performance" value="true"/>
@@ -152,7 +165,7 @@
                 <parameter key="kernel_a" value="1.0"/>
                 <parameter key="kernel_b" value="0.0"/>
                 <parameter key="kernel_cache" value="200"/>
-                <parameter key="C" value="0.0"/>
+                <parameter key="C" value="1000.0"/>
                 <parameter key="convergence_epsilon" value="0.001"/>
                 <parameter key="max_iterations" value="100000"/>
                 <parameter key="scale" value="true"/>
@@ -228,7 +241,7 @@
           <portSpacing port="sink_output 1" spacing="0"/>
         </process>
       </operator>
-      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store" width="90" x="782" y="187">
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store" width="90" x="916" y="187">
         <parameter key="repository_entry" value="../Results/Parameters/Parameters SVM"/>
       </operator>
       <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (7)" width="90" x="715" y="442">
@@ -267,8 +280,9 @@
       <connect from_op="Retrieve Cleanset_Charts" from_port="output" to_op="Set Role" to_port="example set input"/>
       <connect from_op="Set Role" from_port="example set output" to_op="Select Attributes" to_port="example set input"/>
       <connect from_op="Select Attributes" from_port="example set output" to_op="Split Data (5)" to_port="example set"/>
-      <connect from_op="Split Data (5)" from_port="partition 1" to_op="Optimize Parameters (Grid)" to_port="input 1"/>
-      <connect from_op="Split Data (5)" from_port="partition 2" to_op="Apply Model (7)" to_port="unlabelled data"/>
+      <connect from_op="Split Data (5)" from_port="partition 1" to_op="Apply Model (7)" to_port="unlabelled data"/>
+      <connect from_op="Split Data (5)" from_port="partition 2" to_op="Filter Examples" to_port="example set input"/>
+      <connect from_op="Filter Examples" from_port="example set output" to_op="Optimize Parameters (Grid)" to_port="input 1"/>
       <connect from_op="Optimize Parameters (Grid)" from_port="model" to_op="Apply Model (7)" to_port="model"/>
       <connect from_op="Optimize Parameters (Grid)" from_port="parameter set" to_op="Store" to_port="input"/>
       <connect from_op="Store" from_port="through" to_port="result 1"/>
