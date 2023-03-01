@@ -22,7 +22,7 @@
         <parameter key="select_subset" value="average(Follower_main_artist)␞average(Popularity Main Artist)␞maximum(Follower_main_artist)␞maximum(Popularity Main Artist)␞median(Follower_main_artist)␞median(Popularity Main Artist)␞minimum(Follower_main_artist)␞minimum(Popularity Main Artist)␞variance(Follower_main_artist)␞variance(Popularity Main Artist)␞Artist_Popularity␞popularity"/>
         <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
       </operator>
-      <operator activated="true" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data" width="90" x="514" y="187">
+      <operator activated="true" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data" width="90" x="380" y="187">
         <enumeration key="partitions">
           <parameter key="ratio" value="0.8"/>
           <parameter key="ratio" value="0.2"/>
@@ -31,7 +31,7 @@
         <parameter key="use_local_random_seed" value="false"/>
         <parameter key="local_random_seed" value="1992"/>
       </operator>
-      <operator activated="true" class="xgboost:xgboost" compatibility="0.1.003" expanded="true" height="103" name="XGBoost w/o Followers" width="90" x="648" y="34">
+      <operator activated="true" class="xgboost:xgboost" compatibility="0.1.003" expanded="true" height="103" name="XGBoost w/o Followers" width="90" x="514" y="85">
         <parameter key="booster" value="DART"/>
         <parameter key="rounds" value="2454"/>
         <parameter key="early_stopping" value="none"/>
@@ -53,10 +53,10 @@
         <parameter key="top_k" value="0"/>
         <enumeration key="expert_parameters"/>
       </operator>
-      <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (2)" width="90" x="849" y="34">
+      <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (2)" width="90" x="715" y="85">
         <list key="application_parameters"/>
       </operator>
-      <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance XGBOOST Charts w/o Followers" width="90" x="1050" y="34">
+      <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance XGBOOST Charts w/o Followers" width="90" x="916" y="85">
         <parameter key="manually_set_positive_class" value="false"/>
         <parameter key="main_criterion" value="first"/>
         <parameter key="accuracy" value="true"/>
@@ -249,7 +249,7 @@
       <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (3)" width="90" x="1117" y="697">
         <parameter key="repository_entry" value="../Results/Charts_Random_Forest_NoFollowers"/>
       </operator>
-      <operator activated="true" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data (5)" width="90" x="581" y="391">
+      <operator activated="true" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data (5)" width="90" x="380" y="340">
         <enumeration key="partitions">
           <parameter key="ratio" value="0.8"/>
           <parameter key="ratio" value="0.2"/>
