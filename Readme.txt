@@ -12,11 +12,9 @@ charts.csv: This dataset is comprised of weekly Spotify track chart data from 20
 
 SQL: 
 rdb.hdm-server.eu
-passwort und anderes auf anfrage
+Passwort und Anderes auf Anfrage
 
-
-
-
-
+Tabellen:
+Fin_Table
 
 

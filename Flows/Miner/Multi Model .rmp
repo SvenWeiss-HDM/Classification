@@ -568,7 +568,7 @@
       <portSpacing port="sink_result 4" spacing="0"/>
       <portSpacing port="sink_result 5" spacing="0"/>
       <portSpacing port="sink_result 6" spacing="0"/>
-      <description align="center" color="yellow" colored="false" height="105" resized="false" width="180" x="113" y="113">Lambda from Flow&lt;br&gt;optimizeXGBoostParams</description>
+      <description align="center" color="yellow" colored="false" height="105" resized="false" width="180" x="95" y="90">Lambda from Flow&lt;br&gt;optimizeXGBoostParams</description>
     </process>
   </operator>
 </process>
