@@ -15,19 +15,19 @@
       <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Cleanset_Charts" width="90" x="45" y="85">
         <parameter key="repository_entry" value="../../Data/Datasets Rapidminer/Cleanset_Charts"/>
       </operator>
-      <operator activated="true" class="blending:set_role" compatibility="10.1.001" expanded="true" height="82" name="Set Role" width="90" x="179" y="85">
+      <operator activated="true" class="blending:set_role" compatibility="10.1.001" expanded="true" height="82" name="Set Role" width="90" x="179" y="289">
         <list key="set_roles">
           <parameter key="Top_Song2" value="label"/>
         </list>
       </operator>
-      <operator activated="true" class="blending:select_attributes" compatibility="10.1.001" expanded="true" height="82" name="Select Attributes" width="90" x="313" y="85">
+      <operator activated="true" class="blending:select_attributes" compatibility="10.1.001" expanded="true" height="82" name="Select Attributes" width="90" x="313" y="289">
         <parameter key="type" value="exclude attributes"/>
         <parameter key="attribute_filter_type" value="a subset"/>
         <parameter key="select_attribute" value=""/>
         <parameter key="select_subset" value="average(ChartsMinPos)␞id␞name␞Top_Song␞Top_Song2"/>
         <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
       </operator>
-      <operator activated="true" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data (5)" width="90" x="447" y="340">
+      <operator activated="true" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data (5)" width="90" x="447" y="289">
         <enumeration key="partitions">
           <parameter key="ratio" value="0.8"/>
           <parameter key="ratio" value="0.2"/>
@@ -36,9 +36,9 @@
         <parameter key="use_local_random_seed" value="false"/>
         <parameter key="local_random_seed" value="1992"/>
       </operator>
-      <operator activated="true" class="concurrency:optimize_parameters_grid" compatibility="10.1.001" expanded="true" height="145" name="Optimize Parameters (Grid)" width="90" x="581" y="85">
+      <operator activated="true" class="concurrency:optimize_parameters_grid" compatibility="10.1.001" expanded="true" height="145" name="Optimize Parameters (Grid)" width="90" x="581" y="136">
         <list key="parameters">
-          <parameter key="Random Forest.number_of_trees" value="[1.0;100.0;10;linear]"/>
+          <parameter key="Random Forest.number_of_trees" value="[1.0;200;10;linear]"/>
           <parameter key="Random Forest.maximal_depth" value="[1;100.0;10;linear]"/>
           <parameter key="Random Forest.apply_prepruning" value="true,false"/>
           <parameter key="Random Forest.apply_pruning" value="true,false"/>
@@ -50,7 +50,7 @@
         <parameter key="synchronize" value="false"/>
         <parameter key="enable_parallel_execution" value="true"/>
         <process expanded="true">
-          <operator activated="false" class="split_validation" compatibility="10.1.001" expanded="true" height="124" name="Validation (2)" width="90" x="447" y="34">
+          <operator activated="false" class="split_validation" compatibility="10.1.001" expanded="true" height="124" name="Validation (2)" width="90" x="447" y="136">
             <parameter key="create_complete_model" value="false"/>
             <parameter key="split" value="relative"/>
             <parameter key="split_ratio" value="0.7"/>
@@ -221,10 +221,10 @@
           <portSpacing port="sink_output 2" spacing="0"/>
         </process>
       </operator>
-      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store" width="90" x="849" y="187">
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store" width="90" x="983" y="85">
         <parameter key="repository_entry" value="../Results/Parameters/Parameters Random Forest"/>
       </operator>
-      <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (7)" width="90" x="715" y="340">
+      <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (7)" width="90" x="782" y="340">
         <list key="application_parameters"/>
       </operator>
       <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance XGBOOST Charrs with followers" width="90" x="916" y="340">
