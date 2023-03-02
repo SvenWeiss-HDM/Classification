@@ -31,7 +31,7 @@
         <parameter key="use_local_random_seed" value="false"/>
         <parameter key="local_random_seed" value="1992"/>
       </operator>
-      <operator activated="true" class="xgboost:xgboost" compatibility="0.1.003" expanded="true" height="103" name="XGBoost w/o Followers" width="90" x="514" y="85">
+      <operator activated="true" class="xgboost:xgboost" compatibility="0.1.003" expanded="true" height="103" name="XGBoost w/o Followers" width="90" x="648" y="85">
         <parameter key="booster" value="DART"/>
         <parameter key="rounds" value="2454"/>
         <parameter key="early_stopping" value="none"/>
@@ -53,10 +53,10 @@
         <parameter key="top_k" value="0"/>
         <enumeration key="expert_parameters"/>
       </operator>
-      <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (2)" width="90" x="715" y="85">
+      <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (2)" width="90" x="849" y="187">
         <list key="application_parameters"/>
       </operator>
-      <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance XGBOOST Charts w/o Followers" width="90" x="916" y="85">
+      <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance XGBOOST Charts w/o Followers" width="90" x="1050" y="187">
         <parameter key="manually_set_positive_class" value="false"/>
         <parameter key="main_criterion" value="first"/>
         <parameter key="accuracy" value="true"/>
@@ -258,7 +258,7 @@
         <parameter key="use_local_random_seed" value="false"/>
         <parameter key="local_random_seed" value="1992"/>
       </operator>
-      <operator activated="true" class="xgboost:xgboost" compatibility="0.1.003" expanded="true" height="103" name="XGBoost with followers" width="90" x="715" y="340">
+      <operator activated="true" class="xgboost:xgboost" compatibility="0.1.003" expanded="true" height="103" name="XGBoost with followers" width="90" x="581" y="340">
         <parameter key="booster" value="DART"/>
         <parameter key="rounds" value="2454"/>
         <parameter key="early_stopping" value="none"/>

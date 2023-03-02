@@ -12,7 +12,7 @@
     <parameter key="process_duration_for_mail" value="30"/>
     <parameter key="encoding" value="SYSTEM"/>
     <process expanded="true">
-      <operator activated="false" class="subprocess" compatibility="10.1.001" expanded="true" height="82" name="Rename" width="90" x="916" y="187">
+      <operator activated="false" class="subprocess" compatibility="10.1.001" expanded="true" height="82" name="Rename" width="90" x="916" y="136">
         <process expanded="true">
           <operator activated="true" class="replace" compatibility="10.1.001" expanded="true" height="82" name="Replace Range 1 DUR" width="90" x="447" y="34">
             <parameter key="attribute_filter_type" value="single"/>
@@ -767,7 +767,7 @@
       <portSpacing port="sink_result 1" spacing="0"/>
       <portSpacing port="sink_result 2" spacing="0"/>
       <portSpacing port="sink_result 3" spacing="0"/>
-      <description align="center" color="yellow" colored="false" height="105" resized="false" width="180" x="876" y="305">Not used with Custom TBins</description>
+      <description align="center" color="yellow" colored="false" height="105" resized="false" width="180" x="874" y="253">Not used with Custom TBins</description>
     </process>
   </operator>
 </process>

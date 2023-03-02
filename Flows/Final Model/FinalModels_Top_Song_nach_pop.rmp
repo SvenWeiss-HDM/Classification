@@ -31,7 +31,7 @@
         <parameter key="use_local_random_seed" value="false"/>
         <parameter key="local_random_seed" value="1992"/>
       </operator>
-      <operator activated="true" class="xgboost:xgboost" compatibility="0.1.003" expanded="true" height="103" name="XGBoost w/o Followers" width="90" x="648" y="34">
+      <operator activated="true" class="xgboost:xgboost" compatibility="0.1.003" expanded="true" height="103" name="XGBoost w/o Followers" width="90" x="715" y="34">
         <parameter key="booster" value="DART"/>
         <parameter key="rounds" value="2454"/>
         <parameter key="early_stopping" value="none"/>
@@ -53,10 +53,10 @@
         <parameter key="top_k" value="0"/>
         <enumeration key="expert_parameters"/>
       </operator>
-      <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (2)" width="90" x="983" y="34">
+      <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (2)" width="90" x="849" y="34">
         <list key="application_parameters"/>
       </operator>
-      <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance XGBOOST Charts w/o Followers" width="90" x="1184" y="34">
+      <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance XGBOOST Charts w/o Followers" width="90" x="1050" y="34">
         <parameter key="manually_set_positive_class" value="false"/>
         <parameter key="main_criterion" value="first"/>
         <parameter key="accuracy" value="true"/>
@@ -114,35 +114,8 @@
         <parameter key="top_k" value="0"/>
         <enumeration key="expert_parameters"/>
       </operator>
-      <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (7)" width="90" x="1050" y="238">
+      <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (7)" width="90" x="849" y="238">
         <list key="application_parameters"/>
-      </operator>
-      <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance XGBOOST Charrs with followers" width="90" x="1251" y="238">
-        <parameter key="manually_set_positive_class" value="false"/>
-        <parameter key="main_criterion" value="first"/>
-        <parameter key="accuracy" value="true"/>
-        <parameter key="classification_error" value="false"/>
-        <parameter key="kappa" value="false"/>
-        <parameter key="AUC (optimistic)" value="false"/>
-        <parameter key="AUC" value="false"/>
-        <parameter key="AUC (pessimistic)" value="false"/>
-        <parameter key="precision" value="false"/>
-        <parameter key="recall" value="false"/>
-        <parameter key="lift" value="false"/>
-        <parameter key="fallout" value="false"/>
-        <parameter key="f_measure" value="false"/>
-        <parameter key="false_positive" value="false"/>
-        <parameter key="false_negative" value="false"/>
-        <parameter key="true_positive" value="false"/>
-        <parameter key="true_negative" value="false"/>
-        <parameter key="sensitivity" value="false"/>
-        <parameter key="specificity" value="false"/>
-        <parameter key="youden" value="false"/>
-        <parameter key="positive_predictive_value" value="false"/>
-        <parameter key="negative_predictive_value" value="false"/>
-        <parameter key="psep" value="false"/>
-        <parameter key="skip_undefined_labels" value="true"/>
-        <parameter key="use_example_weights" value="true"/>
       </operator>
       <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Cleanset_Popularity (2)" width="90" x="45" y="697">
         <parameter key="repository_entry" value="../../Data/Datasets Rapidminer/Cleanset_Popularity"/>
@@ -273,10 +246,37 @@
           <portSpacing port="sink_output 4" spacing="0"/>
         </process>
       </operator>
-      <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (4)" width="90" x="782" y="697">
+      <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (4)" width="90" x="782" y="595">
         <list key="application_parameters"/>
       </operator>
-      <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance Random Forest w/o Followers" width="90" x="983" y="697">
+      <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance Random Forest w/o Followers" width="90" x="983" y="595">
+        <parameter key="manually_set_positive_class" value="false"/>
+        <parameter key="main_criterion" value="first"/>
+        <parameter key="accuracy" value="true"/>
+        <parameter key="classification_error" value="false"/>
+        <parameter key="kappa" value="false"/>
+        <parameter key="AUC (optimistic)" value="false"/>
+        <parameter key="AUC" value="false"/>
+        <parameter key="AUC (pessimistic)" value="false"/>
+        <parameter key="precision" value="false"/>
+        <parameter key="recall" value="false"/>
+        <parameter key="lift" value="false"/>
+        <parameter key="fallout" value="false"/>
+        <parameter key="f_measure" value="false"/>
+        <parameter key="false_positive" value="false"/>
+        <parameter key="false_negative" value="false"/>
+        <parameter key="true_positive" value="false"/>
+        <parameter key="true_negative" value="false"/>
+        <parameter key="sensitivity" value="false"/>
+        <parameter key="specificity" value="false"/>
+        <parameter key="youden" value="false"/>
+        <parameter key="positive_predictive_value" value="false"/>
+        <parameter key="negative_predictive_value" value="false"/>
+        <parameter key="psep" value="false"/>
+        <parameter key="skip_undefined_labels" value="true"/>
+        <parameter key="use_example_weights" value="true"/>
+      </operator>
+      <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance XGBOOST Charrs with followers" width="90" x="983" y="238">
         <parameter key="manually_set_positive_class" value="false"/>
         <parameter key="main_criterion" value="first"/>
         <parameter key="accuracy" value="true"/>
@@ -422,10 +422,10 @@
           <portSpacing port="sink_output 4" spacing="0"/>
         </process>
       </operator>
-      <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (9)" width="90" x="849" y="901">
+      <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (9)" width="90" x="849" y="850">
         <list key="application_parameters"/>
       </operator>
-      <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance Random Forest with Followers" width="90" x="983" y="901">
+      <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance Random Forest with Followers" width="90" x="983" y="850">
         <parameter key="manually_set_positive_class" value="false"/>
         <parameter key="main_criterion" value="first"/>
         <parameter key="accuracy" value="true"/>
@@ -458,15 +458,12 @@
       <connect from_op="Split Data" from_port="partition 1" to_op="XGBoost w/o Followers" to_port="training set"/>
       <connect from_op="Split Data" from_port="partition 2" to_op="Apply Model (2)" to_port="unlabelled data"/>
       <connect from_op="XGBoost w/o Followers" from_port="model" to_op="Apply Model (2)" to_port="model"/>
-      <connect from_op="XGBoost w/o Followers" from_port="weights" to_port="result 4"/>
       <connect from_op="Apply Model (2)" from_port="labelled data" to_op="Performance XGBOOST Charts w/o Followers" to_port="labelled data"/>
       <connect from_op="Performance XGBOOST Charts w/o Followers" from_port="performance" to_port="result 1"/>
       <connect from_op="Split Data (5)" from_port="partition 1" to_op="XGBoost with followers" to_port="training set"/>
       <connect from_op="Split Data (5)" from_port="partition 2" to_op="Apply Model (7)" to_port="unlabelled data"/>
       <connect from_op="XGBoost with followers" from_port="model" to_op="Apply Model (7)" to_port="model"/>
-      <connect from_op="XGBoost with followers" from_port="weights" to_port="result 6"/>
       <connect from_op="Apply Model (7)" from_port="labelled data" to_op="Performance XGBOOST Charrs with followers" to_port="labelled data"/>
-      <connect from_op="Performance XGBOOST Charrs with followers" from_port="performance" to_port="result 5"/>
       <connect from_op="Retrieve Cleanset_Popularity (2)" from_port="output" to_op="Select Attributes" to_port="example set input"/>
       <connect from_op="Select Attributes" from_port="example set output" to_op="Split Data (2)" to_port="example set"/>
       <connect from_op="Select Attributes" from_port="original" to_op="Split Data (6)" to_port="example set"/>
@@ -474,7 +471,9 @@
       <connect from_op="Split Data (2)" from_port="partition 2" to_op="Apply Model (4)" to_port="unlabelled data"/>
       <connect from_op="Optimize Parameters (Grid) (2)" from_port="model" to_op="Apply Model (4)" to_port="model"/>
       <connect from_op="Apply Model (4)" from_port="labelled data" to_op="Performance Random Forest w/o Followers" to_port="labelled data"/>
-      <connect from_op="Performance Random Forest w/o Followers" from_port="performance" to_port="result 2"/>
+      <connect from_op="Performance Random Forest w/o Followers" from_port="performance" to_op="Performance XGBOOST Charrs with followers" to_port="performance"/>
+      <connect from_op="Performance XGBOOST Charrs with followers" from_port="performance" to_port="result 4"/>
+      <connect from_op="Performance XGBOOST Charrs with followers" from_port="example set" to_port="result 2"/>
       <connect from_op="Split Data (6)" from_port="partition 1" to_op="Optimize Parameters (Grid) (3)" to_port="input 1"/>
       <connect from_op="Split Data (6)" from_port="partition 2" to_op="Apply Model (9)" to_port="unlabelled data"/>
       <connect from_op="Optimize Parameters (Grid) (3)" from_port="model" to_op="Apply Model (9)" to_port="model"/>
@@ -486,8 +485,6 @@
       <portSpacing port="sink_result 3" spacing="0"/>
       <portSpacing port="sink_result 4" spacing="0"/>
       <portSpacing port="sink_result 5" spacing="0"/>
-      <portSpacing port="sink_result 6" spacing="0"/>
-      <portSpacing port="sink_result 7" spacing="0"/>
     </process>
   </operator>
 </process>
