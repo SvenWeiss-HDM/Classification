@@ -46,8 +46,12 @@
       </operator>
       <operator activated="true" class="concurrency:optimize_parameters_grid" compatibility="10.1.001" expanded="true" height="124" name="Optimize Parameters (Grid)" width="90" x="715" y="187">
         <list key="parameters">
-          <parameter key="SVM.C" value="[0;1000;10;linear]"/>
+          <parameter key="SVM.C" value="[0;1000;5;linear]"/>
           <parameter key="SVM.kernel_type" value="dot,radial,polynomial,neural,anova"/>
+          <parameter key="SVM.max_iterations" value="[100;100000;10;linear]"/>
+          <parameter key="SVM.convergence_epsilon" value="[0.001;10;10;linear]"/>
+          <parameter key="SVM.estimate_performance" value="true,false"/>
+          <parameter key="SVM.return_optimization_performance" value="true,false"/>
         </list>
         <parameter key="error_handling" value="fail on error"/>
         <parameter key="log_performance" value="true"/>
