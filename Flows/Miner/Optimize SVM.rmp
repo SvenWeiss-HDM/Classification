@@ -36,7 +36,7 @@
         <parameter key="use_local_random_seed" value="false"/>
         <parameter key="local_random_seed" value="1992"/>
       </operator>
-      <operator activated="true" class="filter_examples" compatibility="10.1.001" expanded="true" height="103" name="Filter Examples" width="90" x="648" y="187">
+      <operator activated="true" class="filter_examples" compatibility="10.1.001" expanded="true" height="103" name="Filter Examples" width="90" x="581" y="187">
         <parameter key="parameter_expression" value=""/>
         <parameter key="condition_class" value="no_missing_attributes"/>
         <parameter key="invert_filter" value="false"/>
@@ -44,14 +44,10 @@
         <parameter key="filters_logic_and" value="true"/>
         <parameter key="filters_check_metadata" value="true"/>
       </operator>
-      <operator activated="true" class="concurrency:optimize_parameters_grid" compatibility="10.1.001" expanded="true" height="124" name="Optimize Parameters (Grid)" width="90" x="782" y="187">
+      <operator activated="true" class="concurrency:optimize_parameters_grid" compatibility="10.1.001" expanded="true" height="124" name="Optimize Parameters (Grid)" width="90" x="715" y="187">
         <list key="parameters">
-          <parameter key="SVM.kernel_type" value="dot,radial,polynomial,neural,anova,epachnenikov,gaussian_combination,multiquadric"/>
-          <parameter key="SVM.quadratic_loss_pos" value="true,false"/>
-          <parameter key="SVM.quadratic_loss_neg" value="true,false"/>
-          <parameter key="SVM.balance_cost" value="true,false"/>
-          <parameter key="SVM.max_iterations" value="[100;10000;10;linear]"/>
           <parameter key="SVM.C" value="[0;1000;10;linear]"/>
+          <parameter key="SVM.kernel_type" value="dot,radial,polynomial,neural,anova"/>
         </list>
         <parameter key="error_handling" value="fail on error"/>
         <parameter key="log_performance" value="true"/>
