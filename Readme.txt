@@ -6,9 +6,10 @@ artists.csv --> Artist Features like Popularity, Followers etc.
 dict_artists.json --> The artists recommended for fans of artists. Each recommendation is sorted in descending order (The first one is the most favorite one). The number of recommendations are limited to 20.
 tracks.csv --> The audio features of tracks.
 
-NOCH RELEVANT?
+
 https://www.kaggle.com/datasets/jfreyberg/spotify-chart-data
 charts.csv: This dataset is comprised of weekly Spotify track chart data from 2014 to 2022.
+Used to get the chart position of the song in various countries.
 
 SQL: 
 rdb.hdm-server.eu
