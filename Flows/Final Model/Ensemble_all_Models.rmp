@@ -15,7 +15,7 @@
       <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Cleanset_Charts" width="90" x="179" y="34">
         <parameter key="repository_entry" value="../../Data/Datasets Rapidminer/Cleanset_Charts"/>
       </operator>
-      <operator activated="true" class="split_data" compatibility="10.1.001" expanded="true" height="82" name="Split Data" width="90" x="447" y="34">
+      <operator activated="true" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data" width="90" x="447" y="34">
         <enumeration key="partitions">
           <parameter key="ratio" value="0.8"/>
           <parameter key="ratio" value="0.2"/>
@@ -244,6 +244,9 @@
       </operator>
       <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (2)" width="90" x="715" y="34">
         <list key="application_parameters"/>
+      </operator>
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (8)" width="90" x="983" y="85">
+        <parameter key="repository_entry" value="../Results/Model Stacking"/>
       </operator>
       <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance Stacking" width="90" x="849" y="34">
         <parameter key="manually_set_positive_class" value="false"/>
@@ -481,6 +484,9 @@
       <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (4)" width="90" x="715" y="187">
         <list key="application_parameters"/>
       </operator>
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (9)" width="90" x="983" y="238">
+        <parameter key="repository_entry" value="../Results/Model Voting"/>
+      </operator>
       <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance Voting" width="90" x="849" y="187">
         <parameter key="manually_set_positive_class" value="false"/>
         <parameter key="main_criterion" value="first"/>
@@ -620,6 +626,9 @@
       <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (6)" width="90" x="715" y="340">
         <list key="application_parameters"/>
       </operator>
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (10)" width="90" x="983" y="391">
+        <parameter key="repository_entry" value="../Results/Model Bagging XGBOOST"/>
+      </operator>
       <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance Bagging" width="90" x="849" y="340">
         <parameter key="manually_set_positive_class" value="false"/>
         <parameter key="main_criterion" value="first"/>
@@ -755,6 +764,9 @@
       </operator>
       <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (8)" width="90" x="715" y="493">
         <list key="application_parameters"/>
+      </operator>
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (11)" width="90" x="983" y="544">
+        <parameter key="repository_entry" value="../Results/Model Bagging Random Forest"/>
       </operator>
       <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance Bagging (2)" width="90" x="849" y="493">
         <parameter key="manually_set_positive_class" value="false"/>
@@ -903,6 +915,9 @@
       <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (10)" width="90" x="715" y="646">
         <list key="application_parameters"/>
       </operator>
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (12)" width="90" x="983" y="697">
+        <parameter key="repository_entry" value="../Results/Model Bagging SVM"/>
+      </operator>
       <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance Bagging (3)" width="90" x="849" y="646">
         <parameter key="manually_set_positive_class" value="false"/>
         <parameter key="main_criterion" value="first"/>
@@ -1040,6 +1055,9 @@
       <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (12)" width="90" x="715" y="799">
         <list key="application_parameters"/>
       </operator>
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (13)" width="90" x="983" y="850">
+        <parameter key="repository_entry" value="../Results/Model Bagging LOGREG"/>
+      </operator>
       <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance Bagging (4)" width="90" x="849" y="799">
         <parameter key="manually_set_positive_class" value="false"/>
         <parameter key="main_criterion" value="first"/>
@@ -1175,6 +1193,9 @@
       <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (14)" width="90" x="715" y="952">
         <list key="application_parameters"/>
       </operator>
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (14)" width="90" x="983" y="1003">
+        <parameter key="repository_entry" value="../Results/Model Bagging KNN"/>
+      </operator>
       <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance Bagging (5)" width="90" x="849" y="952">
         <parameter key="manually_set_positive_class" value="false"/>
         <parameter key="main_criterion" value="first"/>
@@ -1206,8 +1227,12 @@
         <parameter key="repository_entry" value="../Results/PERF_Charts_Ensemble_Bagging_KNN"/>
       </operator>
       <connect from_op="Retrieve Cleanset_Charts" from_port="output" to_op="Split Data" to_port="example set"/>
-      <connect from_op="Split Data" from_port="partition 1" to_op="Apply Model (2)" to_port="unlabelled data"/>
+      <connect from_op="Split Data" from_port="partition 1" to_op="Cross Validation Stacking" to_port="example set"/>
+      <connect from_op="Split Data" from_port="partition 2" to_op="Apply Model (2)" to_port="unlabelled data"/>
+      <connect from_op="Cross Validation Stacking" from_port="model" to_op="Apply Model (2)" to_port="model"/>
       <connect from_op="Apply Model (2)" from_port="labelled data" to_op="Performance Stacking" to_port="labelled data"/>
+      <connect from_op="Apply Model (2)" from_port="model" to_op="Store (8)" to_port="input"/>
+      <connect from_op="Store (8)" from_port="through" to_port="result 8"/>
       <connect from_op="Performance Stacking" from_port="performance" to_op="Store" to_port="input"/>
       <connect from_op="Store" from_port="through" to_port="result 1"/>
       <connect from_op="Retrieve Cleanset_Charts (2)" from_port="output" to_op="Split Data (2)" to_port="example set"/>
@@ -1215,6 +1240,8 @@
       <connect from_op="Split Data (2)" from_port="partition 2" to_op="Apply Model (4)" to_port="unlabelled data"/>
       <connect from_op="Cross Validation Voting" from_port="model" to_op="Apply Model (4)" to_port="model"/>
       <connect from_op="Apply Model (4)" from_port="labelled data" to_op="Performance Voting" to_port="labelled data"/>
+      <connect from_op="Apply Model (4)" from_port="model" to_op="Store (9)" to_port="input"/>
+      <connect from_op="Store (9)" from_port="through" to_port="result 9"/>
       <connect from_op="Performance Voting" from_port="performance" to_op="Store (2)" to_port="input"/>
       <connect from_op="Store (2)" from_port="through" to_port="result 2"/>
       <connect from_op="Retrieve Cleanset_Charts (3)" from_port="output" to_op="Split Data (3)" to_port="example set"/>
@@ -1222,6 +1249,8 @@
       <connect from_op="Split Data (3)" from_port="partition 2" to_op="Apply Model (6)" to_port="unlabelled data"/>
       <connect from_op="XGB Cross Validation Bagging" from_port="model" to_op="Apply Model (6)" to_port="model"/>
       <connect from_op="Apply Model (6)" from_port="labelled data" to_op="Performance Bagging" to_port="labelled data"/>
+      <connect from_op="Apply Model (6)" from_port="model" to_op="Store (10)" to_port="input"/>
+      <connect from_op="Store (10)" from_port="through" to_port="result 10"/>
       <connect from_op="Performance Bagging" from_port="performance" to_op="Store (3)" to_port="input"/>
       <connect from_op="Store (3)" from_port="through" to_port="result 3"/>
       <connect from_op="Retrieve Cleanset_Charts (4)" from_port="output" to_op="Split Data (4)" to_port="example set"/>
@@ -1229,6 +1258,8 @@
       <connect from_op="Split Data (4)" from_port="partition 2" to_op="Apply Model (8)" to_port="unlabelled data"/>
       <connect from_op="RF Cross Validation Bagging (2)" from_port="model" to_op="Apply Model (8)" to_port="model"/>
       <connect from_op="Apply Model (8)" from_port="labelled data" to_op="Performance Bagging (2)" to_port="labelled data"/>
+      <connect from_op="Apply Model (8)" from_port="model" to_op="Store (11)" to_port="input"/>
+      <connect from_op="Store (11)" from_port="through" to_port="result 11"/>
       <connect from_op="Performance Bagging (2)" from_port="performance" to_op="Store (4)" to_port="input"/>
       <connect from_op="Store (4)" from_port="through" to_port="result 4"/>
       <connect from_op="Retrieve Cleanset_Charts (5)" from_port="output" to_op="Split Data (5)" to_port="example set"/>
@@ -1236,6 +1267,8 @@
       <connect from_op="Split Data (5)" from_port="partition 2" to_op="Apply Model (10)" to_port="unlabelled data"/>
       <connect from_op="SVM Cross Validation Bagging" from_port="model" to_op="Apply Model (10)" to_port="model"/>
       <connect from_op="Apply Model (10)" from_port="labelled data" to_op="Performance Bagging (3)" to_port="labelled data"/>
+      <connect from_op="Apply Model (10)" from_port="model" to_op="Store (12)" to_port="input"/>
+      <connect from_op="Store (12)" from_port="through" to_port="result 12"/>
       <connect from_op="Performance Bagging (3)" from_port="performance" to_op="Store (5)" to_port="input"/>
       <connect from_op="Store (5)" from_port="through" to_port="result 5"/>
       <connect from_op="Retrieve Cleanset_Charts (6)" from_port="output" to_op="Split Data (6)" to_port="example set"/>
@@ -1243,6 +1276,8 @@
       <connect from_op="Split Data (6)" from_port="partition 2" to_op="Apply Model (12)" to_port="unlabelled data"/>
       <connect from_op="LogReg Cross Validation Bagging" from_port="model" to_op="Apply Model (12)" to_port="model"/>
       <connect from_op="Apply Model (12)" from_port="labelled data" to_op="Performance Bagging (4)" to_port="labelled data"/>
+      <connect from_op="Apply Model (12)" from_port="model" to_op="Store (13)" to_port="input"/>
+      <connect from_op="Store (13)" from_port="through" to_port="result 13"/>
       <connect from_op="Performance Bagging (4)" from_port="performance" to_op="Store (6)" to_port="input"/>
       <connect from_op="Store (6)" from_port="through" to_port="result 7"/>
       <connect from_op="Retrieve Cleanset_Charts (7)" from_port="output" to_op="Split Data (7)" to_port="example set"/>
@@ -1250,6 +1285,8 @@
       <connect from_op="Split Data (7)" from_port="partition 2" to_op="Apply Model (14)" to_port="unlabelled data"/>
       <connect from_op="KNN Cross Validation Bagging" from_port="model" to_op="Apply Model (14)" to_port="model"/>
       <connect from_op="Apply Model (14)" from_port="labelled data" to_op="Performance Bagging (5)" to_port="labelled data"/>
+      <connect from_op="Apply Model (14)" from_port="model" to_op="Store (14)" to_port="input"/>
+      <connect from_op="Store (14)" from_port="through" to_port="result 14"/>
       <connect from_op="Performance Bagging (5)" from_port="performance" to_op="Store (7)" to_port="input"/>
       <connect from_op="Store (7)" from_port="through" to_port="result 6"/>
       <portSpacing port="source_input 1" spacing="0"/>
@@ -1261,6 +1298,13 @@
       <portSpacing port="sink_result 6" spacing="0"/>
       <portSpacing port="sink_result 7" spacing="0"/>
       <portSpacing port="sink_result 8" spacing="0"/>
+      <portSpacing port="sink_result 9" spacing="0"/>
+      <portSpacing port="sink_result 10" spacing="0"/>
+      <portSpacing port="sink_result 11" spacing="0"/>
+      <portSpacing port="sink_result 12" spacing="0"/>
+      <portSpacing port="sink_result 13" spacing="0"/>
+      <portSpacing port="sink_result 14" spacing="0"/>
+      <portSpacing port="sink_result 15" spacing="0"/>
     </process>
   </operator>
 </process>
