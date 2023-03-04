@@ -38,9 +38,10 @@
         <parameter key="except_block_type" value="single_value"/>
         <parameter key="invert_selection" value="false"/>
         <parameter key="include_special_attributes" value="false"/>
-        <parameter key="replace_what" value="[-!&quot;#$%&amp;'()*+./:;&lt;=&gt;?@\[\\\]_`{|}~]"/>
+        <parameter key="replace_what" value="[-!&quot;#$%&amp;'()*+/:;&lt;=&gt;?@\[\\\]_`{|}~]"/>
+        <parameter key="replace_by" value=""/>
       </operator>
-      <operator activated="true" class="aggregate" compatibility="10.1.001" expanded="true" height="82" name="Aggregate" width="90" x="45" y="187">
+      <operator activated="true" class="aggregate" compatibility="10.1.001" expanded="true" height="82" name="Aggregate" width="90" x="514" y="34">
         <parameter key="use_default_aggregation" value="true"/>
         <parameter key="attribute_filter_type" value="single"/>
         <parameter key="attribute" value="ChartsMinPos"/>
@@ -61,14 +62,14 @@
         <parameter key="only_distinct" value="false"/>
         <parameter key="ignore_missings" value="true"/>
       </operator>
-      <operator activated="true" class="blending:generate_columns" compatibility="10.1.001" expanded="true" height="82" name="Generate Attributes (2)" width="90" x="179" y="187">
+      <operator activated="true" class="blending:generate_columns" compatibility="10.1.001" expanded="true" height="82" name="Generate Attributes (2)" width="90" x="648" y="34">
         <list key="function_descriptions">
           <parameter key="Top_Song" value="popularity&gt;=85"/>
           <parameter key="Top_Song2" value="[average(ChartsMinPos)]&lt;=30"/>
         </list>
         <parameter key="keep_all_columns" value="true"/>
       </operator>
-      <operator activated="true" class="blending:set_role" compatibility="10.1.001" expanded="true" height="82" name="Set Role" width="90" x="313" y="187">
+      <operator activated="true" class="blending:set_role" compatibility="10.1.001" expanded="true" height="82" name="Set Role" width="90" x="112" y="187">
         <list key="set_roles">
           <parameter key="Top_Song2" value="label"/>
           <parameter key="Top_Song" value="label"/>
@@ -79,7 +80,7 @@
         <parameter key="number_of_outliers" value="5"/>
         <parameter key="distance_function" value="euclidian distance"/>
       </operator>
-      <operator activated="true" class="filter_examples" compatibility="10.1.001" expanded="true" height="103" name="Filter outliers" width="90" x="447" y="187">
+      <operator activated="true" class="filter_examples" compatibility="10.1.001" expanded="true" height="103" name="Filter outliers" width="90" x="246" y="187">
         <parameter key="parameter_expression" value=""/>
         <parameter key="condition_class" value="custom_filters"/>
         <parameter key="invert_filter" value="false"/>
@@ -94,7 +95,7 @@
         <parameter key="filters_logic_and" value="true"/>
         <parameter key="filters_check_metadata" value="true"/>
       </operator>
-      <operator activated="true" class="numerical_to_binominal" compatibility="10.1.001" expanded="true" height="82" name="Numerical to Binominal" width="90" x="581" y="187">
+      <operator activated="true" class="numerical_to_binominal" compatibility="10.1.001" expanded="true" height="82" name="Numerical to Binominal" width="90" x="380" y="187">
         <parameter key="attribute_filter_type" value="subset"/>
         <parameter key="attribute" value=""/>
         <parameter key="attributes" value="mode|explicit"/>
@@ -110,7 +111,7 @@
         <parameter key="min" value="0.0"/>
         <parameter key="max" value="0.0"/>
       </operator>
-      <operator activated="true" class="concurrency:correlation_matrix" compatibility="10.1.001" expanded="true" height="103" name="Correlation Matrix" width="90" x="715" y="34">
+      <operator activated="true" class="concurrency:correlation_matrix" compatibility="10.1.001" expanded="true" height="103" name="Correlation Matrix" width="90" x="514" y="187">
         <parameter key="attribute_filter_type" value="subset"/>
         <parameter key="attribute" value=""/>
         <parameter key="attributes" value="id|name"/>
@@ -126,6 +127,12 @@
         <parameter key="normalize_weights" value="true"/>
         <parameter key="squared_correlation" value="false"/>
       </operator>
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store" width="90" x="648" y="187">
+        <parameter key="repository_entry" value="../Results/DataExplorationResults/FinTable_Exploration"/>
+      </operator>
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (2)" width="90" x="648" y="289">
+        <parameter key="repository_entry" value="../Results/DataExplorationResults/FinTable_CorrelationMatrix"/>
+      </operator>
       <connect from_op="Retrieve FinTable" from_port="output" to_op="Filter Examples" to_port="example set input"/>
       <connect from_op="Filter Examples" from_port="example set output" to_op="Replace" to_port="example set input"/>
       <connect from_op="Replace" from_port="example set output" to_op="Aggregate" to_port="example set input"/>
@@ -134,8 +141,10 @@
       <connect from_op="Set Role" from_port="example set output" to_op="Filter outliers" to_port="example set input"/>
       <connect from_op="Filter outliers" from_port="example set output" to_op="Numerical to Binominal" to_port="example set input"/>
       <connect from_op="Numerical to Binominal" from_port="example set output" to_op="Correlation Matrix" to_port="example set"/>
-      <connect from_op="Correlation Matrix" from_port="example set" to_port="result 1"/>
-      <connect from_op="Correlation Matrix" from_port="matrix" to_port="result 2"/>
+      <connect from_op="Correlation Matrix" from_port="example set" to_op="Store" to_port="input"/>
+      <connect from_op="Correlation Matrix" from_port="matrix" to_op="Store (2)" to_port="input"/>
+      <connect from_op="Store" from_port="through" to_port="result 1"/>
+      <connect from_op="Store (2)" from_port="through" to_port="result 2"/>
       <portSpacing port="source_input 1" spacing="0"/>
       <portSpacing port="sink_result 1" spacing="0"/>
       <portSpacing port="sink_result 2" spacing="0"/>
