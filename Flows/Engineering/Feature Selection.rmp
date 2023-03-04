@@ -124,7 +124,7 @@
                 <parameter key="local_random_seed" value="1992"/>
                 <process expanded="true">
                   <operator activated="true" class="xgboost:xgboost" compatibility="0.1.003" expanded="true" height="103" name="XGBoost (6)" width="90" x="112" y="34">
-                    <parameter key="booster" value="tree booster"/>
+                    <parameter key="booster" value="DART"/>
                     <parameter key="rounds" value="1291"/>
                     <parameter key="early_stopping" value="none"/>
                     <parameter key="early_stopping_rounds" value="10"/>
