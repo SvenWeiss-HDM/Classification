@@ -1091,7 +1091,7 @@
       <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Cleanset_Charts (7)" width="90" x="179" y="952">
         <parameter key="repository_entry" value="../../Data/Datasets Rapidminer/Cleanset_Charts"/>
       </operator>
-      <operator activated="true" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data (7)" width="90" x="313" y="952">
+      <operator activated="true" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data (7)" width="90" x="447" y="952">
         <enumeration key="partitions">
           <parameter key="ratio" value="0.8"/>
           <parameter key="ratio" value="0.2"/>

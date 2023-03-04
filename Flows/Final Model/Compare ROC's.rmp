@@ -25,37 +25,37 @@
         <parameter key="roc_bias" value="optimistic"/>
         <process expanded="true">
           <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Model Bagging KNN" width="90" x="179" y="34">
-            <parameter key="repository_entry" value="../Results/Model Bagging KNN"/>
+            <parameter key="repository_entry" value="../Results/Models/Model Bagging KNN"/>
           </operator>
           <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model" width="90" x="380" y="34">
             <list key="application_parameters"/>
           </operator>
           <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Model Bagging LOGREG" width="90" x="179" y="136">
-            <parameter key="repository_entry" value="../Results/Model Bagging LOGREG"/>
+            <parameter key="repository_entry" value="../Results/Models/Model Bagging LOGREG"/>
           </operator>
           <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (2)" width="90" x="380" y="136">
             <list key="application_parameters"/>
           </operator>
           <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Model Bagging Random Forest" width="90" x="179" y="238">
-            <parameter key="repository_entry" value="../Results/Model Bagging Random Forest"/>
+            <parameter key="repository_entry" value="../Results/Models/Model Bagging Random Forest"/>
           </operator>
           <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (3)" width="90" x="380" y="238">
             <list key="application_parameters"/>
           </operator>
           <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Model Bagging SVM" width="90" x="179" y="340">
-            <parameter key="repository_entry" value="../Results/Model Bagging SVM"/>
+            <parameter key="repository_entry" value="../Results/Models/Model Bagging SVM"/>
           </operator>
           <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (4)" width="90" x="380" y="340">
             <list key="application_parameters"/>
           </operator>
           <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Model Stacking" width="90" x="179" y="442">
-            <parameter key="repository_entry" value="../Results/Model Stacking"/>
+            <parameter key="repository_entry" value="../Results/Models/Model Stacking"/>
           </operator>
           <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (6)" width="90" x="380" y="442">
             <list key="application_parameters"/>
           </operator>
           <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Model Voting" width="90" x="179" y="544">
-            <parameter key="repository_entry" value="../Results/Model Voting"/>
+            <parameter key="repository_entry" value="../Results/Models/Model Voting"/>
           </operator>
           <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (7)" width="90" x="380" y="544">
             <list key="application_parameters"/>
