@@ -11,6 +11,7 @@ Data/Python/loadreccomend with followers.csv
 Data/Datasets Rapidminer/Artist Recommended By.rmhdf5table
 Data/Datasets Rapidminer/Withartistpopandgenre.rmhdf5table
 Data/Other/loadreccomend with followers.rmhdf5table
+Data/Other/FinTable.rmhdf5table
 Data/Other/artists.rmhdf5table
 Data/Other/artists.csv
 Data/Other/dict_artists.json
