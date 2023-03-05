@@ -12,7 +12,7 @@
     <parameter key="process_duration_for_mail" value="30"/>
     <parameter key="encoding" value="SYSTEM"/>
     <process expanded="true">
-      <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Withartistpop" width="90" x="45" y="136">
+      <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Withartistpop" width="90" x="112" y="136">
         <parameter key="repository_entry" value="../../Data/Datasets Rapidminer/Withartistpopandgenre"/>
       </operator>
       <operator activated="true" class="aggregate" compatibility="10.1.001" expanded="true" height="82" name="Aggregate" width="90" x="246" y="136">
@@ -70,10 +70,10 @@
         <parameter key="select_subset" value="Artist_Popularity␞artists␞average(ChartsMinPos)␞ChartsArtists␞ChartsArtistsGenres␞ChartsMinPos␞id_artists␞name␞popularity␞release_date␞Top_Song␞Top_Song2␞instrumentalness␞key␞liveness␞loudness␞mode␞speechiness␞tempo␞time_signature␞valence␞acousticness␞Chartsduration␞danceability␞duration_ms␞energy␞explicit"/>
         <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
       </operator>
-      <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Withartistpop (2)" width="90" x="45" y="493">
+      <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Withartistpop (2)" width="90" x="112" y="391">
         <parameter key="repository_entry" value="../../Data/Datasets Rapidminer/Withartistpopandgenre"/>
       </operator>
-      <operator activated="true" class="aggregate" compatibility="10.1.001" expanded="true" height="82" name="Aggregate (2)" width="90" x="313" y="493">
+      <operator activated="true" class="aggregate" compatibility="10.1.001" expanded="true" height="82" name="Aggregate (2)" width="90" x="246" y="391">
         <parameter key="use_default_aggregation" value="true"/>
         <parameter key="attribute_filter_type" value="single"/>
         <parameter key="attribute" value="ChartsMinPos"/>
@@ -127,7 +127,7 @@
       <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store" width="90" x="1452" y="136">
         <parameter key="repository_entry" value="../../Data/Datasets Rapidminer/Cleanset_Charts"/>
       </operator>
-      <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Withartistpop (3)" width="90" x="45" y="646">
+      <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Withartistpop (3)" width="90" x="112" y="646">
         <parameter key="repository_entry" value="../../Data/Datasets Rapidminer/Withartistpopandgenre"/>
       </operator>
       <operator activated="true" class="aggregate" compatibility="10.1.001" expanded="true" height="82" name="Aggregate (3)" width="90" x="246" y="646">
@@ -185,10 +185,10 @@
         <parameter key="select_subset" value="Artist_Popularity␞artists␞average(ChartsMinPos)␞ChartsArtists␞ChartsArtistsGenres␞ChartsMinPos␞id_artists␞name␞popularity␞release_date␞Top_Song␞Top_Song2␞instrumentalness␞key␞liveness␞loudness␞mode␞speechiness␞tempo␞time_signature␞valence␞acousticness␞Chartsduration␞danceability␞duration_ms␞energy␞explicit"/>
         <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
       </operator>
-      <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Withartistpop (4)" width="90" x="45" y="1003">
+      <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Withartistpop (4)" width="90" x="112" y="799">
         <parameter key="repository_entry" value="../../Data/Datasets Rapidminer/Withartistpopandgenre"/>
       </operator>
-      <operator activated="true" class="aggregate" compatibility="10.1.001" expanded="true" height="82" name="Aggregate (4)" width="90" x="313" y="1003">
+      <operator activated="true" class="aggregate" compatibility="10.1.001" expanded="true" height="82" name="Aggregate (4)" width="90" x="246" y="799">
         <parameter key="use_default_aggregation" value="true"/>
         <parameter key="attribute_filter_type" value="single"/>
         <parameter key="attribute" value="ChartsMinPos"/>
