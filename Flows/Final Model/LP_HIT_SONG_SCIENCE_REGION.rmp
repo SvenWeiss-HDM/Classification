@@ -185,7 +185,7 @@
           <portSpacing port="sink_averagable 2" spacing="0"/>
         </process>
       </operator>
-      <operator activated="true" class="filter_examples" compatibility="10.1.001" expanded="true" height="103" name="Filter Region (2)" width="90" x="581" y="493">
+      <operator activated="true" class="filter_examples" compatibility="10.1.001" expanded="true" height="103" name="Filter Region (2)" width="90" x="581" y="391">
         <parameter key="parameter_expression" value=""/>
         <parameter key="condition_class" value="custom_filters"/>
         <parameter key="invert_filter" value="false"/>
@@ -195,7 +195,7 @@
         <parameter key="filters_logic_and" value="true"/>
         <parameter key="filters_check_metadata" value="true"/>
       </operator>
-      <operator activated="true" class="remove_duplicates" compatibility="10.1.001" expanded="true" height="103" name="Remove Duplicates (3)" width="90" x="715" y="493">
+      <operator activated="true" class="remove_duplicates" compatibility="10.1.001" expanded="true" height="103" name="Remove Duplicates (3)" width="90" x="715" y="391">
         <parameter key="attribute_filter_type" value="all"/>
         <parameter key="attribute" value=""/>
         <parameter key="attributes" value=""/>
@@ -210,14 +210,14 @@
         <parameter key="include_special_attributes" value="false"/>
         <parameter key="treat_missing_values_as_duplicates" value="false"/>
       </operator>
-      <operator activated="true" class="blending:select_attributes" compatibility="10.1.001" expanded="true" height="82" name="Select Krits (2)" width="90" x="849" y="493">
+      <operator activated="true" class="blending:select_attributes" compatibility="10.1.001" expanded="true" height="82" name="Select Krits (2)" width="90" x="849" y="391">
         <parameter key="type" value="include attributes"/>
         <parameter key="attribute_filter_type" value="a subset"/>
         <parameter key="select_attribute" value=""/>
         <parameter key="select_subset" value="danceability␞explicit␞id␞instrumentalness␞TopSong␞acousticness␞duration_ms␞energy␞key␞liveness␞loudness␞mode␞speechiness␞tempo␞valence"/>
         <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
       </operator>
-      <operator activated="true" class="sample" compatibility="10.1.001" expanded="true" height="82" name="Sample (2)" width="90" x="983" y="493">
+      <operator activated="true" class="sample" compatibility="10.1.001" expanded="true" height="82" name="Sample (2)" width="90" x="983" y="391">
         <parameter key="sample" value="absolute"/>
         <parameter key="balance_data" value="true"/>
         <parameter key="sample_size" value="100"/>
