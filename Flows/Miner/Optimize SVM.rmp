@@ -247,6 +247,9 @@
       <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (7)" width="90" x="715" y="442">
         <list key="application_parameters"/>
       </operator>
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (3)" width="90" x="849" y="544">
+        <parameter key="repository_entry" value="../Results/Models/Model SVM"/>
+      </operator>
       <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance (3)" width="90" x="849" y="442">
         <parameter key="manually_set_positive_class" value="false"/>
         <parameter key="main_criterion" value="first"/>
@@ -287,6 +290,7 @@
       <connect from_op="Optimize Parameters (Grid)" from_port="parameter set" to_op="Store" to_port="input"/>
       <connect from_op="Store" from_port="through" to_port="result 1"/>
       <connect from_op="Apply Model (7)" from_port="labelled data" to_op="Performance (3)" to_port="labelled data"/>
+      <connect from_op="Apply Model (7)" from_port="model" to_op="Store (3)" to_port="input"/>
       <connect from_op="Performance (3)" from_port="performance" to_op="Store (2)" to_port="input"/>
       <connect from_op="Store (2)" from_port="through" to_port="result 2"/>
       <portSpacing port="source_input 1" spacing="0"/>
