@@ -328,7 +328,7 @@
         </process>
       </operator>
       <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Cleanset" width="90" x="45" y="34">
-        <parameter key="repository_entry" value="../../Data/Datasets Rapidminer/Cleanset"/>
+        <parameter key="repository_entry" value="../../Data/Datasets Rapidminer/Cleanset_Charts"/>
       </operator>
       <operator activated="true" class="filter_examples" compatibility="10.1.001" expanded="true" height="103" name="Filter Examples" width="90" x="179" y="34">
         <parameter key="parameter_expression" value=""/>
