@@ -78,7 +78,7 @@
       <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Artist Recommended By" width="90" x="112" y="238">
         <parameter key="repository_entry" value="../../Data/Datasets Rapidminer/Artist Recommended By"/>
       </operator>
-      <operator activated="true" class="concurrency:join" compatibility="10.1.001" expanded="true" height="82" name="Join (2)" width="90" x="916" y="136">
+      <operator activated="true" class="concurrency:join" compatibility="10.1.001" expanded="true" height="82" name="Join (2)" width="90" x="916" y="34">
         <parameter key="remove_double_attributes" value="true"/>
         <parameter key="join_type" value="left"/>
         <parameter key="use_id_attribute_as_key" value="false"/>
@@ -87,7 +87,7 @@
         </list>
         <parameter key="keep_both_join_attributes" value="false"/>
       </operator>
-      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store" width="90" x="1050" y="136">
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store" width="90" x="1050" y="34">
         <parameter key="repository_entry" value="../../Data/Datasets Rapidminer/Withartistpopandgenre"/>
       </operator>
       <connect from_op="Retrieve artists" from_port="output" to_op="Rename" to_port="example set input"/>
