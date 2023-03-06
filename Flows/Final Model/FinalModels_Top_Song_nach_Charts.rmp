@@ -12,17 +12,31 @@
     <parameter key="process_duration_for_mail" value="30"/>
     <parameter key="encoding" value="SYSTEM"/>
     <process expanded="true">
-      <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Cleanset_Charts" width="90" x="45" y="238">
+      <operator activated="false" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Cleanset_Charts" width="90" x="45" y="238">
         <parameter key="repository_entry" value="../../Data/Datasets Rapidminer/Cleanset_Charts"/>
       </operator>
-      <operator activated="true" class="blending:select_attributes" compatibility="10.1.001" expanded="true" height="82" name="Select Attributes (2)" width="90" x="246" y="238">
+      <operator activated="false" class="blending:select_attributes" compatibility="10.1.001" expanded="true" height="82" name="Select Attributes (2)" width="90" x="246" y="238">
         <parameter key="type" value="exclude attributes"/>
         <parameter key="attribute_filter_type" value="a subset"/>
         <parameter key="select_attribute" value=""/>
         <parameter key="select_subset" value="average(Follower_main_artist)␞average(Popularity Main Artist)␞maximum(Follower_main_artist)␞maximum(Popularity Main Artist)␞median(Follower_main_artist)␞median(Popularity Main Artist)␞minimum(Follower_main_artist)␞minimum(Popularity Main Artist)␞variance(Follower_main_artist)␞variance(Popularity Main Artist)␞Artist_Popularity␞popularity"/>
         <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
       </operator>
-      <operator activated="true" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data" width="90" x="380" y="187">
+      <operator activated="false" class="blending:select_attributes" compatibility="10.1.001" expanded="true" height="82" name="Select Attributes (4)" width="90" x="313" y="340">
+        <parameter key="type" value="exclude attributes"/>
+        <parameter key="attribute_filter_type" value="a subset"/>
+        <parameter key="select_attribute" value=""/>
+        <parameter key="select_subset" value="average(Follower_main_artist)␞average(Popularity Main Artist)␞median(Follower_main_artist)␞median(Popularity Main Artist)␞popularity␞variance(Follower_main_artist)␞variance(Popularity Main Artist)"/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
+      </operator>
+      <operator activated="false" class="blending:select_attributes" compatibility="10.1.001" expanded="true" height="82" name="Select Attributes (3)" width="90" x="380" y="187">
+        <parameter key="type" value="exclude attributes"/>
+        <parameter key="attribute_filter_type" value="a subset"/>
+        <parameter key="select_attribute" value=""/>
+        <parameter key="select_subset" value="average(Follower_main_artist)␞average(Popularity Main Artist)␞median(Follower_main_artist)␞median(Popularity Main Artist)␞popularity␞variance(Follower_main_artist)␞variance(Popularity Main Artist)"/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
+      </operator>
+      <operator activated="false" class="split_data" compatibility="10.1.001" expanded="true" height="82" name="Split Data" width="90" x="514" y="187">
         <enumeration key="partitions">
           <parameter key="ratio" value="0.8"/>
           <parameter key="ratio" value="0.2"/>
@@ -31,7 +45,7 @@
         <parameter key="use_local_random_seed" value="false"/>
         <parameter key="local_random_seed" value="1992"/>
       </operator>
-      <operator activated="true" class="xgboost:xgboost" compatibility="0.1.003" expanded="true" height="103" name="XGBoost w/o Followers" width="90" x="648" y="85">
+      <operator activated="false" class="xgboost:xgboost" compatibility="0.1.003" expanded="true" height="103" name="XGBoost w/o Followers" width="90" x="648" y="85">
         <parameter key="booster" value="DART"/>
         <parameter key="rounds" value="2454"/>
         <parameter key="early_stopping" value="none"/>
@@ -53,10 +67,10 @@
         <parameter key="top_k" value="0"/>
         <enumeration key="expert_parameters"/>
       </operator>
-      <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (2)" width="90" x="849" y="187">
+      <operator activated="false" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (2)" width="90" x="849" y="187">
         <list key="application_parameters"/>
       </operator>
-      <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance XGBOOST Charts w/o Followers" width="90" x="1050" y="187">
+      <operator activated="false" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance XGBOOST Charts w/o Followers" width="90" x="1050" y="187">
         <parameter key="manually_set_positive_class" value="false"/>
         <parameter key="main_criterion" value="first"/>
         <parameter key="accuracy" value="true"/>
@@ -93,7 +107,14 @@
         <parameter key="select_subset" value="average(Follower_main_artist)␞average(Popularity Main Artist)␞maximum(Follower_main_artist)␞maximum(Popularity Main Artist)␞median(Follower_main_artist)␞median(Popularity Main Artist)␞minimum(Follower_main_artist)␞minimum(Popularity Main Artist)␞variance(Follower_main_artist)␞variance(Popularity Main Artist)␞Artist_Popularity␞popularity"/>
         <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
       </operator>
-      <operator activated="true" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data (2)" width="90" x="447" y="697">
+      <operator activated="false" class="blending:select_attributes" compatibility="10.1.001" expanded="true" height="82" name="Select Attributes (6)" width="90" x="380" y="595">
+        <parameter key="type" value="exclude attributes"/>
+        <parameter key="attribute_filter_type" value="a subset"/>
+        <parameter key="select_attribute" value=""/>
+        <parameter key="select_subset" value="average(Follower_main_artist)␞average(Popularity Main Artist)␞median(Follower_main_artist)␞median(Popularity Main Artist)␞popularity␞variance(Follower_main_artist)␞variance(Popularity Main Artist)"/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
+      </operator>
+      <operator activated="false" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data (2)" width="90" x="514" y="697">
         <enumeration key="partitions">
           <parameter key="ratio" value="0.8"/>
           <parameter key="ratio" value="0.2"/>
@@ -102,10 +123,84 @@
         <parameter key="use_local_random_seed" value="false"/>
         <parameter key="local_random_seed" value="1992"/>
       </operator>
-      <operator activated="true" class="concurrency:optimize_parameters_grid" compatibility="10.1.001" expanded="true" height="187" name="Optimize Parameters (Grid) (2)" width="90" x="581" y="544">
+      <operator activated="false" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data (5)" width="90" x="447" y="340">
+        <enumeration key="partitions">
+          <parameter key="ratio" value="0.8"/>
+          <parameter key="ratio" value="0.2"/>
+        </enumeration>
+        <parameter key="sampling_type" value="automatic"/>
+        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="local_random_seed" value="1992"/>
+      </operator>
+      <operator activated="false" class="xgboost:xgboost" compatibility="0.1.003" expanded="true" height="103" name="XGBoost with followers" width="90" x="715" y="289">
+        <parameter key="booster" value="DART"/>
+        <parameter key="rounds" value="2454"/>
+        <parameter key="early_stopping" value="none"/>
+        <parameter key="early_stopping_rounds" value="10"/>
+        <parameter key="learning_rate" value="0.3"/>
+        <parameter key="min_split_loss" value="0.0"/>
+        <parameter key="max_depth" value="6"/>
+        <parameter key="min_child_weight" value="1.0"/>
+        <parameter key="subsample" value="1.0"/>
+        <parameter key="tree_method" value="auto"/>
+        <parameter key="lambda" value="0.515716566510398"/>
+        <parameter key="alpha" value="0.0"/>
+        <parameter key="sample_type" value="uniform"/>
+        <parameter key="normalize_type" value="tree"/>
+        <parameter key="rate_drop" value="0.0"/>
+        <parameter key="skip_drop" value="0.0"/>
+        <parameter key="updater" value="shotgun"/>
+        <parameter key="feature_selector" value="cyclic"/>
+        <parameter key="top_k" value="0"/>
+        <enumeration key="expert_parameters"/>
+      </operator>
+      <operator activated="false" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (6)" width="90" x="1184" y="442">
+        <parameter key="repository_entry" value="../Results/Charts_XGBOOST_Followers_Weights"/>
+      </operator>
+      <operator activated="false" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (7)" width="90" x="849" y="340">
+        <list key="application_parameters"/>
+      </operator>
+      <operator activated="false" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance XGBOOST Charrs with followers" width="90" x="1050" y="340">
+        <parameter key="manually_set_positive_class" value="false"/>
+        <parameter key="main_criterion" value="first"/>
+        <parameter key="accuracy" value="true"/>
+        <parameter key="classification_error" value="false"/>
+        <parameter key="kappa" value="false"/>
+        <parameter key="AUC (optimistic)" value="false"/>
+        <parameter key="AUC" value="true"/>
+        <parameter key="AUC (pessimistic)" value="false"/>
+        <parameter key="precision" value="true"/>
+        <parameter key="recall" value="true"/>
+        <parameter key="lift" value="false"/>
+        <parameter key="fallout" value="false"/>
+        <parameter key="f_measure" value="true"/>
+        <parameter key="false_positive" value="false"/>
+        <parameter key="false_negative" value="false"/>
+        <parameter key="true_positive" value="false"/>
+        <parameter key="true_negative" value="false"/>
+        <parameter key="sensitivity" value="true"/>
+        <parameter key="specificity" value="true"/>
+        <parameter key="youden" value="false"/>
+        <parameter key="positive_predictive_value" value="false"/>
+        <parameter key="negative_predictive_value" value="false"/>
+        <parameter key="psep" value="false"/>
+        <parameter key="skip_undefined_labels" value="true"/>
+        <parameter key="use_example_weights" value="true"/>
+      </operator>
+      <operator activated="false" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (2)" width="90" x="1184" y="340">
+        <parameter key="repository_entry" value="../Results/Charts_XGBOOST_Followers"/>
+      </operator>
+      <operator activated="false" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store" width="90" x="1184" y="34">
+        <parameter key="repository_entry" value="../Results/Charts_XGBOOST_NoFollowers"/>
+      </operator>
+      <operator activated="false" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (5)" width="90" x="1184" y="136">
+        <parameter key="repository_entry" value="../Results/Charts_XGBOOST_NoFollowers_Weights"/>
+      </operator>
+      <operator activated="false" class="concurrency:optimize_parameters_grid" compatibility="10.1.001" expanded="true" height="187" name="Optimize Parameters (Grid) (2)" width="90" x="648" y="544">
         <list key="parameters">
           <parameter key="Random Forest.number_of_trees" value="[1.0;100.0;10;linear]"/>
-          <parameter key="Random Forest.maximal_depth" value="[0.0;0.0;0;linear]"/>
+          <parameter key="Random Forest.maximal_depth" value="[1;100;10;linear]"/>
+          <parameter key="Random Forest.criterion" value="gain_ratio,gini_index"/>
         </list>
         <parameter key="error_handling" value="fail on error"/>
         <parameter key="log_performance" value="true"/>
@@ -141,13 +236,9 @@
                 <parameter key="local_random_seed" value="1992"/>
                 <parameter key="enable_parallel_execution" value="true"/>
               </operator>
-              <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (7)" width="90" x="514" y="238">
-                <parameter key="repository_entry" value="../Results/Charts_Random_Forest_NoFollowers_weights"/>
-              </operator>
               <connect from_port="training set" to_op="Random Forest" to_port="training set"/>
               <connect from_op="Random Forest" from_port="model" to_port="model"/>
-              <connect from_op="Random Forest" from_port="weights" to_op="Store (7)" to_port="input"/>
-              <connect from_op="Store (7)" from_port="through" to_port="through 1"/>
+              <connect from_op="Random Forest" from_port="weights" to_port="through 1"/>
               <portSpacing port="source_training set" spacing="0"/>
               <portSpacing port="sink_model" spacing="0"/>
               <portSpacing port="sink_through 1" spacing="0"/>
@@ -216,10 +307,10 @@
           <portSpacing port="sink_output 4" spacing="0"/>
         </process>
       </operator>
-      <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (4)" width="90" x="782" y="697">
+      <operator activated="false" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (4)" width="90" x="782" y="697">
         <list key="application_parameters"/>
       </operator>
-      <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance Random Forest w/o Followers" width="90" x="983" y="697">
+      <operator activated="false" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance Random Forest w/o Followers" width="90" x="983" y="697">
         <parameter key="manually_set_positive_class" value="false"/>
         <parameter key="main_criterion" value="first"/>
         <parameter key="accuracy" value="true"/>
@@ -246,75 +337,15 @@
         <parameter key="skip_undefined_labels" value="true"/>
         <parameter key="use_example_weights" value="true"/>
       </operator>
-      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (3)" width="90" x="1117" y="697">
+      <operator activated="false" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (3)" width="90" x="1117" y="697">
         <parameter key="repository_entry" value="../Results/Charts_Random_Forest_NoFollowers"/>
       </operator>
-      <operator activated="true" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data (5)" width="90" x="380" y="340">
-        <enumeration key="partitions">
-          <parameter key="ratio" value="0.8"/>
-          <parameter key="ratio" value="0.2"/>
-        </enumeration>
-        <parameter key="sampling_type" value="automatic"/>
-        <parameter key="use_local_random_seed" value="false"/>
-        <parameter key="local_random_seed" value="1992"/>
-      </operator>
-      <operator activated="true" class="xgboost:xgboost" compatibility="0.1.003" expanded="true" height="103" name="XGBoost with followers" width="90" x="581" y="340">
-        <parameter key="booster" value="DART"/>
-        <parameter key="rounds" value="2454"/>
-        <parameter key="early_stopping" value="none"/>
-        <parameter key="early_stopping_rounds" value="10"/>
-        <parameter key="learning_rate" value="0.3"/>
-        <parameter key="min_split_loss" value="0.0"/>
-        <parameter key="max_depth" value="6"/>
-        <parameter key="min_child_weight" value="1.0"/>
-        <parameter key="subsample" value="1.0"/>
-        <parameter key="tree_method" value="auto"/>
-        <parameter key="lambda" value="0.515716566510398"/>
-        <parameter key="alpha" value="0.0"/>
-        <parameter key="sample_type" value="uniform"/>
-        <parameter key="normalize_type" value="tree"/>
-        <parameter key="rate_drop" value="0.0"/>
-        <parameter key="skip_drop" value="0.0"/>
-        <parameter key="updater" value="shotgun"/>
-        <parameter key="feature_selector" value="cyclic"/>
-        <parameter key="top_k" value="0"/>
-        <enumeration key="expert_parameters"/>
-      </operator>
-      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (6)" width="90" x="1184" y="442">
-        <parameter key="repository_entry" value="../Results/Charts_XGBOOST_Followers_Weights"/>
-      </operator>
-      <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (7)" width="90" x="849" y="340">
-        <list key="application_parameters"/>
-      </operator>
-      <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance XGBOOST Charrs with followers" width="90" x="1050" y="340">
-        <parameter key="manually_set_positive_class" value="false"/>
-        <parameter key="main_criterion" value="first"/>
-        <parameter key="accuracy" value="true"/>
-        <parameter key="classification_error" value="false"/>
-        <parameter key="kappa" value="false"/>
-        <parameter key="AUC (optimistic)" value="false"/>
-        <parameter key="AUC" value="true"/>
-        <parameter key="AUC (pessimistic)" value="false"/>
-        <parameter key="precision" value="true"/>
-        <parameter key="recall" value="true"/>
-        <parameter key="lift" value="false"/>
-        <parameter key="fallout" value="false"/>
-        <parameter key="f_measure" value="true"/>
-        <parameter key="false_positive" value="false"/>
-        <parameter key="false_negative" value="false"/>
-        <parameter key="true_positive" value="false"/>
-        <parameter key="true_negative" value="false"/>
-        <parameter key="sensitivity" value="true"/>
-        <parameter key="specificity" value="true"/>
-        <parameter key="youden" value="false"/>
-        <parameter key="positive_predictive_value" value="false"/>
-        <parameter key="negative_predictive_value" value="false"/>
-        <parameter key="psep" value="false"/>
-        <parameter key="skip_undefined_labels" value="true"/>
-        <parameter key="use_example_weights" value="true"/>
-      </operator>
-      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (2)" width="90" x="1184" y="340">
-        <parameter key="repository_entry" value="../Results/Charts_XGBOOST_Followers"/>
+      <operator activated="false" class="blending:select_attributes" compatibility="10.1.001" expanded="true" height="82" name="Select Attributes (7)" width="90" x="313" y="901">
+        <parameter key="type" value="exclude attributes"/>
+        <parameter key="attribute_filter_type" value="a subset"/>
+        <parameter key="select_attribute" value=""/>
+        <parameter key="select_subset" value="average(Follower_main_artist)␞average(Popularity Main Artist)␞median(Follower_main_artist)␞median(Popularity Main Artist)␞popularity␞variance(Follower_main_artist)␞variance(Popularity Main Artist)"/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
       </operator>
       <operator activated="true" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data (6)" width="90" x="514" y="901">
         <enumeration key="partitions">
@@ -328,7 +359,8 @@
       <operator activated="true" class="concurrency:optimize_parameters_grid" compatibility="10.1.001" expanded="true" height="187" name="Optimize Parameters (Grid) (3)" width="90" x="715" y="850">
         <list key="parameters">
           <parameter key="Random Forest (3).number_of_trees" value="[1.0;100.0;10;linear]"/>
-          <parameter key="Random Forest (3).maximal_depth" value="[0.0;0.0;0;linear]"/>
+          <parameter key="Random Forest (3).maximal_depth" value="[1;100;10;linear]"/>
+          <parameter key="Random Forest (3).criterion" value="gain_ratio,gini_index"/>
         </list>
         <parameter key="error_handling" value="fail on error"/>
         <parameter key="log_performance" value="true"/>
@@ -364,13 +396,9 @@
                 <parameter key="local_random_seed" value="1992"/>
                 <parameter key="enable_parallel_execution" value="true"/>
               </operator>
-              <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (8)" width="90" x="447" y="238">
-                <parameter key="repository_entry" value="../Results/Charts_Random_Forest_Followers_Weights"/>
-              </operator>
               <connect from_port="training set" to_op="Random Forest (3)" to_port="training set"/>
               <connect from_op="Random Forest (3)" from_port="model" to_port="model"/>
-              <connect from_op="Random Forest (3)" from_port="weights" to_op="Store (8)" to_port="input"/>
-              <connect from_op="Store (8)" from_port="through" to_port="through 1"/>
+              <connect from_op="Random Forest (3)" from_port="weights" to_port="through 1"/>
               <portSpacing port="source_training set" spacing="0"/>
               <portSpacing port="sink_model" spacing="0"/>
               <portSpacing port="sink_through 1" spacing="0"/>
@@ -408,8 +436,12 @@
                 <parameter key="skip_undefined_labels" value="true"/>
                 <parameter key="use_example_weights" value="true"/>
               </operator>
+              <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (9)" width="90" x="246" y="187">
+                <parameter key="repository_entry" value="../Results/Charts_Random_Forest_Followers_Weights_with Attrs"/>
+              </operator>
               <connect from_port="model" to_op="Apply Model (8)" to_port="model"/>
               <connect from_port="test set" to_op="Apply Model (8)" to_port="unlabelled data"/>
+              <connect from_port="through 1" to_op="Store (9)" to_port="input"/>
               <connect from_op="Apply Model (8)" from_port="labelled data" to_op="Performance (4)" to_port="labelled data"/>
               <connect from_op="Performance (4)" from_port="performance" to_port="performance 1"/>
               <connect from_op="Performance (4)" from_port="example set" to_port="test set results"/>
@@ -439,10 +471,13 @@
           <portSpacing port="sink_output 4" spacing="0"/>
         </process>
       </operator>
-      <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (9)" width="90" x="849" y="901">
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (7)" width="90" x="1117" y="952">
+        <parameter key="repository_entry" value="../Results/ATTR_Random_Forest_Followers"/>
+      </operator>
+      <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (9)" width="90" x="849" y="850">
         <list key="application_parameters"/>
       </operator>
-      <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance Random Forest with Followers" width="90" x="983" y="901">
+      <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance Random Forest with Followers" width="90" x="983" y="850">
         <parameter key="manually_set_positive_class" value="false"/>
         <parameter key="main_criterion" value="first"/>
         <parameter key="accuracy" value="true"/>
@@ -469,57 +504,43 @@
         <parameter key="skip_undefined_labels" value="true"/>
         <parameter key="use_example_weights" value="true"/>
       </operator>
-      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (4)" width="90" x="1117" y="901">
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (4)" width="90" x="1117" y="850">
         <parameter key="repository_entry" value="../Results/Charts_Random_Forest_Followers"/>
       </operator>
-      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store" width="90" x="1184" y="34">
-        <parameter key="repository_entry" value="../Results/Charts_XGBOOST_NoFollowers"/>
-      </operator>
-      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (5)" width="90" x="1184" y="136">
-        <parameter key="repository_entry" value="../Results/Charts_XGBOOST_NoFollowers_Weights"/>
-      </operator>
       <connect from_op="Retrieve Cleanset_Charts" from_port="output" to_op="Select Attributes (2)" to_port="example set input"/>
-      <connect from_op="Select Attributes (2)" from_port="example set output" to_op="Split Data" to_port="example set"/>
-      <connect from_op="Select Attributes (2)" from_port="original" to_op="Split Data (5)" to_port="example set"/>
-      <connect from_op="Split Data" from_port="partition 1" to_op="XGBoost w/o Followers" to_port="training set"/>
-      <connect from_op="Split Data" from_port="partition 2" to_op="Apply Model (2)" to_port="unlabelled data"/>
-      <connect from_op="XGBoost w/o Followers" from_port="model" to_op="Apply Model (2)" to_port="model"/>
-      <connect from_op="XGBoost w/o Followers" from_port="weights" to_op="Store (5)" to_port="input"/>
+      <connect from_op="Select Attributes (2)" from_port="example set output" to_op="Select Attributes (3)" to_port="example set input"/>
+      <connect from_op="Select Attributes (2)" from_port="original" to_op="Select Attributes (4)" to_port="example set input"/>
+      <connect from_op="Select Attributes (4)" from_port="example set output" to_op="Split Data (5)" to_port="example set"/>
+      <connect from_op="Select Attributes (3)" from_port="example set output" to_op="Split Data" to_port="example set"/>
+      <connect from_op="Split Data" from_port="partition 1" to_op="Apply Model (2)" to_port="unlabelled data"/>
       <connect from_op="Apply Model (2)" from_port="labelled data" to_op="Performance XGBOOST Charts w/o Followers" to_port="labelled data"/>
       <connect from_op="Performance XGBOOST Charts w/o Followers" from_port="performance" to_op="Store" to_port="input"/>
       <connect from_op="Retrieve Cleanset_Charts (2)" from_port="output" to_op="Select Attributes" to_port="example set input"/>
-      <connect from_op="Select Attributes" from_port="example set output" to_op="Split Data (2)" to_port="example set"/>
       <connect from_op="Select Attributes" from_port="original" to_op="Split Data (6)" to_port="example set"/>
+      <connect from_op="Select Attributes (6)" from_port="example set output" to_op="Split Data (2)" to_port="example set"/>
       <connect from_op="Split Data (2)" from_port="partition 1" to_op="Optimize Parameters (Grid) (2)" to_port="input 1"/>
       <connect from_op="Split Data (2)" from_port="partition 2" to_op="Apply Model (4)" to_port="unlabelled data"/>
-      <connect from_op="Optimize Parameters (Grid) (2)" from_port="model" to_op="Apply Model (4)" to_port="model"/>
-      <connect from_op="Apply Model (4)" from_port="labelled data" to_op="Performance Random Forest w/o Followers" to_port="labelled data"/>
-      <connect from_op="Performance Random Forest w/o Followers" from_port="performance" to_op="Store (3)" to_port="input"/>
-      <connect from_op="Store (3)" from_port="through" to_port="result 2"/>
       <connect from_op="Split Data (5)" from_port="partition 1" to_op="XGBoost with followers" to_port="training set"/>
       <connect from_op="Split Data (5)" from_port="partition 2" to_op="Apply Model (7)" to_port="unlabelled data"/>
       <connect from_op="XGBoost with followers" from_port="model" to_op="Apply Model (7)" to_port="model"/>
       <connect from_op="XGBoost with followers" from_port="weights" to_op="Store (6)" to_port="input"/>
-      <connect from_op="Store (6)" from_port="through" to_port="result 6"/>
       <connect from_op="Apply Model (7)" from_port="labelled data" to_op="Performance XGBOOST Charrs with followers" to_port="labelled data"/>
       <connect from_op="Performance XGBOOST Charrs with followers" from_port="performance" to_op="Store (2)" to_port="input"/>
-      <connect from_op="Store (2)" from_port="through" to_port="result 4"/>
+      <connect from_op="Optimize Parameters (Grid) (2)" from_port="model" to_op="Apply Model (4)" to_port="model"/>
+      <connect from_op="Apply Model (4)" from_port="labelled data" to_op="Performance Random Forest w/o Followers" to_port="labelled data"/>
+      <connect from_op="Performance Random Forest w/o Followers" from_port="performance" to_op="Store (3)" to_port="input"/>
       <connect from_op="Split Data (6)" from_port="partition 1" to_op="Optimize Parameters (Grid) (3)" to_port="input 1"/>
       <connect from_op="Split Data (6)" from_port="partition 2" to_op="Apply Model (9)" to_port="unlabelled data"/>
       <connect from_op="Optimize Parameters (Grid) (3)" from_port="model" to_op="Apply Model (9)" to_port="model"/>
+      <connect from_op="Optimize Parameters (Grid) (3)" from_port="parameter set" to_op="Store (7)" to_port="input"/>
+      <connect from_op="Store (7)" from_port="through" to_port="result 2"/>
       <connect from_op="Apply Model (9)" from_port="labelled data" to_op="Performance Random Forest with Followers" to_port="labelled data"/>
       <connect from_op="Performance Random Forest with Followers" from_port="performance" to_op="Store (4)" to_port="input"/>
-      <connect from_op="Store (4)" from_port="through" to_port="result 3"/>
-      <connect from_op="Store" from_port="through" to_port="result 1"/>
-      <connect from_op="Store (5)" from_port="through" to_port="result 5"/>
+      <connect from_op="Store (4)" from_port="through" to_port="result 1"/>
       <portSpacing port="source_input 1" spacing="0"/>
       <portSpacing port="sink_result 1" spacing="0"/>
       <portSpacing port="sink_result 2" spacing="0"/>
       <portSpacing port="sink_result 3" spacing="0"/>
-      <portSpacing port="sink_result 4" spacing="0"/>
-      <portSpacing port="sink_result 5" spacing="0"/>
-      <portSpacing port="sink_result 6" spacing="0"/>
-      <portSpacing port="sink_result 7" spacing="0"/>
     </process>
   </operator>
 </process>
