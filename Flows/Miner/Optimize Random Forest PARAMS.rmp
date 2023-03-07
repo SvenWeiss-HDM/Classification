@@ -122,7 +122,7 @@
       <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (3)" width="90" x="1050" y="493">
         <parameter key="repository_entry" value="../Results/Models/Model Performance Random Forest"/>
       </operator>
-      <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance XGBOOST Charrs with followers" width="90" x="916" y="289">
+      <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance Rnd Forest with followers" width="90" x="916" y="289">
         <parameter key="manually_set_positive_class" value="false"/>
         <parameter key="main_criterion" value="first"/>
         <parameter key="accuracy" value="true"/>
@@ -157,10 +157,10 @@
       <connect from_op="Split Data (5)" from_port="partition 1" to_op="Cross Validation" to_port="example set"/>
       <connect from_op="Split Data (5)" from_port="partition 2" to_op="Apply Model (7)" to_port="unlabelled data"/>
       <connect from_op="Cross Validation" from_port="model" to_op="Apply Model (7)" to_port="model"/>
-      <connect from_op="Apply Model (7)" from_port="labelled data" to_op="Performance XGBOOST Charrs with followers" to_port="labelled data"/>
+      <connect from_op="Apply Model (7)" from_port="labelled data" to_op="Performance Rnd Forest with followers" to_port="labelled data"/>
       <connect from_op="Apply Model (7)" from_port="model" to_op="Store (3)" to_port="input"/>
       <connect from_op="Store (3)" from_port="through" to_port="result 1"/>
-      <connect from_op="Performance XGBOOST Charrs with followers" from_port="performance" to_op="Store (2)" to_port="input"/>
+      <connect from_op="Performance Rnd Forest with followers" from_port="performance" to_op="Store (2)" to_port="input"/>
       <connect from_op="Store (2)" from_port="through" to_port="result 2"/>
       <portSpacing port="source_input 1" spacing="0"/>
       <portSpacing port="sink_result 1" spacing="0"/>
