@@ -28,7 +28,7 @@
           <parameter key="ratio" value="0.2"/>
         </enumeration>
         <parameter key="sampling_type" value="automatic"/>
-        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="use_local_random_seed" value="true"/>
         <parameter key="local_random_seed" value="1992"/>
       </operator>
       <operator activated="true" class="concurrency:cross_validation" compatibility="10.1.001" expanded="true" height="145" name="Cross Validation" width="90" x="581" y="85">
@@ -59,9 +59,13 @@
             <parameter key="local_random_seed" value="1992"/>
             <parameter key="enable_parallel_execution" value="true"/>
           </operator>
+          <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store" width="90" x="313" y="187">
+            <parameter key="repository_entry" value="Weights_Random_Forest"/>
+          </operator>
           <connect from_port="training set" to_op="Random Forest (2)" to_port="training set"/>
           <connect from_op="Random Forest (2)" from_port="model" to_port="model"/>
           <connect from_op="Random Forest (2)" from_port="exampleSet" to_port="through 1"/>
+          <connect from_op="Random Forest (2)" from_port="weights" to_op="Store" to_port="input"/>
           <portSpacing port="source_training set" spacing="0"/>
           <portSpacing port="sink_model" spacing="0"/>
           <portSpacing port="sink_through 1" spacing="0"/>
