@@ -36,7 +36,7 @@
         <parameter key="use_local_random_seed" value="false"/>
         <parameter key="local_random_seed" value="1992"/>
       </operator>
-      <operator activated="true" class="concurrency:optimize_parameters_grid" compatibility="10.1.001" expanded="true" height="145" name="Optimize Parameters (Grid)" width="90" x="581" y="85">
+      <operator activated="true" class="concurrency:optimize_parameters_grid" compatibility="10.1.001" expanded="true" height="145" name="Optimize Parameters (Grid)" width="90" x="581" y="187">
         <list key="parameters">
           <parameter key="Logistic Regression.solver" value="AUTO,IRLSM,L_BFGS,COORDINATE_DESCENT_NAIVE (experimental),COORDINATE_DESCENT (experimental)"/>
           <parameter key="Logistic Regression.use_regularization" value="true,false"/>
