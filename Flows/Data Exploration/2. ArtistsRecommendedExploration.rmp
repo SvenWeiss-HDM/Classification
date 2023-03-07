@@ -32,10 +32,10 @@
         <parameter key="squared_correlation" value="false"/>
       </operator>
       <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store" width="90" x="648" y="34">
-        <parameter key="repository_entry" value="../Results/DataExplorationResults/ArtistRecommendedBy_Exploration"/>
+        <parameter key="repository_entry" value="../Results/ArtistsRecommended/DataExplorationResults/ArtistRecommendedBy_Exploration"/>
       </operator>
       <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (2)" width="90" x="648" y="136">
-        <parameter key="repository_entry" value="../Results/DataExplorationResults/ArtistRecommendedBy_CorrelationMatrix"/>
+        <parameter key="repository_entry" value="../Results/DataExplorationResults/ArtistsRecommended/ArtistRecommendedBy_CorrelationMatrix"/>
       </operator>
       <connect from_op="Retrieve Artist Recommended By" from_port="output" to_op="Correlation Matrix" to_port="example set"/>
       <connect from_op="Correlation Matrix" from_port="example set" to_op="Store" to_port="input"/>

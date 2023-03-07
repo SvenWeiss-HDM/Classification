@@ -21,7 +21,7 @@
       </operator>
       <operator activated="true" class="model_simulator:quality_measures" compatibility="10.0.000" expanded="true" height="68" name="Quality Measures" width="90" x="313" y="136"/>
       <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (2)" width="90" x="447" y="136">
-        <parameter key="repository_entry" value="../Results/DataExplorationResults/FinTable_QualityMeasures"/>
+        <parameter key="repository_entry" value="../Results/DataExplorationResults/FinTable/FinTable_QualityMeasures"/>
       </operator>
       <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Artist Recommended By" width="90" x="112" y="238">
         <parameter key="repository_entry" value="../../Data/Datasets Rapidminer/Artist Recommended By"/>
@@ -31,27 +31,19 @@
         <parameter key="repository_entry" value="../../Data/Datasets Rapidminer/Artist Recommended By"/>
       </operator>
       <operator activated="true" class="model_simulator:data_statistics" compatibility="10.0.000" expanded="true" height="82" name="Statistics (2)" width="90" x="313" y="340"/>
-      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store" width="90" x="447" y="34">
-        <parameter key="repository_entry" value="../Results/DataExplorationResults/FinTable_Statistics"/>
-      </operator>
       <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (3)" width="90" x="447" y="238">
-        <parameter key="repository_entry" value="../Results/DataExplorationResults/ArtistsRecommendedBy_QualityMeasures"/>
-      </operator>
-      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (4)" width="90" x="447" y="340">
-        <parameter key="repository_entry" value="../Results/DataExplorationResults/ArtistsRecommendedBy_Statistics"/>
+        <parameter key="repository_entry" value="../Results/DataExplorationResults/ArtistsRecommended/ArtistsRecommendedBy_QualityMeasures"/>
       </operator>
       <connect from_op="Retrieve FinTable" from_port="output" to_op="Statistics" to_port="example set"/>
-      <connect from_op="Statistics" from_port="statistics" to_op="Store" to_port="input"/>
+      <connect from_op="Statistics" from_port="statistics" to_port="result 4"/>
       <connect from_op="Retrieve FinTable (2)" from_port="output" to_op="Quality Measures" to_port="example set"/>
       <connect from_op="Quality Measures" from_port="example set" to_op="Store (2)" to_port="input"/>
       <connect from_op="Store (2)" from_port="through" to_port="result 1"/>
       <connect from_op="Retrieve Artist Recommended By" from_port="output" to_op="Quality Measures (2)" to_port="example set"/>
       <connect from_op="Quality Measures (2)" from_port="example set" to_op="Store (3)" to_port="input"/>
       <connect from_op="Retrieve Artist Recommended By (2)" from_port="output" to_op="Statistics (2)" to_port="example set"/>
-      <connect from_op="Statistics (2)" from_port="statistics" to_op="Store (4)" to_port="input"/>
-      <connect from_op="Store" from_port="through" to_port="result 4"/>
+      <connect from_op="Statistics (2)" from_port="statistics" to_port="result 3"/>
       <connect from_op="Store (3)" from_port="through" to_port="result 2"/>
-      <connect from_op="Store (4)" from_port="through" to_port="result 3"/>
       <portSpacing port="source_input 1" spacing="0"/>
       <portSpacing port="sink_result 1" spacing="0"/>
       <portSpacing port="sink_result 2" spacing="0"/>
