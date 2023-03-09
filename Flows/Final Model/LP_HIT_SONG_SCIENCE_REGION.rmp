@@ -27,7 +27,7 @@
       </operator>
       <operator activated="true" class="blending:generate_columns" compatibility="10.1.001" expanded="true" height="82" name="Generate Label" width="90" x="313" y="34">
         <list key="function_descriptions">
-          <parameter key="TopSong" value="popularity&gt;75"/>
+          <parameter key="TopSong" value="popularity&gt;70"/>
         </list>
         <parameter key="keep_all_columns" value="true"/>
       </operator>
