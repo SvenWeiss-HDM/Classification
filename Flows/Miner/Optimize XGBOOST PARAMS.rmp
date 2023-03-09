@@ -27,7 +27,7 @@
         <parameter key="select_subset" value="average(ChartsMinPos)␞id␞name␞Top_Song␞Top_Song2"/>
         <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
       </operator>
-      <operator activated="true" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data (5)" width="90" x="447" y="289">
+      <operator activated="true" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data (5)" width="90" x="447" y="442">
         <enumeration key="partitions">
           <parameter key="ratio" value="0.8"/>
           <parameter key="ratio" value="0.2"/>
@@ -36,7 +36,7 @@
         <parameter key="use_local_random_seed" value="false"/>
         <parameter key="local_random_seed" value="1992"/>
       </operator>
-      <operator activated="true" class="concurrency:optimize_parameters_grid" compatibility="10.1.001" expanded="true" height="145" name="Optimize Parameters (Grid)" width="90" x="581" y="136">
+      <operator activated="true" class="concurrency:optimize_parameters_grid" compatibility="10.1.001" expanded="true" height="145" name="Optimize Parameters (Grid)" width="90" x="648" y="289">
         <list key="parameters">
           <parameter key="XGBoost (2).booster" value="tree booster,linear booster,DART"/>
           <parameter key="XGBoost (2).learning_rate" value="[0.0;1.0;10;linear]"/>
@@ -229,16 +229,16 @@
           <portSpacing port="sink_output 2" spacing="0"/>
         </process>
       </operator>
-      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store" width="90" x="782" y="187">
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store Parameters" width="90" x="782" y="340">
         <parameter key="repository_entry" value="../Results/Parameters/Parameters XGBOOST"/>
       </operator>
-      <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (7)" width="90" x="715" y="391">
+      <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (7)" width="90" x="849" y="442">
         <list key="application_parameters"/>
       </operator>
-      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (3)" width="90" x="849" y="493">
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store Model" width="90" x="1050" y="493">
         <parameter key="repository_entry" value="../Results/Models/Model Performance XGBoost"/>
       </operator>
-      <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance XGBOOST Charrs with followers" width="90" x="849" y="391">
+      <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance XGBOOST Charrs with followers" width="90" x="1184" y="340">
         <parameter key="manually_set_positive_class" value="false"/>
         <parameter key="main_criterion" value="first"/>
         <parameter key="accuracy" value="true"/>
@@ -265,7 +265,7 @@
         <parameter key="skip_undefined_labels" value="true"/>
         <parameter key="use_example_weights" value="true"/>
       </operator>
-      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (2)" width="90" x="983" y="289">
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store Performance" width="90" x="1385" y="340">
         <parameter key="repository_entry" value="../Results/Parameters/Performance XGBOOST"/>
       </operator>
       <connect from_op="Retrieve Cleanset_Charts" from_port="output" to_op="Set Role" to_port="example set input"/>
@@ -274,20 +274,27 @@
       <connect from_op="Split Data (5)" from_port="partition 1" to_op="Optimize Parameters (Grid)" to_port="input 1"/>
       <connect from_op="Split Data (5)" from_port="partition 2" to_op="Apply Model (7)" to_port="unlabelled data"/>
       <connect from_op="Optimize Parameters (Grid)" from_port="model" to_op="Apply Model (7)" to_port="model"/>
-      <connect from_op="Optimize Parameters (Grid)" from_port="parameter set" to_op="Store" to_port="input"/>
-      <connect from_op="Optimize Parameters (Grid)" from_port="output 1" to_port="result 1"/>
-      <connect from_op="Store" from_port="through" to_port="result 2"/>
+      <connect from_op="Optimize Parameters (Grid)" from_port="parameter set" to_op="Store Parameters" to_port="input"/>
+      <connect from_op="Optimize Parameters (Grid)" from_port="output 1" to_op="Performance XGBOOST Charrs with followers" to_port="performance"/>
+      <connect from_op="Store Parameters" from_port="through" to_port="result 2"/>
       <connect from_op="Apply Model (7)" from_port="labelled data" to_op="Performance XGBOOST Charrs with followers" to_port="labelled data"/>
-      <connect from_op="Apply Model (7)" from_port="model" to_op="Store (3)" to_port="input"/>
-      <connect from_op="Store (3)" from_port="through" to_port="result 4"/>
-      <connect from_op="Performance XGBOOST Charrs with followers" from_port="performance" to_op="Store (2)" to_port="input"/>
-      <connect from_op="Store (2)" from_port="through" to_port="result 3"/>
+      <connect from_op="Apply Model (7)" from_port="model" to_op="Store Model" to_port="input"/>
+      <connect from_op="Store Model" from_port="through" to_port="result 4"/>
+      <connect from_op="Performance XGBOOST Charrs with followers" from_port="performance" to_op="Store Performance" to_port="input"/>
+      <connect from_op="Performance XGBOOST Charrs with followers" from_port="example set" to_port="result 1"/>
+      <connect from_op="Store Performance" from_port="through" to_port="result 3"/>
       <portSpacing port="source_input 1" spacing="0"/>
       <portSpacing port="sink_result 1" spacing="0"/>
       <portSpacing port="sink_result 2" spacing="0"/>
       <portSpacing port="sink_result 3" spacing="0"/>
       <portSpacing port="sink_result 4" spacing="0"/>
       <portSpacing port="sink_result 5" spacing="0"/>
+      <description align="center" color="gray" colored="true" height="105" resized="false" width="180" x="130" y="407">Select Required Top Song to Train and optimize model on</description>
+      <description align="center" color="gray" colored="true" height="105" resized="false" width="180" x="275" y="175">Exclude unwanted and derived Attributes</description>
+      <description align="center" color="gray" colored="true" height="105" resized="false" width="180" x="405" y="552">Train Test Split</description>
+      <description align="center" color="gray" colored="true" height="105" resized="false" width="180" x="604" y="187">Optimize Parameters</description>
+      <description align="center" color="gray" colored="true" height="105" resized="false" width="180" x="804" y="534">Apply Model with Test Data</description>
+      <description align="center" color="gray" colored="true" height="105" resized="false" width="180" x="1199" y="438">Measure Performance</description>
     </process>
   </operator>
 </process>
