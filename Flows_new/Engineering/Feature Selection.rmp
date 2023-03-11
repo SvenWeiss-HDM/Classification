@@ -298,7 +298,7 @@
         <process expanded="true">
           <operator activated="true" class="optimize_selection_forward" compatibility="10.1.001" expanded="true" height="103" name="Forward Selection (2)" width="90" x="179" y="34">
             <parameter key="maximal_number_of_attributes" value="10"/>
-            <parameter key="speculative_rounds" value="0"/>
+            <parameter key="speculative_rounds" value="10"/>
             <parameter key="stopping_behavior" value="without increase"/>
             <parameter key="use_relative_increase" value="true"/>
             <parameter key="alpha" value="0.05"/>
@@ -418,10 +418,10 @@
           <portSpacing port="sink_through 1" spacing="0"/>
         </process>
         <process expanded="true">
-          <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (2)" width="90" x="179" y="85">
+          <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (2)" width="90" x="179" y="34">
             <list key="application_parameters"/>
           </operator>
-          <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance (2)" width="90" x="313" y="85">
+          <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance (2)" width="90" x="313" y="34">
             <parameter key="manually_set_positive_class" value="true"/>
             <parameter key="positive_class" value="true"/>
             <parameter key="main_criterion" value="AUC"/>
@@ -466,7 +466,6 @@
       <portSpacing port="source_input 1" spacing="0"/>
       <portSpacing port="sink_result 1" spacing="0"/>
       <portSpacing port="sink_result 2" spacing="0"/>
-      <description align="center" color="yellow" colored="false" height="105" resized="false" width="180" x="438" y="312">Type your comment</description>
     </process>
   </operator>
 </process>
