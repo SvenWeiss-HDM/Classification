@@ -265,7 +265,7 @@
         <parameter key="skip_undefined_labels" value="true"/>
         <parameter key="use_example_weights" value="true"/>
       </operator>
-      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store Performance" width="90" x="1385" y="340">
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store Performance" width="90" x="1385" y="289">
         <parameter key="repository_entry" value="../Results/Parameters/Performance XGBOOST"/>
       </operator>
       <connect from_op="Retrieve Cleanset_Charts" from_port="output" to_op="Set Role" to_port="example set input"/>
