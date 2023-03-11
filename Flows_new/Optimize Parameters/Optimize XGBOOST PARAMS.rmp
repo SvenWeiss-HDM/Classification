@@ -49,7 +49,7 @@
         <parameter key="synchronize" value="false"/>
         <parameter key="enable_parallel_execution" value="true"/>
         <process expanded="true">
-          <operator activated="false" class="split_validation" compatibility="10.1.001" expanded="true" height="124" name="Validation (2)" width="90" x="447" y="34">
+          <operator activated="true" class="split_validation" compatibility="10.1.001" expanded="true" height="124" name="Validation (2)" width="90" x="447" y="34">
             <parameter key="create_complete_model" value="false"/>
             <parameter key="split" value="relative"/>
             <parameter key="split_ratio" value="0.7"/>
@@ -135,7 +135,7 @@
               <portSpacing port="sink_averagable 2" spacing="0"/>
             </process>
           </operator>
-          <operator activated="true" class="concurrency:cross_validation" compatibility="10.1.001" expanded="true" height="145" name="Cross Validation" width="90" x="447" y="187">
+          <operator activated="false" class="concurrency:cross_validation" compatibility="10.1.001" expanded="true" height="145" name="Cross Validation" width="90" x="447" y="238">
             <parameter key="split_on_batch_attribute" value="false"/>
             <parameter key="leave_one_out" value="false"/>
             <parameter key="number_of_folds" value="10"/>
@@ -218,9 +218,9 @@
               <portSpacing port="sink_performance 2" spacing="0"/>
             </process>
           </operator>
-          <connect from_port="input 1" to_op="Cross Validation" to_port="example set"/>
-          <connect from_op="Cross Validation" from_port="model" to_port="model"/>
-          <connect from_op="Cross Validation" from_port="performance 1" to_port="performance"/>
+          <connect from_port="input 1" to_op="Validation (2)" to_port="training"/>
+          <connect from_op="Validation (2)" from_port="model" to_port="model"/>
+          <connect from_op="Validation (2)" from_port="averagable 1" to_port="performance"/>
           <portSpacing port="source_input 1" spacing="0"/>
           <portSpacing port="source_input 2" spacing="0"/>
           <portSpacing port="sink_performance" spacing="0"/>
