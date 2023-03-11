@@ -673,7 +673,65 @@
       <operator activated="false" class="store" compatibility="10.1.001" expanded="true" height="68" name="PerfGradBoostedTree" width="90" x="1720" y="748">
         <parameter key="repository_entry" value="Result Gradient Boosted Tree Sampled"/>
       </operator>
-      <operator activated="false" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data (2)" width="90" x="1117" y="493">
+      <operator activated="true" class="multiply" compatibility="10.1.001" expanded="true" height="103" name="Multiply (2)" width="90" x="581" y="391"/>
+      <operator activated="true" class="blending:select_attributes" compatibility="10.1.001" expanded="true" height="82" name="Select Attributes (2)" width="90" x="782" y="391">
+        <parameter key="type" value="include attributes"/>
+        <parameter key="attribute_filter_type" value="a subset"/>
+        <parameter key="select_attribute" value=""/>
+        <parameter key="select_subset" value="id"/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
+      </operator>
+      <operator activated="true" class="blending:select_attributes" compatibility="10.1.001" expanded="true" height="82" name="Select Attributes" width="90" x="782" y="595">
+        <parameter key="type" value="exclude attributes"/>
+        <parameter key="attribute_filter_type" value="a subset"/>
+        <parameter key="select_attribute" value=""/>
+        <parameter key="select_subset" value="␞artists␞ChartsArtists␞ChartsArtistsGenres␞ChartsCountry␞ChartsMinPos␞ChartsName␞ChartsTrackId␞id_artists␞minimum(ChartsMinPos)␞name␞popularity␞release_date"/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
+      </operator>
+      <operator activated="true" class="filter_examples" compatibility="10.1.001" expanded="true" height="103" name="Filter Examples" width="90" x="916" y="595">
+        <parameter key="parameter_expression" value=""/>
+        <parameter key="condition_class" value="custom_filters"/>
+        <parameter key="invert_filter" value="false"/>
+        <list key="filters_list">
+          <parameter key="filters_entry_key" value="Top_Song2.is_not_missing."/>
+          <parameter key="filters_entry_key" value="Chartsduration.is_not_missing."/>
+        </list>
+        <parameter key="filters_logic_and" value="true"/>
+        <parameter key="filters_check_metadata" value="true"/>
+      </operator>
+      <operator activated="true" class="sample" compatibility="10.1.001" expanded="true" height="82" name="Sample" width="90" x="916" y="391">
+        <parameter key="sample" value="absolute"/>
+        <parameter key="balance_data" value="true"/>
+        <parameter key="sample_size" value="100"/>
+        <parameter key="sample_ratio" value="0.1"/>
+        <parameter key="sample_probability" value="0.1"/>
+        <list key="sample_size_per_class">
+          <parameter key="true" value="6000"/>
+          <parameter key="false" value="6000"/>
+        </list>
+        <list key="sample_ratio_per_class"/>
+        <list key="sample_probability_per_class"/>
+        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="local_random_seed" value="1992"/>
+      </operator>
+      <operator activated="true" class="concurrency:join" compatibility="10.1.001" expanded="true" height="82" name="Join" width="90" x="1050" y="391">
+        <parameter key="remove_double_attributes" value="true"/>
+        <parameter key="join_type" value="left"/>
+        <parameter key="use_id_attribute_as_key" value="false"/>
+        <list key="key_attributes">
+          <parameter key="id" value="id"/>
+        </list>
+        <parameter key="keep_both_join_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="blending:select_attributes" compatibility="10.1.001" expanded="true" height="82" name="Select Attributes (4)" width="90" x="1184" y="391">
+        <parameter key="type" value="exclude attributes"/>
+        <parameter key="attribute_filter_type" value="a subset"/>
+        <parameter key="select_attribute" value=""/>
+        <parameter key="select_subset" value="␞artists␞ChartsArtists␞ChartsArtistsGenres␞ChartsCountry␞ChartsMinPos␞ChartsName␞ChartsTrackId␞id_artists␞minimum(ChartsMinPos)␞name␞popularity␞release_date␞id"/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
+      </operator>
+      <operator activated="true" class="multiply" compatibility="10.1.001" expanded="true" height="82" name="Multiply" width="90" x="1385" y="391"/>
+      <operator activated="true" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data (2)" width="90" x="1452" y="493">
         <enumeration key="partitions">
           <parameter key="ratio" value="0.8"/>
           <parameter key="ratio" value="0.2"/>
@@ -682,7 +740,7 @@
         <parameter key="use_local_random_seed" value="false"/>
         <parameter key="local_random_seed" value="1992"/>
       </operator>
-      <operator activated="false" class="concurrency:optimize_parameters_grid" compatibility="10.1.001" expanded="true" height="187" name="Optimize Parameters (Grid) (2)" width="90" x="1586" y="340">
+      <operator activated="true" class="concurrency:optimize_parameters_grid" compatibility="10.1.001" expanded="true" height="187" name="Optimize Parameters (Grid) (2)" width="90" x="1586" y="340">
         <list key="parameters">
           <parameter key="Random Forest.number_of_trees" value="[1.0;100.0;2;linear]"/>
           <parameter key="Random Forest.maximal_depth" value="[0.0;0.0;0;linear]"/>
@@ -705,7 +763,7 @@
               <operator activated="true" class="concurrency:parallel_random_forest" compatibility="10.1.001" expanded="true" height="103" name="Random Forest" width="90" x="246" y="85">
                 <parameter key="number_of_trees" value="100"/>
                 <parameter key="criterion" value="gain_ratio"/>
-                <parameter key="maximal_depth" value="10"/>
+                <parameter key="maximal_depth" value="100"/>
                 <parameter key="apply_pruning" value="false"/>
                 <parameter key="confidence" value="0.1"/>
                 <parameter key="apply_prepruning" value="false"/>
@@ -721,8 +779,12 @@
                 <parameter key="local_random_seed" value="1992"/>
                 <parameter key="enable_parallel_execution" value="true"/>
               </operator>
+              <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (2)" width="90" x="380" y="187">
+                <parameter key="repository_entry" value="weights Random Forest"/>
+              </operator>
               <connect from_port="training set" to_op="Random Forest" to_port="training set"/>
               <connect from_op="Random Forest" from_port="model" to_port="model"/>
+              <connect from_op="Random Forest" from_port="weights" to_op="Store (2)" to_port="input"/>
               <portSpacing port="source_training set" spacing="0"/>
               <portSpacing port="sink_model" spacing="0"/>
               <portSpacing port="sink_through 1" spacing="0"/>
@@ -789,13 +851,13 @@
           <portSpacing port="sink_output 4" spacing="0"/>
         </process>
       </operator>
-      <operator activated="false" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (4)" width="90" x="1720" y="493">
+      <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (4)" width="90" x="1720" y="493">
         <list key="application_parameters"/>
       </operator>
-      <operator activated="false" class="store" compatibility="10.1.001" expanded="true" height="68" name="Model RandomForest" width="90" x="1653" y="595">
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Model RandomForest" width="90" x="1653" y="595">
         <parameter key="repository_entry" value="Model Random Forest Sampled"/>
       </operator>
-      <operator activated="false" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance Random Forest" width="90" x="1854" y="442">
+      <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance Random Forest" width="90" x="1854" y="442">
         <parameter key="manually_set_positive_class" value="false"/>
         <parameter key="main_criterion" value="first"/>
         <parameter key="accuracy" value="true"/>
@@ -822,68 +884,10 @@
         <parameter key="skip_undefined_labels" value="true"/>
         <parameter key="use_example_weights" value="true"/>
       </operator>
-      <operator activated="false" class="store" compatibility="10.1.001" expanded="true" height="68" name="Performance RandomForest" width="90" x="1988" y="442">
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Performance RandomForest" width="90" x="1988" y="442">
         <parameter key="repository_entry" value="Result_Random Forest Sampled"/>
       </operator>
-      <operator activated="true" class="multiply" compatibility="10.1.001" expanded="true" height="103" name="Multiply (2)" width="90" x="581" y="391"/>
-      <operator activated="true" class="blending:select_attributes" compatibility="10.1.001" expanded="true" height="82" name="Select Attributes (2)" width="90" x="782" y="391">
-        <parameter key="type" value="include attributes"/>
-        <parameter key="attribute_filter_type" value="a subset"/>
-        <parameter key="select_attribute" value=""/>
-        <parameter key="select_subset" value="id"/>
-        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
-      </operator>
-      <operator activated="true" class="blending:select_attributes" compatibility="10.1.001" expanded="true" height="82" name="Select Attributes" width="90" x="782" y="595">
-        <parameter key="type" value="exclude attributes"/>
-        <parameter key="attribute_filter_type" value="a subset"/>
-        <parameter key="select_attribute" value=""/>
-        <parameter key="select_subset" value="␞artists␞ChartsArtists␞ChartsArtistsGenres␞ChartsCountry␞ChartsMinPos␞ChartsName␞ChartsTrackId␞id_artists␞minimum(ChartsMinPos)␞name␞popularity␞release_date"/>
-        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
-      </operator>
-      <operator activated="true" class="filter_examples" compatibility="10.1.001" expanded="true" height="103" name="Filter Examples" width="90" x="916" y="595">
-        <parameter key="parameter_expression" value=""/>
-        <parameter key="condition_class" value="custom_filters"/>
-        <parameter key="invert_filter" value="false"/>
-        <list key="filters_list">
-          <parameter key="filters_entry_key" value="Top_Song2.is_not_missing."/>
-          <parameter key="filters_entry_key" value="Chartsduration.is_not_missing."/>
-        </list>
-        <parameter key="filters_logic_and" value="true"/>
-        <parameter key="filters_check_metadata" value="true"/>
-      </operator>
-      <operator activated="true" class="sample" compatibility="10.1.001" expanded="true" height="82" name="Sample" width="90" x="916" y="391">
-        <parameter key="sample" value="absolute"/>
-        <parameter key="balance_data" value="true"/>
-        <parameter key="sample_size" value="100"/>
-        <parameter key="sample_ratio" value="0.1"/>
-        <parameter key="sample_probability" value="0.1"/>
-        <list key="sample_size_per_class">
-          <parameter key="true" value="6000"/>
-          <parameter key="false" value="6000"/>
-        </list>
-        <list key="sample_ratio_per_class"/>
-        <list key="sample_probability_per_class"/>
-        <parameter key="use_local_random_seed" value="false"/>
-        <parameter key="local_random_seed" value="1992"/>
-      </operator>
-      <operator activated="true" class="concurrency:join" compatibility="10.1.001" expanded="true" height="82" name="Join" width="90" x="1050" y="391">
-        <parameter key="remove_double_attributes" value="true"/>
-        <parameter key="join_type" value="left"/>
-        <parameter key="use_id_attribute_as_key" value="false"/>
-        <list key="key_attributes">
-          <parameter key="id" value="id"/>
-        </list>
-        <parameter key="keep_both_join_attributes" value="false"/>
-      </operator>
-      <operator activated="true" class="blending:select_attributes" compatibility="10.1.001" expanded="true" height="82" name="Select Attributes (4)" width="90" x="1184" y="391">
-        <parameter key="type" value="exclude attributes"/>
-        <parameter key="attribute_filter_type" value="a subset"/>
-        <parameter key="select_attribute" value=""/>
-        <parameter key="select_subset" value="␞artists␞ChartsArtists␞ChartsArtistsGenres␞ChartsCountry␞ChartsMinPos␞ChartsName␞ChartsTrackId␞id_artists␞minimum(ChartsMinPos)␞name␞popularity␞release_date␞id"/>
-        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
-      </operator>
-      <operator activated="true" class="multiply" compatibility="10.1.001" expanded="true" height="82" name="Multiply" width="90" x="1385" y="391"/>
-      <operator activated="true" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data" width="90" x="1251" y="238">
+      <operator activated="false" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data" width="90" x="1251" y="238">
         <enumeration key="partitions">
           <parameter key="ratio" value="0.8"/>
           <parameter key="ratio" value="0.2"/>
@@ -892,7 +896,7 @@
         <parameter key="use_local_random_seed" value="false"/>
         <parameter key="local_random_seed" value="1992"/>
       </operator>
-      <operator activated="true" class="concurrency:optimize_parameters_grid" compatibility="10.1.001" expanded="true" height="187" name="Optimize Parameters (Grid)" width="90" x="1318" y="34">
+      <operator activated="false" class="concurrency:optimize_parameters_grid" compatibility="10.1.001" expanded="true" height="187" name="Optimize Parameters (Grid)" width="90" x="1318" y="34">
         <list key="parameters">
           <parameter key="XGBoost.booster" value="tree booster,linear booster,DART"/>
           <parameter key="XGBoost.rounds" value="[1.0;100.0;10;linear]"/>
@@ -1010,13 +1014,13 @@
           <portSpacing port="sink_output 4" spacing="0"/>
         </process>
       </operator>
-      <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (2)" width="90" x="1452" y="85">
+      <operator activated="false" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (2)" width="90" x="1452" y="85">
         <list key="application_parameters"/>
       </operator>
-      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Model XgBoost" width="90" x="1653" y="136">
+      <operator activated="false" class="store" compatibility="10.1.001" expanded="true" height="68" name="Model XgBoost" width="90" x="1653" y="136">
         <parameter key="repository_entry" value="Model XGBOOST"/>
       </operator>
-      <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance XGBOOST" width="90" x="1653" y="34">
+      <operator activated="false" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance XGBOOST" width="90" x="1653" y="34">
         <parameter key="manually_set_positive_class" value="false"/>
         <parameter key="main_criterion" value="first"/>
         <parameter key="accuracy" value="true"/>
@@ -1043,7 +1047,7 @@
         <parameter key="skip_undefined_labels" value="true"/>
         <parameter key="use_example_weights" value="true"/>
       </operator>
-      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Performance XGboost" width="90" x="1787" y="34">
+      <operator activated="false" class="store" compatibility="10.1.001" expanded="true" height="68" name="Performance XGboost" width="90" x="1787" y="34">
         <parameter key="repository_entry" value="Result XGBOOST"/>
       </operator>
       <connect from_op="Retrieve FinTable" from_port="output" to_op="Aggregate" to_port="example set input"/>
@@ -1072,12 +1076,6 @@
       <connect from_op="Apply Model (6)" from_port="labelled data" to_op="Performance Gradient Boosted Tree" to_port="labelled data"/>
       <connect from_op="Apply Model (6)" from_port="model" to_op="ModelGradBoostedTree" to_port="input"/>
       <connect from_op="Performance Gradient Boosted Tree" from_port="performance" to_op="PerfGradBoostedTree" to_port="input"/>
-      <connect from_op="Split Data (2)" from_port="partition 1" to_op="Optimize Parameters (Grid) (2)" to_port="input 1"/>
-      <connect from_op="Split Data (2)" from_port="partition 2" to_op="Apply Model (4)" to_port="unlabelled data"/>
-      <connect from_op="Optimize Parameters (Grid) (2)" from_port="model" to_op="Apply Model (4)" to_port="model"/>
-      <connect from_op="Apply Model (4)" from_port="labelled data" to_op="Performance Random Forest" to_port="labelled data"/>
-      <connect from_op="Apply Model (4)" from_port="model" to_op="Model RandomForest" to_port="input"/>
-      <connect from_op="Performance Random Forest" from_port="performance" to_op="Performance RandomForest" to_port="input"/>
       <connect from_op="Multiply (2)" from_port="output 1" to_op="Select Attributes" to_port="example set input"/>
       <connect from_op="Multiply (2)" from_port="output 2" to_op="Select Attributes (2)" to_port="example set input"/>
       <connect from_op="Select Attributes (2)" from_port="example set output" to_op="Sample" to_port="example set input"/>
@@ -1086,15 +1084,21 @@
       <connect from_op="Sample" from_port="example set output" to_op="Join" to_port="left"/>
       <connect from_op="Join" from_port="join" to_op="Select Attributes (4)" to_port="example set input"/>
       <connect from_op="Select Attributes (4)" from_port="example set output" to_op="Multiply" to_port="input"/>
-      <connect from_op="Multiply" from_port="output 1" to_op="Split Data" to_port="example set"/>
+      <connect from_op="Multiply" from_port="output 1" to_op="Split Data (2)" to_port="example set"/>
+      <connect from_op="Split Data (2)" from_port="partition 1" to_op="Optimize Parameters (Grid) (2)" to_port="input 1"/>
+      <connect from_op="Split Data (2)" from_port="partition 2" to_op="Apply Model (4)" to_port="unlabelled data"/>
+      <connect from_op="Optimize Parameters (Grid) (2)" from_port="model" to_op="Apply Model (4)" to_port="model"/>
+      <connect from_op="Apply Model (4)" from_port="labelled data" to_op="Performance Random Forest" to_port="labelled data"/>
+      <connect from_op="Apply Model (4)" from_port="model" to_op="Model RandomForest" to_port="input"/>
+      <connect from_op="Model RandomForest" from_port="through" to_port="result 2"/>
+      <connect from_op="Performance Random Forest" from_port="performance" to_op="Performance RandomForest" to_port="input"/>
+      <connect from_op="Performance RandomForest" from_port="through" to_port="result 1"/>
       <connect from_op="Split Data" from_port="partition 1" to_op="Optimize Parameters (Grid)" to_port="input 1"/>
       <connect from_op="Split Data" from_port="partition 2" to_op="Apply Model (2)" to_port="unlabelled data"/>
       <connect from_op="Optimize Parameters (Grid)" from_port="model" to_op="Apply Model (2)" to_port="model"/>
       <connect from_op="Apply Model (2)" from_port="labelled data" to_op="Performance XGBOOST" to_port="labelled data"/>
       <connect from_op="Apply Model (2)" from_port="model" to_op="Model XgBoost" to_port="input"/>
-      <connect from_op="Model XgBoost" from_port="through" to_port="result 2"/>
       <connect from_op="Performance XGBOOST" from_port="performance" to_op="Performance XGboost" to_port="input"/>
-      <connect from_op="Performance XGboost" from_port="through" to_port="result 1"/>
       <portSpacing port="source_input 1" spacing="0"/>
       <portSpacing port="sink_result 1" spacing="0"/>
       <portSpacing port="sink_result 2" spacing="0"/>

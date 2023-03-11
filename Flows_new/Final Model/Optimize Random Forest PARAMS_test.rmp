@@ -31,7 +31,7 @@
         <parameter key="use_local_random_seed" value="true"/>
         <parameter key="local_random_seed" value="1992"/>
       </operator>
-      <operator activated="true" class="concurrency:optimize_parameters_grid" compatibility="10.1.001" expanded="true" height="124" name="Optimize Parameters (Grid)" width="90" x="581" y="136">
+      <operator activated="true" class="concurrency:optimize_parameters_grid" compatibility="10.1.001" expanded="true" height="124" name="Optimize Parameters (Grid)" width="90" x="648" y="187">
         <list key="parameters">
           <parameter key="Random Forest.criterion" value="gini_index"/>
           <parameter key="Random Forest.number_of_trees" value="[1.0;100.0;10;linear]"/>
