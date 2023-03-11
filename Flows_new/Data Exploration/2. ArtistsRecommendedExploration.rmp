@@ -15,7 +15,7 @@
       <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Artist Recommended By" width="90" x="112" y="34">
         <parameter key="repository_entry" value="../../Data/Datasets Rapidminer/Artist Recommended By"/>
       </operator>
-      <operator activated="true" class="concurrency:correlation_matrix" compatibility="10.1.001" expanded="true" height="103" name="Correlation Matrix" width="90" x="514" y="34">
+      <operator activated="true" class="concurrency:correlation_matrix" compatibility="10.1.001" expanded="true" height="103" name="Correlation Matrix" width="90" x="246" y="34">
         <parameter key="attribute_filter_type" value="subset"/>
         <parameter key="attribute" value=""/>
         <parameter key="attributes" value="id|name|time_signature"/>
@@ -31,10 +31,10 @@
         <parameter key="normalize_weights" value="true"/>
         <parameter key="squared_correlation" value="false"/>
       </operator>
-      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store" width="90" x="648" y="34">
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store" width="90" x="380" y="34">
         <parameter key="repository_entry" value="../Results/ArtistsRecommended/DataExplorationResults/ArtistRecommendedBy_Exploration"/>
       </operator>
-      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (2)" width="90" x="648" y="136">
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (2)" width="90" x="380" y="136">
         <parameter key="repository_entry" value="../Results/DataExplorationResults/ArtistsRecommended/ArtistRecommendedBy_CorrelationMatrix"/>
       </operator>
       <connect from_op="Retrieve Artist Recommended By" from_port="output" to_op="Correlation Matrix" to_port="example set"/>
@@ -46,7 +46,7 @@
       <portSpacing port="sink_result 1" spacing="0"/>
       <portSpacing port="sink_result 2" spacing="0"/>
       <portSpacing port="sink_result 3" spacing="0"/>
-      <description align="center" color="yellow" colored="false" height="105" resized="false" width="180" x="94" y="302">Artists Recommended By come from the Jupyter Notebook which uses the Artists_Recommended.json&lt;br&gt;</description>
+      <description align="center" color="yellow" colored="false" height="105" resized="false" width="180" x="82" y="205">Artists Recommended By come from the Jupyter Notebook which uses the Artists_Recommended.json&lt;br&gt;</description>
     </process>
   </operator>
 </process>
