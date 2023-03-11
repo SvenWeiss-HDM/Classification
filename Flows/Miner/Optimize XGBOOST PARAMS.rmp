@@ -39,9 +39,9 @@
       <operator activated="true" class="concurrency:optimize_parameters_grid" compatibility="10.1.001" expanded="true" height="145" name="Optimize Parameters (Grid)" width="90" x="648" y="289">
         <list key="parameters">
           <parameter key="XGBoost (2).booster" value="tree booster,linear booster,DART"/>
-          <parameter key="XGBoost (2).learning_rate" value="[0.0;1.0;10;linear]"/>
-          <parameter key="XGBoost (2).max_depth" value="[0.0;100.0;10;linear]"/>
+          <parameter key="XGBoost (2).learning_rate" value="[0.0;1.0;10;logarithmic (legacy)]"/>
           <parameter key="XGBoost (2).alpha" value="[0;1;10;logarithmic (legacy)]"/>
+          <parameter key="XGBoost (2).rounds" value="[1.0;100.0;10;linear]"/>
         </list>
         <parameter key="error_handling" value="fail on error"/>
         <parameter key="log_performance" value="true"/>
@@ -146,7 +146,7 @@
             <process expanded="true">
               <operator activated="true" class="xgboost:xgboost" compatibility="0.1.003" expanded="true" height="103" name="XGBoost" width="90" x="246" y="85">
                 <parameter key="booster" value="tree booster"/>
-                <parameter key="rounds" value="250"/>
+                <parameter key="rounds" value="50"/>
                 <parameter key="early_stopping" value="auto"/>
                 <parameter key="early_stopping_rounds" value="25"/>
                 <parameter key="learning_rate" value="0.1"/>
@@ -229,7 +229,7 @@
           <portSpacing port="sink_output 2" spacing="0"/>
         </process>
       </operator>
-      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store Parameters" width="90" x="782" y="340">
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store Parameters" width="90" x="916" y="289">
         <parameter key="repository_entry" value="../Results/Parameters/Parameters XGBOOST"/>
       </operator>
       <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (7)" width="90" x="849" y="442">

@@ -12,9 +12,23 @@
     <parameter key="process_duration_for_mail" value="30"/>
     <parameter key="encoding" value="SYSTEM"/>
     <process expanded="true">
-      <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Cleanset_Charts" width="90" x="179" y="34">
+      <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Cleanset_Charts" width="90" x="45" y="136">
         <parameter key="repository_entry" value="../../Data/Datasets Rapidminer/Cleanset_Charts"/>
       </operator>
+      <operator activated="true" class="filter_examples" compatibility="10.1.001" expanded="true" height="103" name="Filter Examples" width="90" x="179" y="136">
+        <parameter key="parameter_expression" value=""/>
+        <parameter key="condition_class" value="custom_filters"/>
+        <parameter key="invert_filter" value="false"/>
+        <list key="filters_list">
+          <parameter key="filters_entry_key" value="average(Popularity Main Artist).is_not_missing."/>
+          <parameter key="filters_entry_key" value="average(Follower_main_artist).is_not_missing."/>
+          <parameter key="filters_entry_key" value="variance(Popularity Main Artist).is_not_missing."/>
+          <parameter key="filters_entry_key" value="Chartsduration.is_not_missing."/>
+        </list>
+        <parameter key="filters_logic_and" value="true"/>
+        <parameter key="filters_check_metadata" value="true"/>
+      </operator>
+      <operator activated="true" class="multiply" compatibility="10.1.001" expanded="true" height="208" name="Multiply" width="90" x="313" y="136"/>
       <operator activated="true" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data" width="90" x="447" y="34">
         <enumeration key="partitions">
           <parameter key="ratio" value="0.8"/>
@@ -246,7 +260,7 @@
         <list key="application_parameters"/>
       </operator>
       <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (8)" width="90" x="983" y="85">
-        <parameter key="repository_entry" value="../Results/Model Stacking"/>
+        <parameter key="repository_entry" value="../Results/Model Stacking_2"/>
       </operator>
       <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance Stacking" width="90" x="849" y="34">
         <parameter key="manually_set_positive_class" value="false"/>
@@ -275,13 +289,10 @@
         <parameter key="skip_undefined_labels" value="true"/>
         <parameter key="use_example_weights" value="true"/>
       </operator>
-      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store" width="90" x="983" y="34">
-        <parameter key="repository_entry" value="../Results/PERF_Charts_Ensemble_Stacking_ALL"/>
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store" width="90" x="1050" y="34">
+        <parameter key="repository_entry" value="../Results/PERF_Charts_Ensemble_Stacking_ALL_2"/>
       </operator>
-      <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Cleanset_Charts (2)" width="90" x="179" y="187">
-        <parameter key="repository_entry" value="../../Data/Datasets Rapidminer/Cleanset_Charts"/>
-      </operator>
-      <operator activated="true" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data (2)" width="90" x="447" y="187">
+      <operator activated="true" breakpoints="after" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data (2)" width="90" x="447" y="187">
         <enumeration key="partitions">
           <parameter key="ratio" value="0.8"/>
           <parameter key="ratio" value="0.2"/>
@@ -481,13 +492,13 @@
           <portSpacing port="sink_performance 2" spacing="0"/>
         </process>
       </operator>
-      <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (4)" width="90" x="715" y="187">
+      <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (4)" width="90" x="782" y="187">
         <list key="application_parameters"/>
       </operator>
-      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (9)" width="90" x="983" y="238">
-        <parameter key="repository_entry" value="../Results/Model Voting"/>
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (9)" width="90" x="1050" y="238">
+        <parameter key="repository_entry" value="../Results/Model Voting2"/>
       </operator>
-      <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance Voting" width="90" x="849" y="187">
+      <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance Voting" width="90" x="916" y="187">
         <parameter key="manually_set_positive_class" value="false"/>
         <parameter key="main_criterion" value="first"/>
         <parameter key="accuracy" value="true"/>
@@ -514,11 +525,8 @@
         <parameter key="skip_undefined_labels" value="true"/>
         <parameter key="use_example_weights" value="true"/>
       </operator>
-      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (2)" width="90" x="983" y="187">
-        <parameter key="repository_entry" value="../Results/PERF_Charts_Ensemble_Voting_ALL"/>
-      </operator>
-      <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Cleanset_Charts (3)" width="90" x="179" y="340">
-        <parameter key="repository_entry" value="../../Data/Datasets Rapidminer/Cleanset_Charts"/>
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (2)" width="90" x="1050" y="187">
+        <parameter key="repository_entry" value="../Results/PERF_Charts_Ensemble_Voting_ALL2"/>
       </operator>
       <operator activated="true" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data (3)" width="90" x="447" y="340">
         <enumeration key="partitions">
@@ -659,9 +667,6 @@
       <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (3)" width="90" x="983" y="340">
         <parameter key="repository_entry" value="../Results/PERF_Charts_Ensemble_Bagging_XGBOOST"/>
       </operator>
-      <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Cleanset_Charts (4)" width="90" x="179" y="493">
-        <parameter key="repository_entry" value="../../Data/Datasets Rapidminer/Cleanset_Charts"/>
-      </operator>
       <operator activated="true" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data (4)" width="90" x="447" y="493">
         <enumeration key="partitions">
           <parameter key="ratio" value="0.8"/>
@@ -797,9 +802,6 @@
       </operator>
       <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (4)" width="90" x="983" y="493">
         <parameter key="repository_entry" value="../Results/PERF_Charts_Ensemble_Bagging_RNDFOREST"/>
-      </operator>
-      <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Cleanset_Charts (5)" width="90" x="179" y="646">
-        <parameter key="repository_entry" value="../../Data/Datasets Rapidminer/Cleanset_Charts"/>
       </operator>
       <operator activated="true" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data (5)" width="90" x="447" y="646">
         <enumeration key="partitions">
@@ -948,9 +950,6 @@
       <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (5)" width="90" x="983" y="646">
         <parameter key="repository_entry" value="../Results/PERF_Charts_Ensemble_Bagging_SVM"/>
       </operator>
-      <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Cleanset_Charts (6)" width="90" x="179" y="799">
-        <parameter key="repository_entry" value="../../Data/Datasets Rapidminer/Cleanset_Charts"/>
-      </operator>
       <operator activated="true" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data (6)" width="90" x="447" y="799">
         <enumeration key="partitions">
           <parameter key="ratio" value="0.8"/>
@@ -1088,9 +1087,6 @@
       <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (6)" width="90" x="983" y="799">
         <parameter key="repository_entry" value="../Results/PERF_Charts_Ensemble_Bagging_LOGREG"/>
       </operator>
-      <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Cleanset_Charts (7)" width="90" x="179" y="952">
-        <parameter key="repository_entry" value="../../Data/Datasets Rapidminer/Cleanset_Charts"/>
-      </operator>
       <operator activated="true" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data (7)" width="90" x="447" y="952">
         <enumeration key="partitions">
           <parameter key="ratio" value="0.8"/>
@@ -1226,85 +1222,60 @@
       <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (7)" width="90" x="983" y="952">
         <parameter key="repository_entry" value="../Results/PERF_Charts_Ensemble_Bagging_KNN"/>
       </operator>
-      <connect from_op="Retrieve Cleanset_Charts" from_port="output" to_op="Split Data" to_port="example set"/>
+      <connect from_op="Retrieve Cleanset_Charts" from_port="output" to_op="Filter Examples" to_port="example set input"/>
+      <connect from_op="Filter Examples" from_port="example set output" to_op="Multiply" to_port="input"/>
+      <connect from_op="Multiply" from_port="output 1" to_op="Split Data (2)" to_port="example set"/>
+      <connect from_op="Multiply" from_port="output 2" to_op="Split Data" to_port="example set"/>
+      <connect from_op="Multiply" from_port="output 3" to_op="Split Data (3)" to_port="example set"/>
+      <connect from_op="Multiply" from_port="output 4" to_op="Split Data (4)" to_port="example set"/>
+      <connect from_op="Multiply" from_port="output 5" to_op="Split Data (5)" to_port="example set"/>
+      <connect from_op="Multiply" from_port="output 6" to_op="Split Data (6)" to_port="example set"/>
+      <connect from_op="Multiply" from_port="output 7" to_op="Split Data (7)" to_port="example set"/>
       <connect from_op="Split Data" from_port="partition 1" to_op="Cross Validation Stacking" to_port="example set"/>
       <connect from_op="Split Data" from_port="partition 2" to_op="Apply Model (2)" to_port="unlabelled data"/>
       <connect from_op="Cross Validation Stacking" from_port="model" to_op="Apply Model (2)" to_port="model"/>
       <connect from_op="Apply Model (2)" from_port="labelled data" to_op="Performance Stacking" to_port="labelled data"/>
       <connect from_op="Apply Model (2)" from_port="model" to_op="Store (8)" to_port="input"/>
-      <connect from_op="Store (8)" from_port="through" to_port="result 8"/>
       <connect from_op="Performance Stacking" from_port="performance" to_op="Store" to_port="input"/>
-      <connect from_op="Store" from_port="through" to_port="result 1"/>
-      <connect from_op="Retrieve Cleanset_Charts (2)" from_port="output" to_op="Split Data (2)" to_port="example set"/>
       <connect from_op="Split Data (2)" from_port="partition 1" to_op="Cross Validation Voting" to_port="example set"/>
       <connect from_op="Split Data (2)" from_port="partition 2" to_op="Apply Model (4)" to_port="unlabelled data"/>
       <connect from_op="Cross Validation Voting" from_port="model" to_op="Apply Model (4)" to_port="model"/>
       <connect from_op="Apply Model (4)" from_port="labelled data" to_op="Performance Voting" to_port="labelled data"/>
       <connect from_op="Apply Model (4)" from_port="model" to_op="Store (9)" to_port="input"/>
-      <connect from_op="Store (9)" from_port="through" to_port="result 9"/>
       <connect from_op="Performance Voting" from_port="performance" to_op="Store (2)" to_port="input"/>
-      <connect from_op="Store (2)" from_port="through" to_port="result 2"/>
-      <connect from_op="Retrieve Cleanset_Charts (3)" from_port="output" to_op="Split Data (3)" to_port="example set"/>
       <connect from_op="Split Data (3)" from_port="partition 1" to_op="XGB Cross Validation Bagging" to_port="example set"/>
       <connect from_op="Split Data (3)" from_port="partition 2" to_op="Apply Model (6)" to_port="unlabelled data"/>
       <connect from_op="XGB Cross Validation Bagging" from_port="model" to_op="Apply Model (6)" to_port="model"/>
       <connect from_op="Apply Model (6)" from_port="labelled data" to_op="Performance Bagging" to_port="labelled data"/>
       <connect from_op="Apply Model (6)" from_port="model" to_op="Store (10)" to_port="input"/>
-      <connect from_op="Store (10)" from_port="through" to_port="result 10"/>
       <connect from_op="Performance Bagging" from_port="performance" to_op="Store (3)" to_port="input"/>
-      <connect from_op="Store (3)" from_port="through" to_port="result 3"/>
-      <connect from_op="Retrieve Cleanset_Charts (4)" from_port="output" to_op="Split Data (4)" to_port="example set"/>
       <connect from_op="Split Data (4)" from_port="partition 1" to_op="RF Cross Validation Bagging (2)" to_port="example set"/>
       <connect from_op="Split Data (4)" from_port="partition 2" to_op="Apply Model (8)" to_port="unlabelled data"/>
       <connect from_op="RF Cross Validation Bagging (2)" from_port="model" to_op="Apply Model (8)" to_port="model"/>
       <connect from_op="Apply Model (8)" from_port="labelled data" to_op="Performance Bagging (2)" to_port="labelled data"/>
       <connect from_op="Apply Model (8)" from_port="model" to_op="Store (11)" to_port="input"/>
-      <connect from_op="Store (11)" from_port="through" to_port="result 11"/>
       <connect from_op="Performance Bagging (2)" from_port="performance" to_op="Store (4)" to_port="input"/>
-      <connect from_op="Store (4)" from_port="through" to_port="result 4"/>
-      <connect from_op="Retrieve Cleanset_Charts (5)" from_port="output" to_op="Split Data (5)" to_port="example set"/>
       <connect from_op="Split Data (5)" from_port="partition 1" to_op="SVM Cross Validation Bagging" to_port="example set"/>
       <connect from_op="Split Data (5)" from_port="partition 2" to_op="Apply Model (10)" to_port="unlabelled data"/>
       <connect from_op="SVM Cross Validation Bagging" from_port="model" to_op="Apply Model (10)" to_port="model"/>
       <connect from_op="Apply Model (10)" from_port="labelled data" to_op="Performance Bagging (3)" to_port="labelled data"/>
       <connect from_op="Apply Model (10)" from_port="model" to_op="Store (12)" to_port="input"/>
-      <connect from_op="Store (12)" from_port="through" to_port="result 12"/>
       <connect from_op="Performance Bagging (3)" from_port="performance" to_op="Store (5)" to_port="input"/>
-      <connect from_op="Store (5)" from_port="through" to_port="result 5"/>
-      <connect from_op="Retrieve Cleanset_Charts (6)" from_port="output" to_op="Split Data (6)" to_port="example set"/>
       <connect from_op="Split Data (6)" from_port="partition 1" to_op="LogReg Cross Validation Bagging" to_port="example set"/>
       <connect from_op="Split Data (6)" from_port="partition 2" to_op="Apply Model (12)" to_port="unlabelled data"/>
       <connect from_op="LogReg Cross Validation Bagging" from_port="model" to_op="Apply Model (12)" to_port="model"/>
       <connect from_op="Apply Model (12)" from_port="labelled data" to_op="Performance Bagging (4)" to_port="labelled data"/>
       <connect from_op="Apply Model (12)" from_port="model" to_op="Store (13)" to_port="input"/>
-      <connect from_op="Store (13)" from_port="through" to_port="result 13"/>
       <connect from_op="Performance Bagging (4)" from_port="performance" to_op="Store (6)" to_port="input"/>
-      <connect from_op="Store (6)" from_port="through" to_port="result 7"/>
-      <connect from_op="Retrieve Cleanset_Charts (7)" from_port="output" to_op="Split Data (7)" to_port="example set"/>
       <connect from_op="Split Data (7)" from_port="partition 1" to_op="KNN Cross Validation Bagging" to_port="example set"/>
       <connect from_op="Split Data (7)" from_port="partition 2" to_op="Apply Model (14)" to_port="unlabelled data"/>
       <connect from_op="KNN Cross Validation Bagging" from_port="model" to_op="Apply Model (14)" to_port="model"/>
       <connect from_op="Apply Model (14)" from_port="labelled data" to_op="Performance Bagging (5)" to_port="labelled data"/>
       <connect from_op="Apply Model (14)" from_port="model" to_op="Store (14)" to_port="input"/>
-      <connect from_op="Store (14)" from_port="through" to_port="result 14"/>
       <connect from_op="Performance Bagging (5)" from_port="performance" to_op="Store (7)" to_port="input"/>
-      <connect from_op="Store (7)" from_port="through" to_port="result 6"/>
       <portSpacing port="source_input 1" spacing="0"/>
       <portSpacing port="sink_result 1" spacing="0"/>
       <portSpacing port="sink_result 2" spacing="0"/>
-      <portSpacing port="sink_result 3" spacing="0"/>
-      <portSpacing port="sink_result 4" spacing="0"/>
-      <portSpacing port="sink_result 5" spacing="0"/>
-      <portSpacing port="sink_result 6" spacing="0"/>
-      <portSpacing port="sink_result 7" spacing="0"/>
-      <portSpacing port="sink_result 8" spacing="0"/>
-      <portSpacing port="sink_result 9" spacing="0"/>
-      <portSpacing port="sink_result 10" spacing="0"/>
-      <portSpacing port="sink_result 11" spacing="0"/>
-      <portSpacing port="sink_result 12" spacing="0"/>
-      <portSpacing port="sink_result 13" spacing="0"/>
-      <portSpacing port="sink_result 14" spacing="0"/>
-      <portSpacing port="sink_result 15" spacing="0"/>
     </process>
   </operator>
 </process>

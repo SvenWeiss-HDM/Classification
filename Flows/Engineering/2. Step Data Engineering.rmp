@@ -70,6 +70,21 @@
         <parameter key="select_subset" value="Artist_Popularity␞artists␞average(ChartsMinPos)␞ChartsArtists␞ChartsArtistsGenres␞ChartsMinPos␞id_artists␞name␞popularity␞release_date␞Top_Song␞Top_Song2␞instrumentalness␞key␞liveness␞loudness␞mode␞speechiness␞tempo␞time_signature␞valence␞acousticness␞Chartsduration␞danceability␞duration_ms␞energy␞explicit"/>
         <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
       </operator>
+      <operator activated="true" class="sample" compatibility="10.1.001" expanded="true" height="82" name="Sample" width="90" x="916" y="136">
+        <parameter key="sample" value="absolute"/>
+        <parameter key="balance_data" value="true"/>
+        <parameter key="sample_size" value="100"/>
+        <parameter key="sample_ratio" value="0.1"/>
+        <parameter key="sample_probability" value="0.1"/>
+        <list key="sample_size_per_class">
+          <parameter key="true" value="6000"/>
+          <parameter key="false" value="6000"/>
+        </list>
+        <list key="sample_ratio_per_class"/>
+        <list key="sample_probability_per_class"/>
+        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="local_random_seed" value="1992"/>
+      </operator>
       <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Withartistpop (2)" width="90" x="112" y="391">
         <parameter key="repository_entry" value="../../Data/Datasets Rapidminer/Withartistpopandgenre"/>
       </operator>
@@ -93,39 +108,6 @@
         <parameter key="count_all_combinations" value="false"/>
         <parameter key="only_distinct" value="false"/>
         <parameter key="ignore_missings" value="true"/>
-      </operator>
-      <operator activated="true" class="maratool:Sample (Balance)" compatibility="1.4.001" expanded="true" height="82" name="Sample (Balance)" width="90" x="916" y="136">
-        <parameter key="number_of_examples_per_class" value="12000"/>
-        <parameter key="allow_downsampling" value="true"/>
-      </operator>
-      <operator activated="true" class="concurrency:join" compatibility="10.1.001" expanded="true" height="82" name="Join" width="90" x="1050" y="136">
-        <parameter key="remove_double_attributes" value="true"/>
-        <parameter key="join_type" value="inner"/>
-        <parameter key="use_id_attribute_as_key" value="false"/>
-        <list key="key_attributes">
-          <parameter key="id" value="id"/>
-        </list>
-        <parameter key="keep_both_join_attributes" value="false"/>
-      </operator>
-      <operator activated="true" class="blending:select_attributes" compatibility="10.1.001" expanded="true" height="82" name="Select Attributes" width="90" x="1184" y="136">
-        <parameter key="type" value="exclude attributes"/>
-        <parameter key="attribute_filter_type" value="a subset"/>
-        <parameter key="select_attribute" value=""/>
-        <parameter key="select_subset" value="artists␞average(ChartsMinPos)␞ChartsArtists␞ChartsArtistsGenres␞ChartsMinPos␞duration_ms␞id_artists␞name␞Top_Song␞Top_Song2␞artists_1␞artists_2␞artists_3␞artists_4␞artists_5␞artists_6␞artists_7␞artists_8␞artists_9␞artists_10␞artists_11␞artists_12␞artists_13␞artists_14␞artists_15␞artists_16␞artists_17␞artists_18␞artists_19␞artists_20␞artists_21␞artists_22␞artists_23␞artists_24␞artists_25␞artists_26␞artists_27␞artists_28␞artists_29␞artists_30␞artists_31␞artists_32␞artists_33␞artists_34␞artists_35␞artists_36␞artists_37␞artists_38␞artists_39␞artists_40␞id␞id_artists_1␞id_artists_2␞id_artists_3␞id_artists_4␞id_artists_5␞id_artists_6␞id_artists_7␞id_artists_8␞id_artists_9␞id_artists_10␞id_artists_11␞id_artists_12␞id_artists_13␞id_artists_14␞id_artists_15␞id_artists_16␞id_artists_17␞id_artists_18␞id_artists_19␞id_artists_20␞id_artists_21␞id_artists_22␞id_artists_23␞id_artists_24␞id_artists_25␞id_artists_26␞id_artists_27␞id_artists_28␞id_artists_29␞id_artists_30␞id_artists_31␞id_artists_32␞id_artists_33␞id_artists_34␞id_artists_35␞id_artists_36␞id_artists_37␞id_artists_38␞id_artists_39␞ChartsCountry␞ChartsName␞ChartsTrackId␞genres␞name_from_ES2"/>
-        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
-      </operator>
-      <operator activated="true" class="filter_examples" compatibility="10.1.001" expanded="true" height="103" name="Filter Examples" width="90" x="1318" y="136">
-        <parameter key="parameter_expression" value=""/>
-        <parameter key="condition_class" value="custom_filters"/>
-        <parameter key="invert_filter" value="false"/>
-        <list key="filters_list">
-          <parameter key="filters_entry_key" value="Artist_Popularity.is_not_missing."/>
-        </list>
-        <parameter key="filters_logic_and" value="true"/>
-        <parameter key="filters_check_metadata" value="true"/>
-      </operator>
-      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store" width="90" x="1452" y="136">
-        <parameter key="repository_entry" value="../../Data/Datasets Rapidminer/Cleanset_Charts"/>
       </operator>
       <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Withartistpop (3)" width="90" x="112" y="646">
         <parameter key="repository_entry" value="../../Data/Datasets Rapidminer/Withartistpopandgenre"/>
@@ -209,9 +191,49 @@
         <parameter key="only_distinct" value="false"/>
         <parameter key="ignore_missings" value="true"/>
       </operator>
-      <operator activated="true" class="maratool:Sample (Balance)" compatibility="1.4.001" expanded="true" height="82" name="Sample (Balance) (2)" width="90" x="916" y="646">
-        <parameter key="number_of_examples_per_class" value="12000"/>
-        <parameter key="allow_downsampling" value="true"/>
+      <operator activated="true" class="concurrency:join" compatibility="10.1.001" expanded="true" height="82" name="Join" width="90" x="1050" y="136">
+        <parameter key="remove_double_attributes" value="true"/>
+        <parameter key="join_type" value="inner"/>
+        <parameter key="use_id_attribute_as_key" value="false"/>
+        <list key="key_attributes">
+          <parameter key="id" value="id"/>
+        </list>
+        <parameter key="keep_both_join_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="blending:select_attributes" compatibility="10.1.001" expanded="true" height="82" name="Select Attributes" width="90" x="1184" y="136">
+        <parameter key="type" value="exclude attributes"/>
+        <parameter key="attribute_filter_type" value="a subset"/>
+        <parameter key="select_attribute" value=""/>
+        <parameter key="select_subset" value="artists␞average(ChartsMinPos)␞ChartsArtists␞ChartsArtistsGenres␞ChartsMinPos␞duration_ms␞id_artists␞name␞Top_Song␞Top_Song2␞artists_1␞artists_2␞artists_3␞artists_4␞artists_5␞artists_6␞artists_7␞artists_8␞artists_9␞artists_10␞artists_11␞artists_12␞artists_13␞artists_14␞artists_15␞artists_16␞artists_17␞artists_18␞artists_19␞artists_20␞artists_21␞artists_22␞artists_23␞artists_24␞artists_25␞artists_26␞artists_27␞artists_28␞artists_29␞artists_30␞artists_31␞artists_32␞artists_33␞artists_34␞artists_35␞artists_36␞artists_37␞artists_38␞artists_39␞artists_40␞id␞id_artists_1␞id_artists_2␞id_artists_3␞id_artists_4␞id_artists_5␞id_artists_6␞id_artists_7␞id_artists_8␞id_artists_9␞id_artists_10␞id_artists_11␞id_artists_12␞id_artists_13␞id_artists_14␞id_artists_15␞id_artists_16␞id_artists_17␞id_artists_18␞id_artists_19␞id_artists_20␞id_artists_21␞id_artists_22␞id_artists_23␞id_artists_24␞id_artists_25␞id_artists_26␞id_artists_27␞id_artists_28␞id_artists_29␞id_artists_30␞id_artists_31␞id_artists_32␞id_artists_33␞id_artists_34␞id_artists_35␞id_artists_36␞id_artists_37␞id_artists_38␞id_artists_39␞ChartsCountry␞ChartsName␞ChartsTrackId␞genres␞name_from_ES2"/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
+      </operator>
+      <operator activated="true" class="filter_examples" compatibility="10.1.001" expanded="true" height="103" name="Filter Examples" width="90" x="1318" y="136">
+        <parameter key="parameter_expression" value=""/>
+        <parameter key="condition_class" value="custom_filters"/>
+        <parameter key="invert_filter" value="false"/>
+        <list key="filters_list">
+          <parameter key="filters_entry_key" value="Artist_Popularity.is_not_missing."/>
+        </list>
+        <parameter key="filters_logic_and" value="true"/>
+        <parameter key="filters_check_metadata" value="true"/>
+      </operator>
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store" width="90" x="1452" y="136">
+        <parameter key="repository_entry" value="../../Data/Datasets Rapidminer/Cleanset_Charts"/>
+      </operator>
+      <operator activated="true" class="sample" compatibility="10.1.001" expanded="true" height="82" name="Sample (2)" width="90" x="916" y="646">
+        <parameter key="sample" value="absolute"/>
+        <parameter key="balance_data" value="true"/>
+        <parameter key="sample_size" value="100"/>
+        <parameter key="sample_ratio" value="0.1"/>
+        <parameter key="sample_probability" value="0.1"/>
+        <list key="sample_size_per_class">
+          <parameter key="true" value="6000"/>
+          <parameter key="false" value="6000"/>
+        </list>
+        <list key="sample_ratio_per_class"/>
+        <list key="sample_probability_per_class"/>
+        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="local_random_seed" value="1992"/>
       </operator>
       <operator activated="true" class="concurrency:join" compatibility="10.1.001" expanded="true" height="82" name="Join (2)" width="90" x="1050" y="646">
         <parameter key="remove_double_attributes" value="true"/>
@@ -247,22 +269,22 @@
       <connect from_op="Generate Attributes" from_port="table output" to_op="Set Role" to_port="example set input"/>
       <connect from_op="Set Role" from_port="example set output" to_op="Remove Duplicates" to_port="example set input"/>
       <connect from_op="Remove Duplicates" from_port="example set output" to_op="Select Attributes (2)" to_port="example set input"/>
-      <connect from_op="Select Attributes (2)" from_port="example set output" to_op="Sample (Balance)" to_port="example set input"/>
+      <connect from_op="Select Attributes (2)" from_port="example set output" to_op="Sample" to_port="example set input"/>
+      <connect from_op="Sample" from_port="example set output" to_op="Join" to_port="left"/>
       <connect from_op="Retrieve Withartistpop (2)" from_port="output" to_op="Aggregate (2)" to_port="example set input"/>
       <connect from_op="Aggregate (2)" from_port="example set output" to_op="Join" to_port="right"/>
-      <connect from_op="Sample (Balance)" from_port="example set output" to_op="Join" to_port="left"/>
-      <connect from_op="Join" from_port="join" to_op="Select Attributes" to_port="example set input"/>
-      <connect from_op="Select Attributes" from_port="example set output" to_op="Filter Examples" to_port="example set input"/>
-      <connect from_op="Filter Examples" from_port="example set output" to_op="Store" to_port="input"/>
       <connect from_op="Retrieve Withartistpop (3)" from_port="output" to_op="Aggregate (3)" to_port="example set input"/>
       <connect from_op="Aggregate (3)" from_port="example set output" to_op="Generate Attributes (2)" to_port="table input"/>
       <connect from_op="Generate Attributes (2)" from_port="table output" to_op="Set Role (2)" to_port="example set input"/>
       <connect from_op="Set Role (2)" from_port="example set output" to_op="Remove Duplicates (2)" to_port="example set input"/>
       <connect from_op="Remove Duplicates (2)" from_port="example set output" to_op="Select Attributes (3)" to_port="example set input"/>
-      <connect from_op="Select Attributes (3)" from_port="example set output" to_op="Sample (Balance) (2)" to_port="example set input"/>
+      <connect from_op="Select Attributes (3)" from_port="example set output" to_op="Sample (2)" to_port="example set input"/>
       <connect from_op="Retrieve Withartistpop (4)" from_port="output" to_op="Aggregate (4)" to_port="example set input"/>
       <connect from_op="Aggregate (4)" from_port="example set output" to_op="Join (2)" to_port="right"/>
-      <connect from_op="Sample (Balance) (2)" from_port="example set output" to_op="Join (2)" to_port="left"/>
+      <connect from_op="Join" from_port="join" to_op="Select Attributes" to_port="example set input"/>
+      <connect from_op="Select Attributes" from_port="example set output" to_op="Filter Examples" to_port="example set input"/>
+      <connect from_op="Filter Examples" from_port="example set output" to_op="Store" to_port="input"/>
+      <connect from_op="Sample (2)" from_port="example set output" to_op="Join (2)" to_port="left"/>
       <connect from_op="Join (2)" from_port="join" to_op="Select Attributes (4)" to_port="example set input"/>
       <connect from_op="Select Attributes (4)" from_port="example set output" to_op="Filter Examples (2)" to_port="example set input"/>
       <connect from_op="Filter Examples (2)" from_port="example set output" to_op="Store (2)" to_port="input"/>

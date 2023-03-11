@@ -31,7 +31,7 @@
         <parameter key="use_local_random_seed" value="true"/>
         <parameter key="local_random_seed" value="1992"/>
       </operator>
-      <operator activated="true" class="concurrency:cross_validation" compatibility="10.1.001" expanded="true" height="145" name="Cross Validation" width="90" x="581" y="85">
+      <operator activated="false" class="concurrency:cross_validation" compatibility="10.1.001" expanded="true" height="145" name="Cross Validation" width="90" x="849" y="34">
         <parameter key="split_on_batch_attribute" value="false"/>
         <parameter key="leave_one_out" value="false"/>
         <parameter key="number_of_folds" value="10"/>
@@ -116,43 +116,7 @@
           <portSpacing port="sink_performance 2" spacing="0"/>
         </process>
       </operator>
-      <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (7)" width="90" x="782" y="391">
-        <list key="application_parameters"/>
-      </operator>
-      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (3)" width="90" x="1050" y="493">
-        <parameter key="repository_entry" value="../Results/Models/Model Performance Random Forest"/>
-      </operator>
-      <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance Rnd Forest with followers" width="90" x="916" y="289">
-        <parameter key="manually_set_positive_class" value="false"/>
-        <parameter key="main_criterion" value="first"/>
-        <parameter key="accuracy" value="true"/>
-        <parameter key="classification_error" value="false"/>
-        <parameter key="kappa" value="false"/>
-        <parameter key="AUC (optimistic)" value="false"/>
-        <parameter key="AUC" value="true"/>
-        <parameter key="AUC (pessimistic)" value="false"/>
-        <parameter key="precision" value="true"/>
-        <parameter key="recall" value="true"/>
-        <parameter key="lift" value="false"/>
-        <parameter key="fallout" value="false"/>
-        <parameter key="f_measure" value="true"/>
-        <parameter key="false_positive" value="false"/>
-        <parameter key="false_negative" value="false"/>
-        <parameter key="true_positive" value="false"/>
-        <parameter key="true_negative" value="false"/>
-        <parameter key="sensitivity" value="true"/>
-        <parameter key="specificity" value="true"/>
-        <parameter key="youden" value="false"/>
-        <parameter key="positive_predictive_value" value="false"/>
-        <parameter key="negative_predictive_value" value="false"/>
-        <parameter key="psep" value="false"/>
-        <parameter key="skip_undefined_labels" value="true"/>
-        <parameter key="use_example_weights" value="true"/>
-      </operator>
-      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (2)" width="90" x="1050" y="289">
-        <parameter key="repository_entry" value="../Results/Parameters/Performance Random Forest"/>
-      </operator>
-      <operator activated="false" class="concurrency:optimize_parameters_grid" compatibility="10.1.001" expanded="true" height="124" name="Optimize Parameters (Grid)" width="90" x="313" y="34">
+      <operator activated="true" class="concurrency:optimize_parameters_grid" compatibility="10.1.001" expanded="true" height="124" name="Optimize Parameters (Grid)" width="90" x="648" y="136">
         <list key="parameters">
           <parameter key="Random Forest.criterion" value="gini_index"/>
           <parameter key="Random Forest.number_of_trees" value="[1.0;100.0;10;linear]"/>
@@ -193,7 +157,7 @@
                 <parameter key="local_random_seed" value="1992"/>
                 <parameter key="enable_parallel_execution" value="true"/>
               </operator>
-              <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (4)" width="90" x="313" y="187">
+              <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (4)" width="90" x="380" y="187">
                 <parameter key="repository_entry" value="Weights_Random_Forest"/>
               </operator>
               <connect from_port="training set" to_op="Random Forest" to_port="training set"/>
@@ -251,6 +215,7 @@
             </process>
           </operator>
           <connect from_port="input 1" to_op="Cross Validation (2)" to_port="example set"/>
+          <connect from_op="Cross Validation (2)" from_port="model" to_port="model"/>
           <connect from_op="Cross Validation (2)" from_port="performance 1" to_port="performance"/>
           <portSpacing port="source_input 1" spacing="0"/>
           <portSpacing port="source_input 2" spacing="0"/>
@@ -259,11 +224,47 @@
           <portSpacing port="sink_output 1" spacing="0"/>
         </process>
       </operator>
+      <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (7)" width="90" x="782" y="391">
+        <list key="application_parameters"/>
+      </operator>
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (3)" width="90" x="1050" y="493">
+        <parameter key="repository_entry" value="../Results/Models/Model Performance Random Forest"/>
+      </operator>
+      <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance Rnd Forest with followers" width="90" x="916" y="289">
+        <parameter key="manually_set_positive_class" value="false"/>
+        <parameter key="main_criterion" value="first"/>
+        <parameter key="accuracy" value="true"/>
+        <parameter key="classification_error" value="false"/>
+        <parameter key="kappa" value="false"/>
+        <parameter key="AUC (optimistic)" value="false"/>
+        <parameter key="AUC" value="true"/>
+        <parameter key="AUC (pessimistic)" value="false"/>
+        <parameter key="precision" value="true"/>
+        <parameter key="recall" value="true"/>
+        <parameter key="lift" value="false"/>
+        <parameter key="fallout" value="false"/>
+        <parameter key="f_measure" value="true"/>
+        <parameter key="false_positive" value="false"/>
+        <parameter key="false_negative" value="false"/>
+        <parameter key="true_positive" value="false"/>
+        <parameter key="true_negative" value="false"/>
+        <parameter key="sensitivity" value="true"/>
+        <parameter key="specificity" value="true"/>
+        <parameter key="youden" value="false"/>
+        <parameter key="positive_predictive_value" value="false"/>
+        <parameter key="negative_predictive_value" value="false"/>
+        <parameter key="psep" value="false"/>
+        <parameter key="skip_undefined_labels" value="true"/>
+        <parameter key="use_example_weights" value="true"/>
+      </operator>
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (2)" width="90" x="1050" y="289">
+        <parameter key="repository_entry" value="../Results/Parameters/Performance Random Forest"/>
+      </operator>
       <connect from_op="Retrieve Cleanset_Charts" from_port="output" to_op="Select Attributes" to_port="example set input"/>
       <connect from_op="Select Attributes" from_port="example set output" to_op="Split Data (5)" to_port="example set"/>
-      <connect from_op="Split Data (5)" from_port="partition 1" to_op="Cross Validation" to_port="example set"/>
+      <connect from_op="Split Data (5)" from_port="partition 1" to_op="Optimize Parameters (Grid)" to_port="input 1"/>
       <connect from_op="Split Data (5)" from_port="partition 2" to_op="Apply Model (7)" to_port="unlabelled data"/>
-      <connect from_op="Cross Validation" from_port="model" to_op="Apply Model (7)" to_port="model"/>
+      <connect from_op="Optimize Parameters (Grid)" from_port="model" to_op="Apply Model (7)" to_port="model"/>
       <connect from_op="Apply Model (7)" from_port="labelled data" to_op="Performance Rnd Forest with followers" to_port="labelled data"/>
       <connect from_op="Apply Model (7)" from_port="model" to_op="Store (3)" to_port="input"/>
       <connect from_op="Store (3)" from_port="through" to_port="result 1"/>
