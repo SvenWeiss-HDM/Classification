@@ -15,8 +15,8 @@
       <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Cleanset_Charts_Unbalanced" width="90" x="179" y="187">
         <parameter key="repository_entry" value="//GitRepoGrp2/Data/Datasets Rapidminer/Cleanset_Charts_Unbalanced"/>
       </operator>
-      <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Model Bagging Random Forest" width="90" x="179" y="85">
-        <parameter key="repository_entry" value="../Results/Models/Model Bagging Random Forest"/>
+      <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Model Stacking_2" width="90" x="179" y="85">
+        <parameter key="repository_entry" value="../Results/Models/Model Stacking_2"/>
       </operator>
       <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model" width="90" x="581" y="85">
         <list key="application_parameters"/>
@@ -52,7 +52,7 @@
         <parameter key="repository_entry" value="Performance_Real_World"/>
       </operator>
       <connect from_op="Retrieve Cleanset_Charts_Unbalanced" from_port="output" to_op="Apply Model" to_port="unlabelled data"/>
-      <connect from_op="Retrieve Model Bagging Random Forest" from_port="output" to_op="Apply Model" to_port="model"/>
+      <connect from_op="Retrieve Model Stacking_2" from_port="output" to_op="Apply Model" to_port="model"/>
       <connect from_op="Apply Model" from_port="labelled data" to_op="Performance" to_port="labelled data"/>
       <connect from_op="Performance" from_port="performance" to_op="Store" to_port="input"/>
       <connect from_op="Store" from_port="through" to_port="result 1"/>

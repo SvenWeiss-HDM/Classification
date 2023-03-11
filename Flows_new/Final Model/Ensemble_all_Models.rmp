@@ -15,7 +15,7 @@
       <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Cleanset_Charts" width="90" x="45" y="136">
         <parameter key="repository_entry" value="../../Data/Datasets Rapidminer/Cleanset_Charts"/>
       </operator>
-      <operator activated="true" class="multiply" compatibility="10.1.001" expanded="true" height="250" name="Multiply" width="90" x="313" y="136"/>
+      <operator activated="true" class="multiply" compatibility="10.1.001" expanded="true" height="229" name="Multiply" width="90" x="313" y="136"/>
       <operator activated="true" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data" width="90" x="447" y="34">
         <enumeration key="partitions">
           <parameter key="ratio" value="0.8"/>
@@ -86,27 +86,11 @@
               <portSpacing port="sink_base model 5" spacing="0"/>
             </process>
             <process expanded="true">
-              <operator activated="true" class="concurrency:parallel_random_forest" compatibility="10.1.001" expanded="true" height="103" name="Random Forest (2)" width="90" x="179" y="34">
-                <parameter key="number_of_trees" value="100"/>
-                <parameter key="criterion" value="gini_index"/>
-                <parameter key="maximal_depth" value="100"/>
-                <parameter key="apply_pruning" value="false"/>
-                <parameter key="confidence" value="0.1"/>
-                <parameter key="apply_prepruning" value="false"/>
-                <parameter key="minimal_gain" value="0.01"/>
-                <parameter key="minimal_leaf_size" value="2"/>
-                <parameter key="minimal_size_for_split" value="4"/>
-                <parameter key="number_of_prepruning_alternatives" value="3"/>
-                <parameter key="random_splits" value="false"/>
-                <parameter key="guess_subset_ratio" value="true"/>
-                <parameter key="subset_ratio" value="0.2"/>
-                <parameter key="voting_strategy" value="confidence vote"/>
-                <parameter key="use_local_random_seed" value="false"/>
-                <parameter key="local_random_seed" value="1992"/>
-                <parameter key="enable_parallel_execution" value="true"/>
+              <operator activated="true" class="naive_bayes" compatibility="10.1.001" expanded="true" height="82" name="Naive Bayes" width="90" x="112" y="34">
+                <parameter key="laplace_correction" value="true"/>
               </operator>
-              <connect from_port="stacking examples" to_op="Random Forest (2)" to_port="training set"/>
-              <connect from_op="Random Forest (2)" from_port="model" to_port="stacking model"/>
+              <connect from_port="stacking examples" to_op="Naive Bayes" to_port="training set"/>
+              <connect from_op="Naive Bayes" from_port="model" to_port="stacking model"/>
               <portSpacing port="source_stacking examples" spacing="0"/>
               <portSpacing port="sink_stacking model" spacing="0"/>
             </process>
@@ -165,7 +149,7 @@
         <list key="application_parameters"/>
       </operator>
       <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (8)" width="90" x="983" y="85">
-        <parameter key="repository_entry" value="../Results/Model Stacking_2"/>
+        <parameter key="repository_entry" value="../Results/Model Stacking_"/>
       </operator>
       <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance Stacking" width="90" x="849" y="34">
         <parameter key="manually_set_positive_class" value="false"/>
@@ -195,7 +179,7 @@
         <parameter key="use_example_weights" value="true"/>
       </operator>
       <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store" width="90" x="983" y="34">
-        <parameter key="repository_entry" value="../Results/Performances/PERF_Charts_Ensemble_Stacking_ALL"/>
+        <parameter key="repository_entry" value="../Results/Performances/PERF_Charts_Ensemble_Stacking_ALL2"/>
       </operator>
       <operator activated="true" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data (2)" width="90" x="447" y="187">
         <enumeration key="partitions">
@@ -1186,8 +1170,8 @@
       <connect from_op="Multiply" from_port="output 4" to_op="Split Data (2)" to_port="example set"/>
       <connect from_op="Multiply" from_port="output 5" to_op="Split Data (3)" to_port="example set"/>
       <connect from_op="Multiply" from_port="output 6" to_op="Split Data (4)" to_port="example set"/>
-      <connect from_op="Multiply" from_port="output 8" to_op="Split Data (6)" to_port="example set"/>
-      <connect from_op="Multiply" from_port="output 9" to_op="Split Data (7)" to_port="example set"/>
+      <connect from_op="Multiply" from_port="output 7" to_op="Split Data (6)" to_port="example set"/>
+      <connect from_op="Multiply" from_port="output 8" to_op="Split Data (7)" to_port="example set"/>
       <connect from_op="Split Data" from_port="partition 1" to_op="Cross Validation Stacking" to_port="example set"/>
       <connect from_op="Split Data" from_port="partition 2" to_op="Apply Model (2)" to_port="unlabelled data"/>
       <connect from_op="Cross Validation Stacking" from_port="model" to_op="Apply Model (2)" to_port="model"/>
@@ -1225,17 +1209,17 @@
       <connect from_op="LogReg Cross Validation Bagging" from_port="model" to_op="Apply Model (12)" to_port="model"/>
       <connect from_op="Apply Model (12)" from_port="labelled data" to_op="Performance Bagging (4)" to_port="labelled data"/>
       <connect from_op="Apply Model (12)" from_port="model" to_op="Store (13)" to_port="input"/>
-      <connect from_op="Store (13)" from_port="through" to_port="result 15"/>
+      <connect from_op="Store (13)" from_port="through" to_port="result 14"/>
       <connect from_op="Performance Bagging (4)" from_port="performance" to_op="Store (6)" to_port="input"/>
-      <connect from_op="Store (6)" from_port="through" to_port="result 14"/>
+      <connect from_op="Store (6)" from_port="through" to_port="result 13"/>
       <connect from_op="Split Data (7)" from_port="partition 1" to_op="KNN Cross Validation Bagging" to_port="example set"/>
       <connect from_op="Split Data (7)" from_port="partition 2" to_op="Apply Model (14)" to_port="unlabelled data"/>
       <connect from_op="KNN Cross Validation Bagging" from_port="model" to_op="Apply Model (14)" to_port="model"/>
       <connect from_op="Apply Model (14)" from_port="labelled data" to_op="Performance Bagging (5)" to_port="labelled data"/>
       <connect from_op="Apply Model (14)" from_port="model" to_op="Store (14)" to_port="input"/>
-      <connect from_op="Store (14)" from_port="through" to_port="result 17"/>
+      <connect from_op="Store (14)" from_port="through" to_port="result 16"/>
       <connect from_op="Performance Bagging (5)" from_port="performance" to_op="Store (7)" to_port="input"/>
-      <connect from_op="Store (7)" from_port="through" to_port="result 16"/>
+      <connect from_op="Store (7)" from_port="through" to_port="result 15"/>
       <connect from_op="Split Data (8)" from_port="partition 1" to_op="Cross Validation Stacking (2)" to_port="example set"/>
       <connect from_op="Split Data (8)" from_port="partition 2" to_op="Apply Model (16)" to_port="unlabelled data"/>
       <connect from_op="Cross Validation Stacking (2)" from_port="model" to_op="Apply Model (16)" to_port="model"/>
@@ -1270,7 +1254,6 @@
       <portSpacing port="sink_result 15" spacing="0"/>
       <portSpacing port="sink_result 16" spacing="0"/>
       <portSpacing port="sink_result 17" spacing="0"/>
-      <portSpacing port="sink_result 18" spacing="0"/>
     </process>
   </operator>
 </process>
