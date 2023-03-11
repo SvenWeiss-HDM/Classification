@@ -15,21 +15,8 @@
       <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Cleanset_Charts" width="90" x="45" y="136">
         <parameter key="repository_entry" value="../../Data/Datasets Rapidminer/Cleanset_Charts"/>
       </operator>
-      <operator activated="true" class="filter_examples" compatibility="10.1.001" expanded="true" height="103" name="Filter Examples" width="90" x="179" y="136">
-        <parameter key="parameter_expression" value=""/>
-        <parameter key="condition_class" value="no_missing_attributes"/>
-        <parameter key="invert_filter" value="false"/>
-        <list key="filters_list">
-          <parameter key="filters_entry_key" value="average(Popularity Main Artist).is_not_missing."/>
-          <parameter key="filters_entry_key" value="average(Follower_main_artist).is_not_missing."/>
-          <parameter key="filters_entry_key" value="variance(Popularity Main Artist).is_not_missing."/>
-          <parameter key="filters_entry_key" value="Chartsduration.is_not_missing."/>
-        </list>
-        <parameter key="filters_logic_and" value="true"/>
-        <parameter key="filters_check_metadata" value="true"/>
-      </operator>
-      <operator activated="true" class="multiply" compatibility="10.1.001" expanded="true" height="166" name="Multiply" width="90" x="313" y="136"/>
-      <operator activated="false" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data" width="90" x="447" y="34">
+      <operator activated="true" class="multiply" compatibility="10.1.001" expanded="true" height="250" name="Multiply" width="90" x="313" y="136"/>
+      <operator activated="true" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data" width="90" x="447" y="34">
         <enumeration key="partitions">
           <parameter key="ratio" value="0.8"/>
           <parameter key="ratio" value="0.2"/>
@@ -38,7 +25,7 @@
         <parameter key="use_local_random_seed" value="false"/>
         <parameter key="local_random_seed" value="1992"/>
       </operator>
-      <operator activated="false" class="concurrency:cross_validation" compatibility="10.1.001" expanded="true" height="145" name="Cross Validation Stacking" width="90" x="581" y="34">
+      <operator activated="true" class="concurrency:cross_validation" compatibility="10.1.001" expanded="true" height="145" name="Cross Validation Stacking" width="90" x="581" y="34">
         <parameter key="split_on_batch_attribute" value="false"/>
         <parameter key="leave_one_out" value="false"/>
         <parameter key="number_of_folds" value="10"/>
@@ -51,93 +38,42 @@
             <parameter key="keep_all_attributes" value="true"/>
             <parameter key="keep_confidences" value="false"/>
             <process expanded="true">
-              <operator activated="true" class="xgboost:xgboost" compatibility="0.1.003" expanded="true" height="103" name="XGBoost (2)" width="90" x="179" y="34">
-                <parameter key="booster" value="tree booster"/>
-                <parameter key="rounds" value="80"/>
-                <parameter key="early_stopping" value="none"/>
-                <parameter key="early_stopping_rounds" value="10"/>
-                <parameter key="learning_rate" value="0.07177346253629313"/>
-                <parameter key="min_split_loss" value="0.0"/>
-                <parameter key="max_depth" value="80"/>
-                <parameter key="min_child_weight" value="1.0"/>
-                <parameter key="subsample" value="1.0"/>
-                <parameter key="tree_method" value="auto"/>
-                <parameter key="lambda" value="0.0"/>
-                <parameter key="alpha" value="0.624504792712471"/>
-                <parameter key="sample_type" value="uniform"/>
-                <parameter key="normalize_type" value="tree"/>
-                <parameter key="rate_drop" value="0.0"/>
-                <parameter key="skip_drop" value="0.0"/>
-                <parameter key="updater" value="shotgun"/>
-                <parameter key="feature_selector" value="cyclic"/>
-                <parameter key="top_k" value="0"/>
-                <enumeration key="expert_parameters"/>
+              <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Model Performance KNN" width="90" x="45" y="85">
+                <parameter key="repository_entry" value="../Results/Models/Model Performance KNN"/>
               </operator>
-              <operator activated="true" class="k_nn" compatibility="10.1.001" expanded="true" height="82" name="k-NN" width="90" x="179" y="391">
-                <parameter key="k" value="1"/>
-                <parameter key="weighted_vote" value="true"/>
-                <parameter key="measure_types" value="MixedMeasures"/>
-                <parameter key="mixed_measure" value="MixedEuclideanDistance"/>
-                <parameter key="nominal_measure" value="NominalDistance"/>
-                <parameter key="numerical_measure" value="EuclideanDistance"/>
-                <parameter key="divergence" value="SquaredEuclideanDistance"/>
-                <parameter key="kernel_type" value="radial"/>
-                <parameter key="kernel_gamma" value="1.0"/>
-                <parameter key="kernel_sigma1" value="1.0"/>
-                <parameter key="kernel_sigma2" value="0.0"/>
-                <parameter key="kernel_sigma3" value="2.0"/>
-                <parameter key="kernel_degree" value="3.0"/>
-                <parameter key="kernel_shift" value="1.0"/>
-                <parameter key="kernel_a" value="1.0"/>
-                <parameter key="kernel_b" value="0.0"/>
+              <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (23)" width="90" x="179" y="85">
+                <list key="application_parameters"/>
               </operator>
-              <operator activated="true" class="h2o:logistic_regression" compatibility="10.0.000" expanded="true" height="124" name="Logistic Regression" width="90" x="179" y="238">
-                <parameter key="solver" value="COORDINATE_DESCENT (experimental)"/>
-                <parameter key="reproducible" value="true"/>
-                <parameter key="maximum_number_of_threads" value="70"/>
-                <parameter key="use_regularization" value="true"/>
-                <parameter key="lambda_search" value="false"/>
-                <parameter key="number_of_lambdas" value="0"/>
-                <parameter key="lambda_min_ratio" value="0.0"/>
-                <parameter key="early_stopping" value="true"/>
-                <parameter key="stopping_rounds" value="3"/>
-                <parameter key="stopping_tolerance" value="0.001"/>
-                <parameter key="standardize" value="true"/>
-                <parameter key="non-negative_coefficients" value="false"/>
-                <parameter key="add_intercept" value="true"/>
-                <parameter key="compute_p-values" value="true"/>
-                <parameter key="remove_collinear_columns" value="true"/>
-                <parameter key="missing_values_handling" value="MeanImputation"/>
-                <parameter key="max_iterations" value="0"/>
-                <parameter key="max_runtime_seconds" value="0"/>
+              <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Model Performance Random Forest (3)" width="90" x="45" y="187">
+                <parameter key="repository_entry" value="../Results/Models/Model Performance Random Forest"/>
               </operator>
-              <operator activated="true" class="concurrency:parallel_random_forest" compatibility="10.1.001" expanded="true" height="103" name="Random Forest (5)" width="90" x="179" y="136">
-                <parameter key="number_of_trees" value="100"/>
-                <parameter key="criterion" value="gini_index"/>
-                <parameter key="maximal_depth" value="100"/>
-                <parameter key="apply_pruning" value="false"/>
-                <parameter key="confidence" value="0.1"/>
-                <parameter key="apply_prepruning" value="false"/>
-                <parameter key="minimal_gain" value="0.01"/>
-                <parameter key="minimal_leaf_size" value="2"/>
-                <parameter key="minimal_size_for_split" value="4"/>
-                <parameter key="number_of_prepruning_alternatives" value="3"/>
-                <parameter key="random_splits" value="false"/>
-                <parameter key="guess_subset_ratio" value="true"/>
-                <parameter key="subset_ratio" value="0.2"/>
-                <parameter key="voting_strategy" value="confidence vote"/>
-                <parameter key="use_local_random_seed" value="false"/>
-                <parameter key="local_random_seed" value="1992"/>
-                <parameter key="enable_parallel_execution" value="true"/>
+              <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (24)" width="90" x="179" y="187">
+                <list key="application_parameters"/>
               </operator>
-              <connect from_port="training set 1" to_op="XGBoost (2)" to_port="training set"/>
-              <connect from_port="training set 2" to_op="Random Forest (5)" to_port="training set"/>
-              <connect from_port="training set 3" to_op="Logistic Regression" to_port="training set"/>
-              <connect from_port="training set 4" to_op="k-NN" to_port="training set"/>
-              <connect from_op="XGBoost (2)" from_port="model" to_port="base model 1"/>
-              <connect from_op="k-NN" from_port="model" to_port="base model 4"/>
-              <connect from_op="Logistic Regression" from_port="model" to_port="base model 3"/>
-              <connect from_op="Random Forest (5)" from_port="model" to_port="base model 2"/>
+              <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Model Performance XGBoost (3)" width="90" x="45" y="289">
+                <parameter key="repository_entry" value="../Results/Models/Model Performance XGBoost"/>
+              </operator>
+              <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (25)" width="90" x="179" y="289">
+                <list key="application_parameters"/>
+              </operator>
+              <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Model Log. Regression" width="90" x="45" y="391">
+                <parameter key="repository_entry" value="../Results/Models/Model Log. Regression"/>
+              </operator>
+              <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (26)" width="90" x="179" y="391">
+                <list key="application_parameters"/>
+              </operator>
+              <connect from_port="training set 1" to_op="Apply Model (23)" to_port="unlabelled data"/>
+              <connect from_port="training set 2" to_op="Apply Model (24)" to_port="unlabelled data"/>
+              <connect from_port="training set 3" to_op="Apply Model (25)" to_port="unlabelled data"/>
+              <connect from_port="training set 4" to_op="Apply Model (26)" to_port="unlabelled data"/>
+              <connect from_op="Retrieve Model Performance KNN" from_port="output" to_op="Apply Model (23)" to_port="model"/>
+              <connect from_op="Apply Model (23)" from_port="model" to_port="base model 1"/>
+              <connect from_op="Retrieve Model Performance Random Forest (3)" from_port="output" to_op="Apply Model (24)" to_port="model"/>
+              <connect from_op="Apply Model (24)" from_port="model" to_port="base model 2"/>
+              <connect from_op="Retrieve Model Performance XGBoost (3)" from_port="output" to_op="Apply Model (25)" to_port="model"/>
+              <connect from_op="Apply Model (25)" from_port="model" to_port="base model 3"/>
+              <connect from_op="Retrieve Model Log. Regression" from_port="output" to_op="Apply Model (26)" to_port="model"/>
+              <connect from_op="Apply Model (26)" from_port="model" to_port="base model 4"/>
               <portSpacing port="source_training set 1" spacing="0"/>
               <portSpacing port="source_training set 2" spacing="0"/>
               <portSpacing port="source_training set 3" spacing="0"/>
@@ -225,13 +161,13 @@
           <portSpacing port="sink_performance 2" spacing="0"/>
         </process>
       </operator>
-      <operator activated="false" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (2)" width="90" x="715" y="34">
+      <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (2)" width="90" x="715" y="34">
         <list key="application_parameters"/>
       </operator>
-      <operator activated="false" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (8)" width="90" x="983" y="85">
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (8)" width="90" x="983" y="85">
         <parameter key="repository_entry" value="../Results/Model Stacking_2"/>
       </operator>
-      <operator activated="false" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance Stacking" width="90" x="849" y="34">
+      <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance Stacking" width="90" x="849" y="34">
         <parameter key="manually_set_positive_class" value="false"/>
         <parameter key="main_criterion" value="first"/>
         <parameter key="accuracy" value="true"/>
@@ -258,10 +194,10 @@
         <parameter key="skip_undefined_labels" value="true"/>
         <parameter key="use_example_weights" value="true"/>
       </operator>
-      <operator activated="false" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store" width="90" x="1050" y="34">
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store" width="90" x="983" y="34">
         <parameter key="repository_entry" value="../Results/Performances/PERF_Charts_Ensemble_Stacking_ALL"/>
       </operator>
-      <operator activated="false" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data (2)" width="90" x="447" y="187">
+      <operator activated="true" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data (2)" width="90" x="447" y="187">
         <enumeration key="partitions">
           <parameter key="ratio" value="0.8"/>
           <parameter key="ratio" value="0.2"/>
@@ -270,7 +206,7 @@
         <parameter key="use_local_random_seed" value="false"/>
         <parameter key="local_random_seed" value="1992"/>
       </operator>
-      <operator activated="false" class="concurrency:cross_validation" compatibility="10.1.001" expanded="true" height="145" name="Cross Validation Voting" width="90" x="581" y="187">
+      <operator activated="true" class="concurrency:cross_validation" compatibility="10.1.001" expanded="true" height="145" name="Cross Validation Voting" width="90" x="581" y="187">
         <parameter key="split_on_batch_attribute" value="false"/>
         <parameter key="leave_one_out" value="false"/>
         <parameter key="number_of_folds" value="10"/>
@@ -281,93 +217,42 @@
         <process expanded="true">
           <operator activated="true" class="vote" compatibility="10.1.001" expanded="true" height="68" name="Vote" width="90" x="179" y="85">
             <process expanded="true">
-              <operator activated="true" class="xgboost:xgboost" compatibility="0.1.003" expanded="true" height="103" name="XGBoost" width="90" x="112" y="34">
-                <parameter key="booster" value="tree booster"/>
-                <parameter key="rounds" value="80"/>
-                <parameter key="early_stopping" value="none"/>
-                <parameter key="early_stopping_rounds" value="10"/>
-                <parameter key="learning_rate" value="0.07177346253629313"/>
-                <parameter key="min_split_loss" value="0.0"/>
-                <parameter key="max_depth" value="80"/>
-                <parameter key="min_child_weight" value="1.0"/>
-                <parameter key="subsample" value="1.0"/>
-                <parameter key="tree_method" value="auto"/>
-                <parameter key="lambda" value="0.0"/>
-                <parameter key="alpha" value="0.624504792712471"/>
-                <parameter key="sample_type" value="uniform"/>
-                <parameter key="normalize_type" value="tree"/>
-                <parameter key="rate_drop" value="0.0"/>
-                <parameter key="skip_drop" value="0.0"/>
-                <parameter key="updater" value="shotgun"/>
-                <parameter key="feature_selector" value="cyclic"/>
-                <parameter key="top_k" value="0"/>
-                <enumeration key="expert_parameters"/>
+              <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Model Performance KNN (2)" width="90" x="45" y="34">
+                <parameter key="repository_entry" value="../Results/Models/Model Performance KNN"/>
               </operator>
-              <operator activated="true" class="k_nn" compatibility="10.1.001" expanded="true" height="82" name="k-NN (3)" width="90" x="112" y="391">
-                <parameter key="k" value="1"/>
-                <parameter key="weighted_vote" value="true"/>
-                <parameter key="measure_types" value="MixedMeasures"/>
-                <parameter key="mixed_measure" value="MixedEuclideanDistance"/>
-                <parameter key="nominal_measure" value="NominalDistance"/>
-                <parameter key="numerical_measure" value="EuclideanDistance"/>
-                <parameter key="divergence" value="SquaredEuclideanDistance"/>
-                <parameter key="kernel_type" value="radial"/>
-                <parameter key="kernel_gamma" value="1.0"/>
-                <parameter key="kernel_sigma1" value="1.0"/>
-                <parameter key="kernel_sigma2" value="0.0"/>
-                <parameter key="kernel_sigma3" value="2.0"/>
-                <parameter key="kernel_degree" value="3.0"/>
-                <parameter key="kernel_shift" value="1.0"/>
-                <parameter key="kernel_a" value="1.0"/>
-                <parameter key="kernel_b" value="0.0"/>
+              <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (27)" width="90" x="179" y="34">
+                <list key="application_parameters"/>
               </operator>
-              <operator activated="true" class="h2o:logistic_regression" compatibility="10.0.000" expanded="true" height="124" name="Logistic Regression (2)" width="90" x="112" y="238">
-                <parameter key="solver" value="COORDINATE_DESCENT (experimental)"/>
-                <parameter key="reproducible" value="true"/>
-                <parameter key="maximum_number_of_threads" value="70"/>
-                <parameter key="use_regularization" value="true"/>
-                <parameter key="lambda_search" value="false"/>
-                <parameter key="number_of_lambdas" value="0"/>
-                <parameter key="lambda_min_ratio" value="0.0"/>
-                <parameter key="early_stopping" value="true"/>
-                <parameter key="stopping_rounds" value="3"/>
-                <parameter key="stopping_tolerance" value="0.001"/>
-                <parameter key="standardize" value="true"/>
-                <parameter key="non-negative_coefficients" value="false"/>
-                <parameter key="add_intercept" value="true"/>
-                <parameter key="compute_p-values" value="true"/>
-                <parameter key="remove_collinear_columns" value="true"/>
-                <parameter key="missing_values_handling" value="MeanImputation"/>
-                <parameter key="max_iterations" value="0"/>
-                <parameter key="max_runtime_seconds" value="0"/>
+              <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Model Performance Random Forest (4)" width="90" x="45" y="136">
+                <parameter key="repository_entry" value="../Results/Models/Model Performance Random Forest"/>
               </operator>
-              <operator activated="true" class="concurrency:parallel_random_forest" compatibility="10.1.001" expanded="true" height="103" name="Random Forest" width="90" x="112" y="136">
-                <parameter key="number_of_trees" value="100"/>
-                <parameter key="criterion" value="gini_index"/>
-                <parameter key="maximal_depth" value="100"/>
-                <parameter key="apply_pruning" value="false"/>
-                <parameter key="confidence" value="0.1"/>
-                <parameter key="apply_prepruning" value="false"/>
-                <parameter key="minimal_gain" value="0.01"/>
-                <parameter key="minimal_leaf_size" value="2"/>
-                <parameter key="minimal_size_for_split" value="4"/>
-                <parameter key="number_of_prepruning_alternatives" value="3"/>
-                <parameter key="random_splits" value="false"/>
-                <parameter key="guess_subset_ratio" value="true"/>
-                <parameter key="subset_ratio" value="0.2"/>
-                <parameter key="voting_strategy" value="confidence vote"/>
-                <parameter key="use_local_random_seed" value="false"/>
-                <parameter key="local_random_seed" value="1992"/>
-                <parameter key="enable_parallel_execution" value="true"/>
+              <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (28)" width="90" x="179" y="136">
+                <list key="application_parameters"/>
               </operator>
-              <connect from_port="training set 1" to_op="XGBoost" to_port="training set"/>
-              <connect from_port="training set 2" to_op="Random Forest" to_port="training set"/>
-              <connect from_port="training set 3" to_op="Logistic Regression (2)" to_port="training set"/>
-              <connect from_port="training set 4" to_op="k-NN (3)" to_port="training set"/>
-              <connect from_op="XGBoost" from_port="model" to_port="base model 1"/>
-              <connect from_op="k-NN (3)" from_port="model" to_port="base model 4"/>
-              <connect from_op="Logistic Regression (2)" from_port="model" to_port="base model 3"/>
-              <connect from_op="Random Forest" from_port="model" to_port="base model 2"/>
+              <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Model Performance XGBoost (4)" width="90" x="45" y="238">
+                <parameter key="repository_entry" value="../Results/Models/Model Performance XGBoost"/>
+              </operator>
+              <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (29)" width="90" x="179" y="238">
+                <list key="application_parameters"/>
+              </operator>
+              <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Model Log. Regression (2)" width="90" x="45" y="340">
+                <parameter key="repository_entry" value="../Results/Models/Model Log. Regression"/>
+              </operator>
+              <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (30)" width="90" x="179" y="340">
+                <list key="application_parameters"/>
+              </operator>
+              <connect from_port="training set 1" to_op="Apply Model (27)" to_port="unlabelled data"/>
+              <connect from_port="training set 2" to_op="Apply Model (28)" to_port="unlabelled data"/>
+              <connect from_port="training set 3" to_op="Apply Model (29)" to_port="unlabelled data"/>
+              <connect from_port="training set 4" to_op="Apply Model (30)" to_port="unlabelled data"/>
+              <connect from_op="Retrieve Model Performance KNN (2)" from_port="output" to_op="Apply Model (27)" to_port="model"/>
+              <connect from_op="Apply Model (27)" from_port="model" to_port="base model 1"/>
+              <connect from_op="Retrieve Model Performance Random Forest (4)" from_port="output" to_op="Apply Model (28)" to_port="model"/>
+              <connect from_op="Apply Model (28)" from_port="model" to_port="base model 2"/>
+              <connect from_op="Retrieve Model Performance XGBoost (4)" from_port="output" to_op="Apply Model (29)" to_port="model"/>
+              <connect from_op="Apply Model (29)" from_port="model" to_port="base model 3"/>
+              <connect from_op="Retrieve Model Log. Regression (2)" from_port="output" to_op="Apply Model (30)" to_port="model"/>
+              <connect from_op="Apply Model (30)" from_port="model" to_port="base model 4"/>
               <portSpacing port="source_training set 1" spacing="0"/>
               <portSpacing port="source_training set 2" spacing="0"/>
               <portSpacing port="source_training set 3" spacing="0"/>
@@ -430,13 +315,13 @@
           <portSpacing port="sink_performance 2" spacing="0"/>
         </process>
       </operator>
-      <operator activated="false" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (4)" width="90" x="715" y="187">
+      <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (4)" width="90" x="715" y="187">
         <list key="application_parameters"/>
       </operator>
-      <operator activated="false" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (9)" width="90" x="983" y="238">
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (9)" width="90" x="983" y="238">
         <parameter key="repository_entry" value="../Results/Model Voting2"/>
       </operator>
-      <operator activated="false" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance Voting" width="90" x="849" y="187">
+      <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance Voting" width="90" x="849" y="187">
         <parameter key="manually_set_positive_class" value="false"/>
         <parameter key="main_criterion" value="first"/>
         <parameter key="accuracy" value="true"/>
@@ -463,7 +348,7 @@
         <parameter key="skip_undefined_labels" value="true"/>
         <parameter key="use_example_weights" value="true"/>
       </operator>
-      <operator activated="false" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (2)" width="90" x="983" y="187">
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (2)" width="90" x="983" y="187">
         <parameter key="repository_entry" value="../Results/PERF_Charts_Ensemble_Voting_ALL2"/>
       </operator>
       <operator activated="true" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data (3)" width="90" x="447" y="340">
@@ -491,30 +376,15 @@
             <parameter key="use_local_random_seed" value="false"/>
             <parameter key="local_random_seed" value="1992"/>
             <process expanded="true">
-              <operator activated="true" class="xgboost:xgboost" compatibility="0.1.003" expanded="true" height="103" name="XGBoost (3)" width="90" x="313" y="34">
-                <parameter key="booster" value="tree booster"/>
-                <parameter key="rounds" value="80"/>
-                <parameter key="early_stopping" value="none"/>
-                <parameter key="early_stopping_rounds" value="10"/>
-                <parameter key="learning_rate" value="0.07177346253629313"/>
-                <parameter key="min_split_loss" value="0.0"/>
-                <parameter key="max_depth" value="80"/>
-                <parameter key="min_child_weight" value="1.0"/>
-                <parameter key="subsample" value="1.0"/>
-                <parameter key="tree_method" value="auto"/>
-                <parameter key="lambda" value="0.0"/>
-                <parameter key="alpha" value="0.624504792712471"/>
-                <parameter key="sample_type" value="uniform"/>
-                <parameter key="normalize_type" value="tree"/>
-                <parameter key="rate_drop" value="0.0"/>
-                <parameter key="skip_drop" value="0.0"/>
-                <parameter key="updater" value="shotgun"/>
-                <parameter key="feature_selector" value="cyclic"/>
-                <parameter key="top_k" value="0"/>
-                <enumeration key="expert_parameters"/>
+              <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Model Performance XGBoost (5)" width="90" x="179" y="85">
+                <parameter key="repository_entry" value="../Results/Models/Model Performance XGBoost"/>
               </operator>
-              <connect from_port="training set" to_op="XGBoost (3)" to_port="training set"/>
-              <connect from_op="XGBoost (3)" from_port="model" to_port="model"/>
+              <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (33)" width="90" x="313" y="85">
+                <list key="application_parameters"/>
+              </operator>
+              <connect from_port="training set" to_op="Apply Model (33)" to_port="unlabelled data"/>
+              <connect from_op="Retrieve Model Performance XGBoost (5)" from_port="output" to_op="Apply Model (33)" to_port="model"/>
+              <connect from_op="Apply Model (33)" from_port="model" to_port="model"/>
               <portSpacing port="source_training set" spacing="0"/>
               <portSpacing port="sink_model" spacing="0"/>
             </process>
@@ -630,27 +500,15 @@
             <parameter key="use_local_random_seed" value="false"/>
             <parameter key="local_random_seed" value="1992"/>
             <process expanded="true">
-              <operator activated="true" class="concurrency:parallel_random_forest" compatibility="10.1.001" expanded="true" height="103" name="Random Forest (6)" width="90" x="380" y="136">
-                <parameter key="number_of_trees" value="100"/>
-                <parameter key="criterion" value="gini_index"/>
-                <parameter key="maximal_depth" value="100"/>
-                <parameter key="apply_pruning" value="false"/>
-                <parameter key="confidence" value="0.1"/>
-                <parameter key="apply_prepruning" value="false"/>
-                <parameter key="minimal_gain" value="0.01"/>
-                <parameter key="minimal_leaf_size" value="2"/>
-                <parameter key="minimal_size_for_split" value="4"/>
-                <parameter key="number_of_prepruning_alternatives" value="3"/>
-                <parameter key="random_splits" value="false"/>
-                <parameter key="guess_subset_ratio" value="true"/>
-                <parameter key="subset_ratio" value="0.2"/>
-                <parameter key="voting_strategy" value="confidence vote"/>
-                <parameter key="use_local_random_seed" value="false"/>
-                <parameter key="local_random_seed" value="1992"/>
-                <parameter key="enable_parallel_execution" value="true"/>
+              <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Model Performance Random Forest (5)" width="90" x="179" y="34">
+                <parameter key="repository_entry" value="../Results/Models/Model Performance Random Forest"/>
               </operator>
-              <connect from_port="training set" to_op="Random Forest (6)" to_port="training set"/>
-              <connect from_op="Random Forest (6)" from_port="model" to_port="model"/>
+              <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (32)" width="90" x="313" y="34">
+                <list key="application_parameters"/>
+              </operator>
+              <connect from_port="training set" to_op="Apply Model (32)" to_port="unlabelled data"/>
+              <connect from_op="Retrieve Model Performance Random Forest (5)" from_port="output" to_op="Apply Model (32)" to_port="model"/>
+              <connect from_op="Apply Model (32)" from_port="model" to_port="model"/>
               <portSpacing port="source_training set" spacing="0"/>
               <portSpacing port="sink_model" spacing="0"/>
             </process>
@@ -741,7 +599,7 @@
       <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (4)" width="90" x="983" y="493">
         <parameter key="repository_entry" value="../Results/PERF_Charts_Ensemble_Bagging_RNDFOREST"/>
       </operator>
-      <operator activated="false" class="split_data" compatibility="10.1.001" expanded="true" height="82" name="Split Data (5)" width="90" x="447" y="646">
+      <operator activated="true" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data (6)" width="90" x="447" y="646">
         <enumeration key="partitions">
           <parameter key="ratio" value="0.8"/>
           <parameter key="ratio" value="0.2"/>
@@ -750,154 +608,7 @@
         <parameter key="use_local_random_seed" value="false"/>
         <parameter key="local_random_seed" value="1992"/>
       </operator>
-      <operator activated="false" class="concurrency:cross_validation" compatibility="10.1.001" expanded="true" height="145" name="SVM Cross Validation Bagging" width="90" x="581" y="646">
-        <parameter key="split_on_batch_attribute" value="false"/>
-        <parameter key="leave_one_out" value="false"/>
-        <parameter key="number_of_folds" value="5"/>
-        <parameter key="sampling_type" value="automatic"/>
-        <parameter key="use_local_random_seed" value="false"/>
-        <parameter key="local_random_seed" value="1992"/>
-        <parameter key="enable_parallel_execution" value="true"/>
-        <process expanded="true">
-          <operator activated="true" class="bagging" compatibility="10.1.001" expanded="true" height="82" name="Bagging (3)" width="90" x="246" y="34">
-            <parameter key="sample_ratio" value="0.9"/>
-            <parameter key="iterations" value="5"/>
-            <parameter key="average_confidences" value="true"/>
-            <parameter key="use_local_random_seed" value="false"/>
-            <parameter key="local_random_seed" value="1992"/>
-            <process expanded="true">
-              <operator activated="true" class="support_vector_machine" compatibility="10.1.001" expanded="true" height="124" name="SVM (3)" width="90" x="313" y="34">
-                <parameter key="kernel_type" value="radial"/>
-                <parameter key="kernel_gamma" value="1.0"/>
-                <parameter key="kernel_sigma1" value="1.0"/>
-                <parameter key="kernel_sigma2" value="0.0"/>
-                <parameter key="kernel_sigma3" value="2.0"/>
-                <parameter key="kernel_shift" value="1.0"/>
-                <parameter key="kernel_degree" value="2.0"/>
-                <parameter key="kernel_a" value="1.0"/>
-                <parameter key="kernel_b" value="0.0"/>
-                <parameter key="kernel_cache" value="200"/>
-                <parameter key="C" value="0.0"/>
-                <parameter key="convergence_epsilon" value="0.001"/>
-                <parameter key="max_iterations" value="10090"/>
-                <parameter key="scale" value="true"/>
-                <parameter key="calculate_weights" value="true"/>
-                <parameter key="return_optimization_performance" value="true"/>
-                <parameter key="L_pos" value="1.0"/>
-                <parameter key="L_neg" value="1.0"/>
-                <parameter key="epsilon" value="0.0"/>
-                <parameter key="epsilon_plus" value="0.0"/>
-                <parameter key="epsilon_minus" value="0.0"/>
-                <parameter key="balance_cost" value="false"/>
-                <parameter key="quadratic_loss_pos" value="false"/>
-                <parameter key="quadratic_loss_neg" value="false"/>
-                <parameter key="estimate_performance" value="false"/>
-              </operator>
-              <connect from_port="training set" to_op="SVM (3)" to_port="training set"/>
-              <connect from_op="SVM (3)" from_port="model" to_port="model"/>
-              <portSpacing port="source_training set" spacing="0"/>
-              <portSpacing port="sink_model" spacing="0"/>
-            </process>
-          </operator>
-          <connect from_port="training set" to_op="Bagging (3)" to_port="training set"/>
-          <connect from_op="Bagging (3)" from_port="model" to_port="model"/>
-          <connect from_op="Bagging (3)" from_port="example set" to_port="through 1"/>
-          <portSpacing port="source_training set" spacing="0"/>
-          <portSpacing port="sink_model" spacing="0"/>
-          <portSpacing port="sink_through 1" spacing="0"/>
-          <portSpacing port="sink_through 2" spacing="0"/>
-        </process>
-        <process expanded="true">
-          <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (9)" width="90" x="179" y="85">
-            <list key="application_parameters"/>
-          </operator>
-          <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance (5)" width="90" x="380" y="85">
-            <parameter key="manually_set_positive_class" value="true"/>
-            <parameter key="positive_class" value="true"/>
-            <parameter key="main_criterion" value="first"/>
-            <parameter key="accuracy" value="true"/>
-            <parameter key="classification_error" value="false"/>
-            <parameter key="kappa" value="false"/>
-            <parameter key="AUC (optimistic)" value="false"/>
-            <parameter key="AUC" value="true"/>
-            <parameter key="AUC (pessimistic)" value="false"/>
-            <parameter key="precision" value="true"/>
-            <parameter key="recall" value="true"/>
-            <parameter key="lift" value="false"/>
-            <parameter key="fallout" value="false"/>
-            <parameter key="f_measure" value="true"/>
-            <parameter key="false_positive" value="false"/>
-            <parameter key="false_negative" value="true"/>
-            <parameter key="true_positive" value="true"/>
-            <parameter key="true_negative" value="false"/>
-            <parameter key="sensitivity" value="true"/>
-            <parameter key="specificity" value="true"/>
-            <parameter key="youden" value="false"/>
-            <parameter key="positive_predictive_value" value="false"/>
-            <parameter key="negative_predictive_value" value="false"/>
-            <parameter key="psep" value="false"/>
-            <parameter key="skip_undefined_labels" value="true"/>
-            <parameter key="use_example_weights" value="true"/>
-          </operator>
-          <connect from_port="model" to_op="Apply Model (9)" to_port="model"/>
-          <connect from_port="test set" to_op="Apply Model (9)" to_port="unlabelled data"/>
-          <connect from_op="Apply Model (9)" from_port="labelled data" to_op="Performance (5)" to_port="labelled data"/>
-          <connect from_op="Performance (5)" from_port="performance" to_port="performance 1"/>
-          <portSpacing port="source_model" spacing="0"/>
-          <portSpacing port="source_test set" spacing="0"/>
-          <portSpacing port="source_through 1" spacing="0"/>
-          <portSpacing port="source_through 2" spacing="0"/>
-          <portSpacing port="sink_test set results" spacing="0"/>
-          <portSpacing port="sink_performance 1" spacing="0"/>
-          <portSpacing port="sink_performance 2" spacing="0"/>
-        </process>
-      </operator>
-      <operator activated="false" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (10)" width="90" x="715" y="646">
-        <list key="application_parameters"/>
-      </operator>
-      <operator activated="false" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (12)" width="90" x="983" y="697">
-        <parameter key="repository_entry" value="../Results/Model Bagging SVM"/>
-      </operator>
-      <operator activated="false" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance Bagging (3)" width="90" x="849" y="646">
-        <parameter key="manually_set_positive_class" value="false"/>
-        <parameter key="main_criterion" value="first"/>
-        <parameter key="accuracy" value="true"/>
-        <parameter key="classification_error" value="false"/>
-        <parameter key="kappa" value="false"/>
-        <parameter key="AUC (optimistic)" value="false"/>
-        <parameter key="AUC" value="true"/>
-        <parameter key="AUC (pessimistic)" value="false"/>
-        <parameter key="precision" value="true"/>
-        <parameter key="recall" value="true"/>
-        <parameter key="lift" value="false"/>
-        <parameter key="fallout" value="false"/>
-        <parameter key="f_measure" value="true"/>
-        <parameter key="false_positive" value="false"/>
-        <parameter key="false_negative" value="false"/>
-        <parameter key="true_positive" value="false"/>
-        <parameter key="true_negative" value="false"/>
-        <parameter key="sensitivity" value="true"/>
-        <parameter key="specificity" value="true"/>
-        <parameter key="youden" value="false"/>
-        <parameter key="positive_predictive_value" value="false"/>
-        <parameter key="negative_predictive_value" value="false"/>
-        <parameter key="psep" value="false"/>
-        <parameter key="skip_undefined_labels" value="true"/>
-        <parameter key="use_example_weights" value="true"/>
-      </operator>
-      <operator activated="false" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (5)" width="90" x="983" y="646">
-        <parameter key="repository_entry" value="../Results/PERF_Charts_Ensemble_Bagging_SVM"/>
-      </operator>
-      <operator activated="true" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data (6)" width="90" x="447" y="799">
-        <enumeration key="partitions">
-          <parameter key="ratio" value="0.8"/>
-          <parameter key="ratio" value="0.2"/>
-        </enumeration>
-        <parameter key="sampling_type" value="automatic"/>
-        <parameter key="use_local_random_seed" value="false"/>
-        <parameter key="local_random_seed" value="1992"/>
-      </operator>
-      <operator activated="true" class="concurrency:cross_validation" compatibility="10.1.001" expanded="true" height="145" name="LogReg Cross Validation Bagging" width="90" x="581" y="799">
+      <operator activated="true" class="concurrency:cross_validation" compatibility="10.1.001" expanded="true" height="145" name="LogReg Cross Validation Bagging" width="90" x="581" y="646">
         <parameter key="split_on_batch_attribute" value="false"/>
         <parameter key="leave_one_out" value="false"/>
         <parameter key="number_of_folds" value="10"/>
@@ -913,28 +624,15 @@
             <parameter key="use_local_random_seed" value="false"/>
             <parameter key="local_random_seed" value="1992"/>
             <process expanded="true">
-              <operator activated="true" class="h2o:logistic_regression" compatibility="10.0.000" expanded="true" height="124" name="Logistic Regression (4)" width="90" x="313" y="136">
-                <parameter key="solver" value="COORDINATE_DESCENT (experimental)"/>
-                <parameter key="reproducible" value="true"/>
-                <parameter key="maximum_number_of_threads" value="70"/>
-                <parameter key="use_regularization" value="true"/>
-                <parameter key="lambda_search" value="false"/>
-                <parameter key="number_of_lambdas" value="0"/>
-                <parameter key="lambda_min_ratio" value="0.0"/>
-                <parameter key="early_stopping" value="true"/>
-                <parameter key="stopping_rounds" value="3"/>
-                <parameter key="stopping_tolerance" value="0.001"/>
-                <parameter key="standardize" value="true"/>
-                <parameter key="non-negative_coefficients" value="false"/>
-                <parameter key="add_intercept" value="true"/>
-                <parameter key="compute_p-values" value="true"/>
-                <parameter key="remove_collinear_columns" value="true"/>
-                <parameter key="missing_values_handling" value="MeanImputation"/>
-                <parameter key="max_iterations" value="0"/>
-                <parameter key="max_runtime_seconds" value="0"/>
+              <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Model Log. Regression (3)" width="90" x="179" y="187">
+                <parameter key="repository_entry" value="../Results/Models/Model Log. Regression"/>
               </operator>
-              <connect from_port="training set" to_op="Logistic Regression (4)" to_port="training set"/>
-              <connect from_op="Logistic Regression (4)" from_port="model" to_port="model"/>
+              <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (36)" width="90" x="313" y="187">
+                <list key="application_parameters"/>
+              </operator>
+              <connect from_port="training set" to_op="Apply Model (36)" to_port="unlabelled data"/>
+              <connect from_op="Retrieve Model Log. Regression (3)" from_port="output" to_op="Apply Model (36)" to_port="model"/>
+              <connect from_op="Apply Model (36)" from_port="model" to_port="model"/>
               <portSpacing port="source_training set" spacing="0"/>
               <portSpacing port="sink_model" spacing="0"/>
             </process>
@@ -989,13 +687,13 @@
           <portSpacing port="sink_performance 2" spacing="0"/>
         </process>
       </operator>
-      <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (12)" width="90" x="715" y="799">
+      <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (12)" width="90" x="715" y="646">
         <list key="application_parameters"/>
       </operator>
-      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (13)" width="90" x="983" y="850">
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (13)" width="90" x="983" y="697">
         <parameter key="repository_entry" value="../Results/Model Bagging LOGREG"/>
       </operator>
-      <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance Bagging (4)" width="90" x="849" y="799">
+      <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance Bagging (4)" width="90" x="849" y="646">
         <parameter key="manually_set_positive_class" value="false"/>
         <parameter key="main_criterion" value="first"/>
         <parameter key="accuracy" value="true"/>
@@ -1022,10 +720,10 @@
         <parameter key="skip_undefined_labels" value="true"/>
         <parameter key="use_example_weights" value="true"/>
       </operator>
-      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (6)" width="90" x="983" y="799">
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (6)" width="90" x="983" y="646">
         <parameter key="repository_entry" value="../Results/PERF_Charts_Ensemble_Bagging_LOGREG"/>
       </operator>
-      <operator activated="true" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data (7)" width="90" x="447" y="952">
+      <operator activated="true" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data (7)" width="90" x="447" y="799">
         <enumeration key="partitions">
           <parameter key="ratio" value="0.8"/>
           <parameter key="ratio" value="0.2"/>
@@ -1034,7 +732,7 @@
         <parameter key="use_local_random_seed" value="false"/>
         <parameter key="local_random_seed" value="1992"/>
       </operator>
-      <operator activated="true" class="concurrency:cross_validation" compatibility="10.1.001" expanded="true" height="145" name="KNN Cross Validation Bagging" width="90" x="581" y="952">
+      <operator activated="true" class="concurrency:cross_validation" compatibility="10.1.001" expanded="true" height="145" name="KNN Cross Validation Bagging" width="90" x="581" y="799">
         <parameter key="split_on_batch_attribute" value="false"/>
         <parameter key="leave_one_out" value="false"/>
         <parameter key="number_of_folds" value="10"/>
@@ -1050,44 +748,15 @@
             <parameter key="use_local_random_seed" value="false"/>
             <parameter key="local_random_seed" value="1992"/>
             <process expanded="true">
-              <operator activated="false" class="k_nn" compatibility="10.1.001" expanded="true" height="82" name="k-NN (2)" width="90" x="380" y="34">
-                <parameter key="k" value="1"/>
-                <parameter key="weighted_vote" value="false"/>
-                <parameter key="measure_types" value="BregmanDivergences"/>
-                <parameter key="mixed_measure" value="MixedEuclideanDistance"/>
-                <parameter key="nominal_measure" value="NominalDistance"/>
-                <parameter key="numerical_measure" value="EuclideanDistance"/>
-                <parameter key="divergence" value="SquaredEuclideanDistance"/>
-                <parameter key="kernel_type" value="radial"/>
-                <parameter key="kernel_gamma" value="1.0"/>
-                <parameter key="kernel_sigma1" value="1.0"/>
-                <parameter key="kernel_sigma2" value="0.0"/>
-                <parameter key="kernel_sigma3" value="2.0"/>
-                <parameter key="kernel_degree" value="3.0"/>
-                <parameter key="kernel_shift" value="1.0"/>
-                <parameter key="kernel_a" value="1.0"/>
-                <parameter key="kernel_b" value="0.0"/>
+              <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Model Performance KNN (3)" width="90" x="179" y="85">
+                <parameter key="repository_entry" value="../Results/Models/Model Performance KNN"/>
               </operator>
-              <operator activated="true" class="k_nn" compatibility="10.1.001" expanded="true" height="82" name="k-NN (4)" width="90" x="380" y="136">
-                <parameter key="k" value="1"/>
-                <parameter key="weighted_vote" value="true"/>
-                <parameter key="measure_types" value="MixedMeasures"/>
-                <parameter key="mixed_measure" value="MixedEuclideanDistance"/>
-                <parameter key="nominal_measure" value="NominalDistance"/>
-                <parameter key="numerical_measure" value="EuclideanDistance"/>
-                <parameter key="divergence" value="SquaredEuclideanDistance"/>
-                <parameter key="kernel_type" value="radial"/>
-                <parameter key="kernel_gamma" value="1.0"/>
-                <parameter key="kernel_sigma1" value="1.0"/>
-                <parameter key="kernel_sigma2" value="0.0"/>
-                <parameter key="kernel_sigma3" value="2.0"/>
-                <parameter key="kernel_degree" value="3.0"/>
-                <parameter key="kernel_shift" value="1.0"/>
-                <parameter key="kernel_a" value="1.0"/>
-                <parameter key="kernel_b" value="0.0"/>
+              <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (31)" width="90" x="313" y="85">
+                <list key="application_parameters"/>
               </operator>
-              <connect from_port="training set" to_op="k-NN (4)" to_port="training set"/>
-              <connect from_op="k-NN (4)" from_port="model" to_port="model"/>
+              <connect from_port="training set" to_op="Apply Model (31)" to_port="unlabelled data"/>
+              <connect from_op="Retrieve Model Performance KNN (3)" from_port="output" to_op="Apply Model (31)" to_port="model"/>
+              <connect from_op="Apply Model (31)" from_port="model" to_port="model"/>
               <portSpacing port="source_training set" spacing="0"/>
               <portSpacing port="sink_model" spacing="0"/>
             </process>
@@ -1142,13 +811,13 @@
           <portSpacing port="sink_performance 2" spacing="0"/>
         </process>
       </operator>
-      <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (14)" width="90" x="715" y="952">
+      <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (14)" width="90" x="715" y="799">
         <list key="application_parameters"/>
       </operator>
-      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (14)" width="90" x="983" y="1003">
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (14)" width="90" x="983" y="850">
         <parameter key="repository_entry" value="../Results/Model Bagging KNN"/>
       </operator>
-      <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance Bagging (5)" width="90" x="849" y="952">
+      <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance Bagging (5)" width="90" x="849" y="799">
         <parameter key="manually_set_positive_class" value="false"/>
         <parameter key="main_criterion" value="first"/>
         <parameter key="accuracy" value="true"/>
@@ -1175,63 +844,414 @@
         <parameter key="skip_undefined_labels" value="true"/>
         <parameter key="use_example_weights" value="true"/>
       </operator>
-      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (7)" width="90" x="983" y="952">
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (7)" width="90" x="983" y="799">
         <parameter key="repository_entry" value="../Results/PERF_Charts_Ensemble_Bagging_KNN"/>
       </operator>
-      <connect from_op="Retrieve Cleanset_Charts" from_port="output" to_op="Filter Examples" to_port="example set input"/>
-      <connect from_op="Filter Examples" from_port="example set output" to_op="Multiply" to_port="input"/>
-      <connect from_op="Multiply" from_port="output 1" to_op="Split Data (3)" to_port="example set"/>
-      <connect from_op="Multiply" from_port="output 2" to_op="Split Data (4)" to_port="example set"/>
-      <connect from_op="Multiply" from_port="output 3" to_op="Split Data (6)" to_port="example set"/>
-      <connect from_op="Multiply" from_port="output 4" to_op="Split Data (7)" to_port="example set"/>
+      <operator activated="true" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data (8)" width="90" x="447" y="1003">
+        <enumeration key="partitions">
+          <parameter key="ratio" value="0.8"/>
+          <parameter key="ratio" value="0.2"/>
+        </enumeration>
+        <parameter key="sampling_type" value="automatic"/>
+        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="local_random_seed" value="1992"/>
+      </operator>
+      <operator activated="true" class="concurrency:cross_validation" compatibility="10.1.001" expanded="true" height="145" name="Cross Validation Stacking (2)" width="90" x="581" y="1003">
+        <parameter key="split_on_batch_attribute" value="false"/>
+        <parameter key="leave_one_out" value="false"/>
+        <parameter key="number_of_folds" value="10"/>
+        <parameter key="sampling_type" value="automatic"/>
+        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="local_random_seed" value="1992"/>
+        <parameter key="enable_parallel_execution" value="true"/>
+        <process expanded="true">
+          <operator activated="true" class="stacking" compatibility="10.1.001" expanded="true" height="68" name="Stacking (2)" width="90" x="179" y="34">
+            <parameter key="keep_all_attributes" value="true"/>
+            <parameter key="keep_confidences" value="false"/>
+            <process expanded="true">
+              <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Model Performance Random Forest (2)" width="90" x="45" y="136">
+                <parameter key="repository_entry" value="../Results/Models/Model Performance Random Forest"/>
+              </operator>
+              <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (21)" width="90" x="246" y="136">
+                <list key="application_parameters"/>
+              </operator>
+              <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Model Performance XGBoost (2)" width="90" x="45" y="187">
+                <parameter key="repository_entry" value="../Results/Models/Model Performance XGBoost"/>
+              </operator>
+              <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (22)" width="90" x="246" y="238">
+                <list key="application_parameters"/>
+              </operator>
+              <connect from_port="training set 1" to_op="Apply Model (21)" to_port="unlabelled data"/>
+              <connect from_port="training set 2" to_op="Apply Model (22)" to_port="unlabelled data"/>
+              <connect from_op="Retrieve Model Performance Random Forest (2)" from_port="output" to_op="Apply Model (21)" to_port="model"/>
+              <connect from_op="Apply Model (21)" from_port="model" to_port="base model 1"/>
+              <connect from_op="Retrieve Model Performance XGBoost (2)" from_port="output" to_op="Apply Model (22)" to_port="model"/>
+              <connect from_op="Apply Model (22)" from_port="model" to_port="base model 2"/>
+              <portSpacing port="source_training set 1" spacing="0"/>
+              <portSpacing port="source_training set 2" spacing="0"/>
+              <portSpacing port="source_training set 3" spacing="0"/>
+              <portSpacing port="sink_base model 1" spacing="0"/>
+              <portSpacing port="sink_base model 2" spacing="0"/>
+              <portSpacing port="sink_base model 3" spacing="0"/>
+            </process>
+            <process expanded="true">
+              <operator activated="true" class="concurrency:parallel_random_forest" compatibility="10.1.001" expanded="true" height="103" name="Random Forest (3)" width="90" x="179" y="34">
+                <parameter key="number_of_trees" value="100"/>
+                <parameter key="criterion" value="gini_index"/>
+                <parameter key="maximal_depth" value="100"/>
+                <parameter key="apply_pruning" value="false"/>
+                <parameter key="confidence" value="0.1"/>
+                <parameter key="apply_prepruning" value="false"/>
+                <parameter key="minimal_gain" value="0.01"/>
+                <parameter key="minimal_leaf_size" value="2"/>
+                <parameter key="minimal_size_for_split" value="4"/>
+                <parameter key="number_of_prepruning_alternatives" value="3"/>
+                <parameter key="random_splits" value="false"/>
+                <parameter key="guess_subset_ratio" value="true"/>
+                <parameter key="subset_ratio" value="0.2"/>
+                <parameter key="voting_strategy" value="confidence vote"/>
+                <parameter key="use_local_random_seed" value="false"/>
+                <parameter key="local_random_seed" value="1992"/>
+                <parameter key="enable_parallel_execution" value="true"/>
+              </operator>
+              <connect from_port="stacking examples" to_op="Random Forest (3)" to_port="training set"/>
+              <connect from_op="Random Forest (3)" from_port="model" to_port="stacking model"/>
+              <portSpacing port="source_stacking examples" spacing="0"/>
+              <portSpacing port="sink_stacking model" spacing="0"/>
+            </process>
+          </operator>
+          <connect from_port="training set" to_op="Stacking (2)" to_port="training set"/>
+          <connect from_op="Stacking (2)" from_port="model" to_port="model"/>
+          <portSpacing port="source_training set" spacing="0"/>
+          <portSpacing port="sink_model" spacing="0"/>
+          <portSpacing port="sink_through 1" spacing="0"/>
+        </process>
+        <process expanded="true">
+          <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (15)" width="90" x="179" y="34">
+            <list key="application_parameters"/>
+          </operator>
+          <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance (8)" width="90" x="380" y="34">
+            <parameter key="manually_set_positive_class" value="true"/>
+            <parameter key="positive_class" value="true"/>
+            <parameter key="main_criterion" value="first"/>
+            <parameter key="accuracy" value="true"/>
+            <parameter key="classification_error" value="false"/>
+            <parameter key="kappa" value="false"/>
+            <parameter key="AUC (optimistic)" value="false"/>
+            <parameter key="AUC" value="true"/>
+            <parameter key="AUC (pessimistic)" value="false"/>
+            <parameter key="precision" value="true"/>
+            <parameter key="recall" value="true"/>
+            <parameter key="lift" value="false"/>
+            <parameter key="fallout" value="false"/>
+            <parameter key="f_measure" value="true"/>
+            <parameter key="false_positive" value="false"/>
+            <parameter key="false_negative" value="true"/>
+            <parameter key="true_positive" value="true"/>
+            <parameter key="true_negative" value="false"/>
+            <parameter key="sensitivity" value="true"/>
+            <parameter key="specificity" value="true"/>
+            <parameter key="youden" value="false"/>
+            <parameter key="positive_predictive_value" value="false"/>
+            <parameter key="negative_predictive_value" value="false"/>
+            <parameter key="psep" value="false"/>
+            <parameter key="skip_undefined_labels" value="true"/>
+            <parameter key="use_example_weights" value="true"/>
+          </operator>
+          <connect from_port="model" to_op="Apply Model (15)" to_port="model"/>
+          <connect from_port="test set" to_op="Apply Model (15)" to_port="unlabelled data"/>
+          <connect from_op="Apply Model (15)" from_port="labelled data" to_op="Performance (8)" to_port="labelled data"/>
+          <connect from_op="Performance (8)" from_port="performance" to_port="performance 1"/>
+          <portSpacing port="source_model" spacing="0"/>
+          <portSpacing port="source_test set" spacing="0"/>
+          <portSpacing port="source_through 1" spacing="0"/>
+          <portSpacing port="sink_test set results" spacing="0"/>
+          <portSpacing port="sink_performance 1" spacing="0"/>
+          <portSpacing port="sink_performance 2" spacing="0"/>
+        </process>
+      </operator>
+      <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (16)" width="90" x="715" y="1003">
+        <list key="application_parameters"/>
+      </operator>
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (15)" width="90" x="983" y="1054">
+        <parameter key="repository_entry" value="../Results/Model Stacking_xg_rndf"/>
+      </operator>
+      <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance Stacking (2)" width="90" x="849" y="1003">
+        <parameter key="manually_set_positive_class" value="false"/>
+        <parameter key="main_criterion" value="first"/>
+        <parameter key="accuracy" value="true"/>
+        <parameter key="classification_error" value="false"/>
+        <parameter key="kappa" value="false"/>
+        <parameter key="AUC (optimistic)" value="false"/>
+        <parameter key="AUC" value="true"/>
+        <parameter key="AUC (pessimistic)" value="false"/>
+        <parameter key="precision" value="true"/>
+        <parameter key="recall" value="true"/>
+        <parameter key="lift" value="false"/>
+        <parameter key="fallout" value="false"/>
+        <parameter key="f_measure" value="true"/>
+        <parameter key="false_positive" value="false"/>
+        <parameter key="false_negative" value="false"/>
+        <parameter key="true_positive" value="false"/>
+        <parameter key="true_negative" value="false"/>
+        <parameter key="sensitivity" value="true"/>
+        <parameter key="specificity" value="true"/>
+        <parameter key="youden" value="false"/>
+        <parameter key="positive_predictive_value" value="false"/>
+        <parameter key="negative_predictive_value" value="false"/>
+        <parameter key="psep" value="false"/>
+        <parameter key="skip_undefined_labels" value="true"/>
+        <parameter key="use_example_weights" value="true"/>
+      </operator>
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (16)" width="90" x="1050" y="1003">
+        <parameter key="repository_entry" value="../Results/Performances/PERF_Charts_Ensemble_Stacking_xg_rndf"/>
+      </operator>
+      <operator activated="true" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data (9)" width="90" x="447" y="1156">
+        <enumeration key="partitions">
+          <parameter key="ratio" value="0.8"/>
+          <parameter key="ratio" value="0.2"/>
+        </enumeration>
+        <parameter key="sampling_type" value="automatic"/>
+        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="local_random_seed" value="1992"/>
+      </operator>
+      <operator activated="true" class="concurrency:cross_validation" compatibility="10.1.001" expanded="true" height="145" name="Cross Validation Voting (2)" width="90" x="581" y="1156">
+        <parameter key="split_on_batch_attribute" value="false"/>
+        <parameter key="leave_one_out" value="false"/>
+        <parameter key="number_of_folds" value="10"/>
+        <parameter key="sampling_type" value="automatic"/>
+        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="local_random_seed" value="1992"/>
+        <parameter key="enable_parallel_execution" value="true"/>
+        <process expanded="true">
+          <operator activated="true" class="vote" compatibility="10.1.001" expanded="true" height="68" name="Vote (2)" width="90" x="179" y="85">
+            <process expanded="true">
+              <operator activated="false" class="xgboost:xgboost" compatibility="0.1.003" expanded="true" height="103" name="XGBoost (5)" width="90" x="112" y="34">
+                <parameter key="booster" value="tree booster"/>
+                <parameter key="rounds" value="80"/>
+                <parameter key="early_stopping" value="none"/>
+                <parameter key="early_stopping_rounds" value="10"/>
+                <parameter key="learning_rate" value="0.07177346253629313"/>
+                <parameter key="min_split_loss" value="0.0"/>
+                <parameter key="max_depth" value="80"/>
+                <parameter key="min_child_weight" value="1.0"/>
+                <parameter key="subsample" value="1.0"/>
+                <parameter key="tree_method" value="auto"/>
+                <parameter key="lambda" value="0.0"/>
+                <parameter key="alpha" value="0.624504792712471"/>
+                <parameter key="sample_type" value="uniform"/>
+                <parameter key="normalize_type" value="tree"/>
+                <parameter key="rate_drop" value="0.0"/>
+                <parameter key="skip_drop" value="0.0"/>
+                <parameter key="updater" value="shotgun"/>
+                <parameter key="feature_selector" value="cyclic"/>
+                <parameter key="top_k" value="0"/>
+                <enumeration key="expert_parameters"/>
+              </operator>
+              <operator activated="false" class="concurrency:parallel_random_forest" compatibility="10.1.001" expanded="true" height="103" name="Random Forest (4)" width="90" x="112" y="136">
+                <parameter key="number_of_trees" value="100"/>
+                <parameter key="criterion" value="gini_index"/>
+                <parameter key="maximal_depth" value="100"/>
+                <parameter key="apply_pruning" value="false"/>
+                <parameter key="confidence" value="0.1"/>
+                <parameter key="apply_prepruning" value="false"/>
+                <parameter key="minimal_gain" value="0.01"/>
+                <parameter key="minimal_leaf_size" value="2"/>
+                <parameter key="minimal_size_for_split" value="4"/>
+                <parameter key="number_of_prepruning_alternatives" value="3"/>
+                <parameter key="random_splits" value="false"/>
+                <parameter key="guess_subset_ratio" value="true"/>
+                <parameter key="subset_ratio" value="0.2"/>
+                <parameter key="voting_strategy" value="confidence vote"/>
+                <parameter key="use_local_random_seed" value="false"/>
+                <parameter key="local_random_seed" value="1992"/>
+                <parameter key="enable_parallel_execution" value="true"/>
+              </operator>
+              <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Model Performance Random Forest" width="90" x="112" y="238">
+                <parameter key="repository_entry" value="../Results/Models/Model Performance Random Forest"/>
+              </operator>
+              <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (19)" width="90" x="313" y="238">
+                <list key="application_parameters"/>
+              </operator>
+              <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Model Performance XGBoost" width="90" x="112" y="289">
+                <parameter key="repository_entry" value="../Results/Models/Model Performance XGBoost"/>
+              </operator>
+              <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (20)" width="90" x="313" y="340">
+                <list key="application_parameters"/>
+              </operator>
+              <connect from_port="training set 1" to_op="Apply Model (19)" to_port="unlabelled data"/>
+              <connect from_port="training set 2" to_op="Apply Model (20)" to_port="unlabelled data"/>
+              <connect from_op="Retrieve Model Performance Random Forest" from_port="output" to_op="Apply Model (19)" to_port="model"/>
+              <connect from_op="Apply Model (19)" from_port="model" to_port="base model 1"/>
+              <connect from_op="Retrieve Model Performance XGBoost" from_port="output" to_op="Apply Model (20)" to_port="model"/>
+              <connect from_op="Apply Model (20)" from_port="model" to_port="base model 2"/>
+              <portSpacing port="source_training set 1" spacing="0"/>
+              <portSpacing port="source_training set 2" spacing="0"/>
+              <portSpacing port="source_training set 3" spacing="0"/>
+              <portSpacing port="sink_base model 1" spacing="0"/>
+              <portSpacing port="sink_base model 2" spacing="0"/>
+              <portSpacing port="sink_base model 3" spacing="0"/>
+            </process>
+          </operator>
+          <connect from_port="training set" to_op="Vote (2)" to_port="training set"/>
+          <connect from_op="Vote (2)" from_port="model" to_port="model"/>
+          <portSpacing port="source_training set" spacing="0"/>
+          <portSpacing port="sink_model" spacing="0"/>
+          <portSpacing port="sink_through 1" spacing="0"/>
+        </process>
+        <process expanded="true">
+          <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (17)" width="90" x="179" y="34">
+            <list key="application_parameters"/>
+          </operator>
+          <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance (9)" width="90" x="380" y="34">
+            <parameter key="manually_set_positive_class" value="true"/>
+            <parameter key="positive_class" value="true"/>
+            <parameter key="main_criterion" value="first"/>
+            <parameter key="accuracy" value="true"/>
+            <parameter key="classification_error" value="false"/>
+            <parameter key="kappa" value="false"/>
+            <parameter key="AUC (optimistic)" value="false"/>
+            <parameter key="AUC" value="true"/>
+            <parameter key="AUC (pessimistic)" value="false"/>
+            <parameter key="precision" value="true"/>
+            <parameter key="recall" value="true"/>
+            <parameter key="lift" value="false"/>
+            <parameter key="fallout" value="false"/>
+            <parameter key="f_measure" value="true"/>
+            <parameter key="false_positive" value="false"/>
+            <parameter key="false_negative" value="true"/>
+            <parameter key="true_positive" value="true"/>
+            <parameter key="true_negative" value="false"/>
+            <parameter key="sensitivity" value="true"/>
+            <parameter key="specificity" value="true"/>
+            <parameter key="youden" value="false"/>
+            <parameter key="positive_predictive_value" value="false"/>
+            <parameter key="negative_predictive_value" value="false"/>
+            <parameter key="psep" value="false"/>
+            <parameter key="skip_undefined_labels" value="true"/>
+            <parameter key="use_example_weights" value="true"/>
+          </operator>
+          <connect from_port="model" to_op="Apply Model (17)" to_port="model"/>
+          <connect from_port="test set" to_op="Apply Model (17)" to_port="unlabelled data"/>
+          <connect from_op="Apply Model (17)" from_port="labelled data" to_op="Performance (9)" to_port="labelled data"/>
+          <connect from_op="Performance (9)" from_port="performance" to_port="performance 1"/>
+          <portSpacing port="source_model" spacing="0"/>
+          <portSpacing port="source_test set" spacing="0"/>
+          <portSpacing port="source_through 1" spacing="0"/>
+          <portSpacing port="sink_test set results" spacing="0"/>
+          <portSpacing port="sink_performance 1" spacing="0"/>
+          <portSpacing port="sink_performance 2" spacing="0"/>
+        </process>
+      </operator>
+      <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (18)" width="90" x="715" y="1156">
+        <list key="application_parameters"/>
+      </operator>
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (17)" width="90" x="983" y="1207">
+        <parameter key="repository_entry" value="../Results/Model Votingxg_rndf"/>
+      </operator>
+      <operator activated="true" class="performance_binominal_classification" compatibility="10.1.001" expanded="true" height="82" name="Performance Voting (2)" width="90" x="849" y="1156">
+        <parameter key="manually_set_positive_class" value="false"/>
+        <parameter key="main_criterion" value="first"/>
+        <parameter key="accuracy" value="true"/>
+        <parameter key="classification_error" value="false"/>
+        <parameter key="kappa" value="false"/>
+        <parameter key="AUC (optimistic)" value="false"/>
+        <parameter key="AUC" value="true"/>
+        <parameter key="AUC (pessimistic)" value="false"/>
+        <parameter key="precision" value="true"/>
+        <parameter key="recall" value="true"/>
+        <parameter key="lift" value="false"/>
+        <parameter key="fallout" value="false"/>
+        <parameter key="f_measure" value="true"/>
+        <parameter key="false_positive" value="false"/>
+        <parameter key="false_negative" value="false"/>
+        <parameter key="true_positive" value="false"/>
+        <parameter key="true_negative" value="false"/>
+        <parameter key="sensitivity" value="true"/>
+        <parameter key="specificity" value="true"/>
+        <parameter key="youden" value="false"/>
+        <parameter key="positive_predictive_value" value="false"/>
+        <parameter key="negative_predictive_value" value="false"/>
+        <parameter key="psep" value="false"/>
+        <parameter key="skip_undefined_labels" value="true"/>
+        <parameter key="use_example_weights" value="true"/>
+      </operator>
+      <operator activated="true" class="store" compatibility="10.1.001" expanded="true" height="68" name="Store (18)" width="90" x="983" y="1156">
+        <parameter key="repository_entry" value="../Results/PERF_Charts_Ensemble_Voting_ALLxg_rndf"/>
+      </operator>
+      <connect from_op="Retrieve Cleanset_Charts" from_port="output" to_op="Multiply" to_port="input"/>
+      <connect from_op="Multiply" from_port="output 1" to_op="Split Data (9)" to_port="example set"/>
+      <connect from_op="Multiply" from_port="output 2" to_op="Split Data (8)" to_port="example set"/>
+      <connect from_op="Multiply" from_port="output 3" to_op="Split Data" to_port="example set"/>
+      <connect from_op="Multiply" from_port="output 4" to_op="Split Data (2)" to_port="example set"/>
+      <connect from_op="Multiply" from_port="output 5" to_op="Split Data (3)" to_port="example set"/>
+      <connect from_op="Multiply" from_port="output 6" to_op="Split Data (4)" to_port="example set"/>
+      <connect from_op="Multiply" from_port="output 8" to_op="Split Data (6)" to_port="example set"/>
+      <connect from_op="Multiply" from_port="output 9" to_op="Split Data (7)" to_port="example set"/>
       <connect from_op="Split Data" from_port="partition 1" to_op="Cross Validation Stacking" to_port="example set"/>
       <connect from_op="Split Data" from_port="partition 2" to_op="Apply Model (2)" to_port="unlabelled data"/>
       <connect from_op="Cross Validation Stacking" from_port="model" to_op="Apply Model (2)" to_port="model"/>
       <connect from_op="Apply Model (2)" from_port="labelled data" to_op="Performance Stacking" to_port="labelled data"/>
       <connect from_op="Apply Model (2)" from_port="model" to_op="Store (8)" to_port="input"/>
+      <connect from_op="Store (8)" from_port="through" to_port="result 6"/>
       <connect from_op="Performance Stacking" from_port="performance" to_op="Store" to_port="input"/>
+      <connect from_op="Store" from_port="through" to_port="result 5"/>
       <connect from_op="Split Data (2)" from_port="partition 1" to_op="Cross Validation Voting" to_port="example set"/>
       <connect from_op="Split Data (2)" from_port="partition 2" to_op="Apply Model (4)" to_port="unlabelled data"/>
       <connect from_op="Cross Validation Voting" from_port="model" to_op="Apply Model (4)" to_port="model"/>
       <connect from_op="Apply Model (4)" from_port="labelled data" to_op="Performance Voting" to_port="labelled data"/>
       <connect from_op="Apply Model (4)" from_port="model" to_op="Store (9)" to_port="input"/>
+      <connect from_op="Store (9)" from_port="through" to_port="result 8"/>
       <connect from_op="Performance Voting" from_port="performance" to_op="Store (2)" to_port="input"/>
+      <connect from_op="Store (2)" from_port="through" to_port="result 7"/>
       <connect from_op="Split Data (3)" from_port="partition 1" to_op="XGB Cross Validation Bagging" to_port="example set"/>
       <connect from_op="Split Data (3)" from_port="partition 2" to_op="Apply Model (6)" to_port="unlabelled data"/>
       <connect from_op="XGB Cross Validation Bagging" from_port="model" to_op="Apply Model (6)" to_port="model"/>
       <connect from_op="Apply Model (6)" from_port="labelled data" to_op="Performance Bagging" to_port="labelled data"/>
       <connect from_op="Apply Model (6)" from_port="model" to_op="Store (10)" to_port="input"/>
-      <connect from_op="Store (10)" from_port="through" to_port="result 3"/>
+      <connect from_op="Store (10)" from_port="through" to_port="result 10"/>
       <connect from_op="Performance Bagging" from_port="performance" to_op="Store (3)" to_port="input"/>
-      <connect from_op="Store (3)" from_port="through" to_port="result 2"/>
+      <connect from_op="Store (3)" from_port="through" to_port="result 9"/>
       <connect from_op="Split Data (4)" from_port="partition 1" to_op="RF Cross Validation Bagging (2)" to_port="example set"/>
       <connect from_op="Split Data (4)" from_port="partition 2" to_op="Apply Model (8)" to_port="unlabelled data"/>
       <connect from_op="RF Cross Validation Bagging (2)" from_port="model" to_op="Apply Model (8)" to_port="model"/>
       <connect from_op="Apply Model (8)" from_port="labelled data" to_op="Performance Bagging (2)" to_port="labelled data"/>
       <connect from_op="Apply Model (8)" from_port="model" to_op="Store (11)" to_port="input"/>
-      <connect from_op="Store (11)" from_port="through" to_port="result 5"/>
+      <connect from_op="Store (11)" from_port="through" to_port="result 12"/>
       <connect from_op="Performance Bagging (2)" from_port="performance" to_op="Store (4)" to_port="input"/>
-      <connect from_op="Store (4)" from_port="through" to_port="result 4"/>
-      <connect from_op="Split Data (5)" from_port="partition 1" to_op="Apply Model (10)" to_port="unlabelled data"/>
-      <connect from_op="Apply Model (10)" from_port="labelled data" to_op="Performance Bagging (3)" to_port="labelled data"/>
-      <connect from_op="Apply Model (10)" from_port="model" to_op="Store (12)" to_port="input"/>
-      <connect from_op="Performance Bagging (3)" from_port="performance" to_op="Store (5)" to_port="input"/>
+      <connect from_op="Store (4)" from_port="through" to_port="result 11"/>
       <connect from_op="Split Data (6)" from_port="partition 1" to_op="LogReg Cross Validation Bagging" to_port="example set"/>
       <connect from_op="Split Data (6)" from_port="partition 2" to_op="Apply Model (12)" to_port="unlabelled data"/>
       <connect from_op="LogReg Cross Validation Bagging" from_port="model" to_op="Apply Model (12)" to_port="model"/>
       <connect from_op="Apply Model (12)" from_port="labelled data" to_op="Performance Bagging (4)" to_port="labelled data"/>
       <connect from_op="Apply Model (12)" from_port="model" to_op="Store (13)" to_port="input"/>
-      <connect from_op="Store (13)" from_port="through" to_port="result 7"/>
+      <connect from_op="Store (13)" from_port="through" to_port="result 15"/>
       <connect from_op="Performance Bagging (4)" from_port="performance" to_op="Store (6)" to_port="input"/>
-      <connect from_op="Store (6)" from_port="through" to_port="result 6"/>
+      <connect from_op="Store (6)" from_port="through" to_port="result 14"/>
       <connect from_op="Split Data (7)" from_port="partition 1" to_op="KNN Cross Validation Bagging" to_port="example set"/>
       <connect from_op="Split Data (7)" from_port="partition 2" to_op="Apply Model (14)" to_port="unlabelled data"/>
       <connect from_op="KNN Cross Validation Bagging" from_port="model" to_op="Apply Model (14)" to_port="model"/>
       <connect from_op="Apply Model (14)" from_port="labelled data" to_op="Performance Bagging (5)" to_port="labelled data"/>
       <connect from_op="Apply Model (14)" from_port="model" to_op="Store (14)" to_port="input"/>
-      <connect from_op="Store (14)" from_port="through" to_port="result 9"/>
+      <connect from_op="Store (14)" from_port="through" to_port="result 17"/>
       <connect from_op="Performance Bagging (5)" from_port="performance" to_op="Store (7)" to_port="input"/>
-      <connect from_op="Store (7)" from_port="through" to_port="result 8"/>
+      <connect from_op="Store (7)" from_port="through" to_port="result 16"/>
+      <connect from_op="Split Data (8)" from_port="partition 1" to_op="Cross Validation Stacking (2)" to_port="example set"/>
+      <connect from_op="Split Data (8)" from_port="partition 2" to_op="Apply Model (16)" to_port="unlabelled data"/>
+      <connect from_op="Cross Validation Stacking (2)" from_port="model" to_op="Apply Model (16)" to_port="model"/>
+      <connect from_op="Apply Model (16)" from_port="labelled data" to_op="Performance Stacking (2)" to_port="labelled data"/>
+      <connect from_op="Apply Model (16)" from_port="model" to_op="Store (15)" to_port="input"/>
+      <connect from_op="Store (15)" from_port="through" to_port="result 4"/>
+      <connect from_op="Performance Stacking (2)" from_port="performance" to_op="Store (16)" to_port="input"/>
+      <connect from_op="Store (16)" from_port="through" to_port="result 3"/>
+      <connect from_op="Split Data (9)" from_port="partition 1" to_op="Cross Validation Voting (2)" to_port="example set"/>
+      <connect from_op="Split Data (9)" from_port="partition 2" to_op="Apply Model (18)" to_port="unlabelled data"/>
+      <connect from_op="Cross Validation Voting (2)" from_port="model" to_op="Apply Model (18)" to_port="model"/>
+      <connect from_op="Apply Model (18)" from_port="labelled data" to_op="Performance Voting (2)" to_port="labelled data"/>
+      <connect from_op="Apply Model (18)" from_port="model" to_op="Store (17)" to_port="input"/>
+      <connect from_op="Store (17)" from_port="through" to_port="result 2"/>
+      <connect from_op="Performance Voting (2)" from_port="performance" to_op="Store (18)" to_port="input"/>
+      <connect from_op="Store (18)" from_port="through" to_port="result 1"/>
       <portSpacing port="source_input 1" spacing="0"/>
       <portSpacing port="sink_result 1" spacing="0"/>
       <portSpacing port="sink_result 2" spacing="0"/>
@@ -1243,6 +1263,14 @@
       <portSpacing port="sink_result 8" spacing="0"/>
       <portSpacing port="sink_result 9" spacing="0"/>
       <portSpacing port="sink_result 10" spacing="0"/>
+      <portSpacing port="sink_result 11" spacing="0"/>
+      <portSpacing port="sink_result 12" spacing="0"/>
+      <portSpacing port="sink_result 13" spacing="0"/>
+      <portSpacing port="sink_result 14" spacing="0"/>
+      <portSpacing port="sink_result 15" spacing="0"/>
+      <portSpacing port="sink_result 16" spacing="0"/>
+      <portSpacing port="sink_result 17" spacing="0"/>
+      <portSpacing port="sink_result 18" spacing="0"/>
     </process>
   </operator>
 </process>
