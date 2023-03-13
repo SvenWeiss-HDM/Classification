@@ -34,7 +34,7 @@
             <list key="application_parameters"/>
           </operator>
           <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Model Bagging LOGREG" width="90" x="179" y="187">
-            <parameter key="repository_entry" value="../Results/Models/Model Bagging LOGREG"/>
+            <parameter key="repository_entry" value="../Results/Models/Model Bagging LOGREG - 2"/>
           </operator>
           <operator activated="true" class="apply_model" compatibility="10.1.001" expanded="true" height="82" name="Apply Model (2)" width="90" x="380" y="187">
             <list key="application_parameters"/>

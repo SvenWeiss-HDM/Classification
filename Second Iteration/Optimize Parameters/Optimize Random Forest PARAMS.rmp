@@ -33,9 +33,9 @@
       </operator>
       <operator activated="true" class="concurrency:optimize_parameters_grid" compatibility="10.1.001" expanded="true" height="124" name="Optimize Parameters (Grid)" width="90" x="581" y="136">
         <list key="parameters">
-          <parameter key="Random Forest.criterion" value="gini_index"/>
+          <parameter key="Random Forest.criterion" value="gini_index,gain_ratio,information_gain,accuracy"/>
           <parameter key="Random Forest.number_of_trees" value="[1.0;100.0;10;linear]"/>
-          <parameter key="Random Forest.confidence" value="[1.0E-7;0.5;10;linear]"/>
+          <parameter key="Random Forest.confidence" value="[0;1;10;logarithmic (legacy)]"/>
           <parameter key="Random Forest.voting_strategy" value="confidence vote,majority vote"/>
         </list>
         <parameter key="error_handling" value="fail on error"/>
