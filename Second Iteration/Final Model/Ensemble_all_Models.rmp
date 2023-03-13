@@ -15,7 +15,7 @@
       <operator activated="true" class="retrieve" compatibility="10.1.001" expanded="true" height="68" name="Retrieve Cleanset_Charts" width="90" x="45" y="136">
         <parameter key="repository_entry" value="../../Data/Datasets Rapidminer/Cleanset_Charts"/>
       </operator>
-      <operator activated="true" class="multiply" compatibility="10.1.001" expanded="true" height="229" name="Multiply" width="90" x="313" y="136"/>
+      <operator activated="true" class="multiply" compatibility="10.1.001" expanded="true" height="229" name="Multiply" width="90" x="246" y="136"/>
       <operator activated="true" class="split_data" compatibility="10.1.001" expanded="true" height="103" name="Split Data" width="90" x="447" y="34">
         <enumeration key="partitions">
           <parameter key="ratio" value="0.8"/>
@@ -1169,9 +1169,8 @@
       <connect from_op="Multiply" from_port="output 3" to_op="Split Data" to_port="example set"/>
       <connect from_op="Multiply" from_port="output 4" to_op="Split Data (2)" to_port="example set"/>
       <connect from_op="Multiply" from_port="output 5" to_op="Split Data (3)" to_port="example set"/>
-      <connect from_op="Multiply" from_port="output 6" to_op="Split Data (4)" to_port="example set"/>
-      <connect from_op="Multiply" from_port="output 7" to_op="Split Data (6)" to_port="example set"/>
-      <connect from_op="Multiply" from_port="output 8" to_op="Split Data (7)" to_port="example set"/>
+      <connect from_op="Multiply" from_port="output 6" to_op="Split Data (6)" to_port="example set"/>
+      <connect from_op="Multiply" from_port="output 7" to_op="Split Data (7)" to_port="example set"/>
       <connect from_op="Split Data" from_port="partition 1" to_op="Cross Validation Stacking" to_port="example set"/>
       <connect from_op="Split Data" from_port="partition 2" to_op="Apply Model (2)" to_port="unlabelled data"/>
       <connect from_op="Cross Validation Stacking" from_port="model" to_op="Apply Model (2)" to_port="model"/>
